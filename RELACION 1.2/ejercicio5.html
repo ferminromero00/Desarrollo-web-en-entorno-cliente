@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el numero</title>
+</head>
+<body>
+
+<script>
+    // Pedimos el numero
+    let NumeroMisterioso = Number(prompt("Jugador 1, introduce el numero que el jugador 2 debe adivinar:"));
+    let intentos = 0;
+    let respuesta;
+    /* En mi caos hice un bucle do-while, es sencillo, se pide un numero constantemente, si es mayor lo dice, si es menor tambien, el programa sale 
+    cuando introduces el correcto salimos del bucle y termina el programa*/
+    do {
+        respuesta = Number(prompt("Jugador 2, te toca adivinar! Introduce el numero:"));
+        if (respuesta > NumeroMisterioso) {
+            alert("Pista! Introduciste un numero mayor! Prueba otra vez!");
+        } else if (respuesta < NumeroMisterioso) {
+            alert("Pista! Introduciste un numero menor! Prueba otra vez!");
+        };
+        intentos++;
+    }while(respuesta != NumeroMisterioso);
+
+    alert("Enorabuena acertaste! Intentos: " + intentos);
+</script>    
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
