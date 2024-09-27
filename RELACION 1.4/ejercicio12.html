@@ -1,0 +1,13 @@
+<script>
+    function precioFinal(precio, descuento) {
+        //Hacemos los calculos
+        let PrecioFinal = precio * (descuento / 100);
+        let resultado = precio - PrecioFinal;
+
+        // Mostramos los resultados
+        document.write("Precio inicial: " + precio + "€<br>");
+        document.write("Precio con descuento: " + resultado + "€");
+    }
+
+    precioFinal(35, 50);
+</script>

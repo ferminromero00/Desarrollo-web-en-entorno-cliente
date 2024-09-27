@@ -1,0 +1,18 @@
+<script>
+    function factorial(num) {
+
+        // Inicializar el resultado
+        let resultado = 1;
+
+        // Calcular el factorial
+        for (let i = 1; i <= num; i++) {
+            resultado *= i; // Multiplicar el resultado por cada número desde 1 hasta num
+        }
+
+        // Mostrar el resultado en la página
+        document.write("El factorial de " + num + " es: " + resultado);
+    }
+
+    // Llamar a la función para ejecutar el cálculo
+    factorial(5);
+</script>

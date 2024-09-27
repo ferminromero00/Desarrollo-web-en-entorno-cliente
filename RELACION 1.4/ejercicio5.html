@@ -1,0 +1,24 @@
+<body>
+
+    <script>
+        function sumEveryOther(... nums) {
+            let sum = 0;
+
+            // Recorremos los argumentos saltando uno cada vez (i += 2)
+            for (let i = 1; i < nums.length; i += 2) {
+                // Verificamos si el argumento actual es un número antes de sumarlo
+                if (typeof nums[i] === 'number') {
+                    sum += nums[i];
+                }
+            }
+
+            return sum;
+        }
+
+        // Ejemplo de uso:
+        let result = sumEveryOther(2,10,2,10,2,10,2);
+        document.write("La suma de cada segundo argumento es: " + result); 
+
+
+
+    </script>

@@ -1,0 +1,19 @@
+<script>
+    // Definimos la función que combina dos arreglos utilizando el operador de propagación
+    function combineTwoArrays() {
+        let arr1 = [1, 2, 3];
+        let arr2 = [4, 5, 6];
+
+        // Concatenamos los dos arrays usando concat
+        let arrConcatenado = arr1.concat(arr2);
+
+        // Devolvemos el arrays concatenado
+        return arrConcatenado;
+    }
+
+    // Llamamos a la función para obtener el arrays combinado
+    let resultado = combineTwoArrays();
+
+    document.write("El array combinado es: [" + resultado.join(", ") + "]");
+
+</script>
