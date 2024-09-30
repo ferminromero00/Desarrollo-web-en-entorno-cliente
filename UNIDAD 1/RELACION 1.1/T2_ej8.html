@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*En primer lugar, se carga un prompt donde pregunta: ¿Cuál fue el primer presidente de la democracia española? En caso de que el usuario
+        introduzca mal nombre y apellido, muestre como mensaje: ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?
+        En caso de que el usuario introduzca el nombre del presidente (solamente) el prompt
+        mostrará como mensaje Te falta el apellido. ¿Cuál fue el primer presidente de la
+        democracia española?
+         En caso de que el usuario introduzca el apellido del presidente (solamente) el prompt
+        mostrará como mensaje Te falta el nombre. ¿Cuál fue el primer presidente de la democracia
+        española?
+    */
+        const nombreCorrecto = "Adolfo Suarez";
+        let respuesta; // Declaramos la variable fuera del bloque do-while
+
+        /* hacemos un bucle, entramos en un if que hasta que no lo pongas correcto no sale, si aciertas uno de los dos te lo dice pero sigues en
+        el bucle sin poder salir*/
+        do {
+            respuesta = prompt("Introduce el primer presidente español de la democracia:");
+            
+            if (respuesta === "Adolfo") {
+                alert("ERROR, te falta el apellido.");
+            } else if (respuesta === "Suarez") {
+                alert("ERROR, te falta el nombre");
+            } else if (respuesta !== nombreCorrecto) {
+                alert("ERROR, nombre incorrecto");
+            }
+        } while (respuesta !== nombreCorrecto);
+
+        alert("Acceso permitido. Bienvenido a la página.");
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
