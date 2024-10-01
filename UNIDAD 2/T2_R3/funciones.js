@@ -1,14 +1,14 @@
 function NumsAleatorios(valor1, valor2) {
     //numero aleatorio entre 0 y 1
     numAleatorio = Math.random()
-    document.write(Math.round(numAleatorio) + "<br>")
+    document.write("Numero entre 0 y 1: " + Math.round(numAleatorio) + "<br>")
 
     //numero aleatorio entre 100 y 200
     //numAleatorio2 = (Math.random() * 101) + 100
-    numAleatorio2 = (Math.random() * 101) + 100
+    numAleatorio2 = ("Numero entre 100 y 200: " + Math.random() * 101) + 100
     document.write(Math.round(numAleatorio2) + "<br>")
 
-    numAleatorio3 = (Math.random() * valor1) + valor2
+    numAleatorio3 = ("Numero entre " + valor1+ " y " + valor2 + " " +Math.random() * valor1) + valor2
     document.write(Math.round(numAleatorio3) + "<br>")
 }
 
