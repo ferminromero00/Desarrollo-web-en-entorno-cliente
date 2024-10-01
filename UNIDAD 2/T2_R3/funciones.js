@@ -1,15 +1,15 @@
 function NumsAleatorios(valor1, valor2) {
-    //numero aleatorio entre 0 y 1
-    numAleatorio = Math.random()
-    document.write("Numero entre 0 y 1: " + Math.round(numAleatorio) + "<br>")
+    // Número aleatorio entre 0 y 1
+    let numAleatorio = Math.random(); 
+    document.write("Numero entre 0 y 1: " + Math.round (numAleatorio) + "<br>"); // uso toFixed para mostrar solo dos decimales
 
-    //numero aleatorio entre 100 y 200
-    //numAleatorio2 = (Math.random() * 101) + 100
-    numAleatorio2 = ("Numero entre 100 y 200: " + Math.random() * 101) + 100
-    document.write(Math.round(numAleatorio2) + "<br>")
+    // Número aleatorio entre 100 y 200
+    let numAleatorio2 = Math.random() * 101 + 100; // calculamos el número aleatorio correctamente
+    document.write("Numero entre 100 y 200: " + Math.round (numAleatorio2) + "<br>");
 
-    numAleatorio3 = ("Numero entre " + valor1+ " y " + valor2 + " " +Math.random() * valor1) + valor2
-    document.write(Math.round(numAleatorio3) + "<br>")
+    // Número aleatorio entre valor1 y valor2
+    let numAleatorio3 = Math.random() * (valor2 - valor1) + valor1; 
+    document.write("Numero entre " + valor1 + " y " + valor2 + ": " + Math.round (numAleatorio3) + "<br>");
 }
 
 function calcularTrigonometria() {
