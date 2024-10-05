@@ -1,0 +1,35 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body>
+    <script src="funciones.js"></script>
+
+    <script>
+        try {
+            //Lo introducimo como string para remplazar los guiones y devolverlo como numero
+            let numTarjeta = "6666-6666-6666-1666"
+            let numFormateado = numTarjeta.replaceAll("-", "")
+            let numTarjeta2 = parseInt(numFormateado)
+            // Verificamos si es un número válido
+            if (typeof numTarjeta2 !== "number" || isNaN(numTarjeta2)) {
+                console.log("El valor no es un número válido.");
+            } else {
+                validateCreditCard(numTarjeta2);
+            }
+        } catch (error) {
+            // Si hay un error, informamos que el valor no es válido
+            console.log("El valor no es un número válido, introduce un valor correcto.");
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
