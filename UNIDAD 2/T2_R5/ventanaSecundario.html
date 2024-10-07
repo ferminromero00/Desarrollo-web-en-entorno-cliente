@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana secundaria</title>
+</head>
+
+<body>
+    <script src="funciones.js"></script>
+    <p id="parrafo"></p>
+    <script>
+        function recibeMensaje(texto) {
+            var objeto = document.getElementById("parrafo");
+            objeto.innerHTML = texto
+        }
+        function cerrarse() {
+            window.close()
+        }
+    </script>
+    <button onclick="cerrarse()">Cerrar</button>
+
+
+</body>
+
+</html>
