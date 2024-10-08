@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacion navegador</title>
+</head>
+
+<body>
+    <script src="funciones.js"></script>
+    <h3>a) Abrir ventana de confirmación</h3>
+    <button onclick="confirmacion()">Abrir ventana de confirmacion</button>
+
+    <h3>b) Analizar si la ventana se ha cerrado</h3>
+    <button onclick="analizarCierreVentana()">-- Abrir ventana</button><br>
+    <button onclick="estadoVentana()">-- Estado de la ventana</button>
+
+    <h3>c) Cambiar nombre de la ventana</h3>
+    <button onclick="nuevaVentana()">Abrir ventana</button><br>
+    <button onclick="cambiarNombre ()">Cambiar nombre</button>
+
+    <h3>d-1) Cerrar ventana actual</h3>
+
+    <button onclick="cerrarVentanaActual()">Cerrar ventana actual</button><br>
+    <p>
+        He estado buscando informacion y los navegadores por seguridad solo te dejan cerrar ventanas que han
+        sido abiertas con window.open
+    </p>
+
+    <h3>d-2) Cerrar ventana , abierta  con window.open</h3>
+    <button onclick="nuevaVentana()">Abrir ventana</button><br>
+    <button onclick="cerrarVentana()">Cerrar ventana</button><br>
+
+    <h3>f) Abre una ventana de 300x100 que pueda ser cambiada de tamaño</h3>
+    <button onclick="nuevaVentana1()">Abrir ventana</button><br>
+    <button onclick=" cambiarTamaño()">Cambiar tamaño</button>
+
+    <h3>g) Mejorar apartado 'F', para escribir texto en la pagina principal</h3>
+    <button onclick="nuevaVentana2()">Abrir ventana</button><br>
+    <button onclick="cambiarTamaño2()">Cambiar tamaño mejorado</button><br>
+    <p id="texto"></p>
+
+    <h3>h) Mueve la ventana 50 pixeles hacia abajo y hacia la derecha al activar el enlace</h3>
+    <button onclick="nuevaVentana3()">Abrir ventana</button><br>
+    <button onclick="moverVentana()">Mover ventana</button><br>
+    <p>Lo mismo que antes, no puedo hacerlo con la pagina actual, solo me deja con ventanas creadas con window.open</p>
+
+    <h3>i) Posicionar ventana arriba a la izquierda de la pantalla</h3>
+    <button onclick="nuevaVentana4()">Abrir ventana</button><br>
+    <button onclick="cambiarPosicion()">Cambiar posicion</button><br>
+
+    <h3>j)Mueve ventana 10 pixeles hacia abajo</h3>
+    <button onclick="nuevaVentana5()">Abrir ventana</button><br>
+    <button onclick="moverAbajo()">Cambiar posicion</button><br>
+
+    <h3>k)Mover ventana a determinada posicion</h3>
+    <button onclick="nuevaVentana4()">Abrir ventana</button><br>
+    <button onclick="cambiarPosicion()">Cambiar posicion</button><br>
+
+
+</body>
+
+</html>
