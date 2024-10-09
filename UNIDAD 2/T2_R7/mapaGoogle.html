@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa con Ubicación Actual (Leaflet)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ver tu Ubicación en el Mapa</h1>
+    <p>Pulsa el botón para mostrar tu ubicación en el mapa.</p>
+
+    <button onclick="getLocation()">Mostrar Ubicación</button>
+
+    <div id="demo"></div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+    let x = document.getElementById("demo");
+    let map; // Variable para el mapa
+
+    // Función para obtener la geolocalización
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        x.innerHTML = "Geolocation no es compatible con este navegador.";
+      }
+    }
+
+    // Función para mostrar la posición actual y generar el mapa
+    function showPosition(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+
+      // Crear el mapa si no existe
+      if (!map) {
+        map = L.map('map').setView([lat, lon], 14);  // Inicializa el mapa con la posición actual
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+      } else {
+        map.setView([lat, lon], 14);  // Actualiza la vista del mapa si ya existe
+      }
+
+      // Añadir un marcador en la ubicación actual
+      L.marker([lat, lon]).addTo(map)
+        .bindPopup("Estás aquí.")
+        .openPopup();
+    }
+
+    // Función para manejar errores de geolocalización
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "Permiso denegado.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Ubicación no disponible.";
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "Tiempo de espera agotado.";
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "Error desconocido.";
+          break;
+      }
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización en Tiempo Real</title>
+</head>
+<body>
+    <h1>Rastreo de Ubicación en Tiempo Real</h1>
+    <p>Pulsa el botón para iniciar el rastreo y detenerlo cuando quieras.</p>
+
+    <button onclick="startTracking()">Iniciar Rastro</button>
+    <button onclick="stopTracking()">Detener Rastro</button>
+
+    <p id="demo"></p>
+
+    <script>
+    let watchID;
+    const x = document.getElementById("demo");
+
+    // Función para iniciar el rastreo de ubicación
+    function startTracking() {
+      if (navigator.geolocation) {
+        watchID = navigator.geolocation.watchPosition(showPosition, showError);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    // Función para detener el rastreo de ubicación
+    function stopTracking() {
+      navigator.geolocation.clearWatch(watchID);
+      x.innerHTML = "Rastreo detenido.";
+    }
+
+    // Función para mostrar la posición actual
+    function showPosition(position) {
+      x.innerHTML = "Latitud: " + position.coords.latitude + 
+                    "<br>Longitud: " + position.coords.longitude;
+    }
+
+    // Función para manejar errores de geolocalización
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "Permiso denegado.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Ubicación no disponible.";
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "Tiempo de espera agotado.";
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "Error desconocido.";
+          break;
+      }
+    }
+    </script>
+</body>
+</html>
