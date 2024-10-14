@@ -1,6 +1,3 @@
 # README REPOSITORIO GITHUB
 
-Cosas importantes...\
-DD\
-D\
-D
+Cambio para ver si funcionan los comentarios
