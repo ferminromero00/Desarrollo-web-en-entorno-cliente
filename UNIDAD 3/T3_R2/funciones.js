@@ -223,7 +223,7 @@ Leer una cadena de texto introducida por el usuario y posteriormente, mostrar la
 • las palabras ordenadas de la a la z y las palabras ordenadas de la z a la a. Nota: Se regenerar un array con la función split()*/
 
 function datosCadena() {
-    let cadena = "Texto de ejemplo para ejercicio"
+    let cadena = prompt("Inserta tu cadena:")
     let cadenaFormateada = cadena.toLowerCase()
     document.write("Tu cadena de texto es: " + cadena + "<br><br>")
 
