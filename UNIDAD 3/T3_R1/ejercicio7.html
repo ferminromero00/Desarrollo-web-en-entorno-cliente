@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Factorial</title>
+   
+</head>
+<body>
+    <h2>Tabla de Factoriales del 1 al 10</h2>
+    <table style="border-collapse: collapse; border: 1px solid black; text-align: center;">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Factorial</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-factoriales">
+            <!-- Aquí se insertarán los resultados -->
+        </tbody>
+    </table>
+
+    <script>
+        // Función para calcular el factorial de un número
+        function factorial(n) {
+            // Caso base
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            // Caso recursivo
+            return n * factorial(n - 1);
+        }
+
+        // Mostrar los factoriales del 1 al 10 en la tabla
+        function mostrarFactoriales() {
+            const tabla = document.getElementById("tabla-factoriales");
+
+            for (let i = 1; i <= 10; i++) {
+                let fila = document.createElement("tr");
+                let celdaNumero = document.createElement("td");
+                let celdaFactorial = document.createElement("td");
+
+                celdaNumero.textContent = i;
+                celdaFactorial.textContent = factorial(i); // Calcular el factorial
+
+                fila.appendChild(celdaNumero);
+                fila.appendChild(celdaFactorial);
+                tabla.appendChild(fila);
+            }
+        }
+
+        // Llamar a la función para mostrar los factoriales al cargar la página
+        mostrarFactoriales();
+    </script>
+</body>
+</html>
