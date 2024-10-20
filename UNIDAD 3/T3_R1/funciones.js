@@ -126,35 +126,8 @@ function potencia(base, exponente) {
     }
     // Caso recursivo: base * base^(exponente - 1)
     return base * potencia(base, exponente - 1);
+    
+    alert("El resultado de " + base + "^" + exponente + " es: " + resultado);
 }
-
-// Ejemplo de uso
-let base = parseInt(prompt("Introduce la base:"));
-let exponente = parseInt(prompt("Introduce el exponente:"));
-let resultado = potencia(base, exponente);
-alert("El resultado de " + base + "^" + exponente + " es: " + resultado);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
