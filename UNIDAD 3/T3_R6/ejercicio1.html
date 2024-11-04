@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dudas</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <script>
+
+        /* 1. Hello , I have been studying this code and would like some clarification on arrow functions.
+
+        Lets say we have an array of
+        [5, 7, 8, 2, 1] and would like to divide it by a number, using the map method to give us a new array with the remainders. So if we divide [5, 7, 8, 2, 1]
+        by 2, it should give us [1, 1, 0, 0, 1].
+
+        This is the code I have so far, and it seems to work. My question is… You’re calling the map method onto the “arr” parameter correct? So why do I have to
+        create a new variable x when using the arrow function? Why can’t I use (arr => (arr % num)) ?? What exactly does the x variable “do”?*/
+
+        function mysteryFunc(arr, num) {
+            return arr.map(x => (x % num))
+        }
+        console.log(mysteryFunc([5, 7, 8, 2, 1], 2))
+        // La x en el .map, recorre cada posicion del array y dice si es divisible entre ese numero
+
+        function mysteryFunc2(arr, num) {
+            return arr.map(arr => (arr % num))
+        }
+        console.log(mysteryFunc2([5, 7, 8, 2, 1], 2))
+        //Si pones arr => (arr % num) si funciona tambien, pero el nombre no tiene nada que ver, eso es simplemente el nombre que le da para que
+        //recorra cada posicion del array, puedes poner el mismo nombre sin problema pero se suele poner distinto
+    </script>
+
+
+</body>
+
+</html>

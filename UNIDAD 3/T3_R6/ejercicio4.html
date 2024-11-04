@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>duda 4</title>
+</head>
+
+<body style="background-color: grey;">
+    <script>
+        /*
+            Can anyone please help I want to rewrite all arrow functions in this code into regular functions.
+            A little explanation on ( 1 ) would be helpful.
+        */
+
+        const Person = (name) => {
+            const sayName = () => console.log(`my name is ${name}`)
+            return { sayName }
+        }
+
+        const Nerd = (name) => {
+            // simply create a person and pull out the sayName function!
+            const { sayName } = Person(name)
+            const doSomethingNerdy = () => console.log('nerd stuff')
+            return { sayName, doSomethingNerdy }
+        }
+
+        const jeff = Nerd('jeff')
+
+        jeff.sayName() //my name is jeff
+        jeff.doSomethingNerdy() // nerd stuff
+
+        /*PONER PRIMERA SIN FUNCIONA ARROW*/
+
+        const Person1 = function (name) {
+            const sayName = function () {
+                console.log(`my name is ${name}`);
+
+            }
+            return sayName();
+        }
+
+        const Nerd1 = (name) => {
+            // simply create a person and pull out the sayName function!
+            const { sayName } = Person(name)
+            const doSomethingNerdy = () => console.log('nerd stuff')
+            return { sayName, doSomethingNerdy }
+        }
+
+
+        console.log(Person1("Fermin"));
+        console.log(Nerd1("Fermin"));
+
+
+
+
+    </script>
+</body>
+
+</html>

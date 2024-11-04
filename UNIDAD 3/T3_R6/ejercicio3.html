@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duda 3</title>
+</head>
+
+<body style="background-color: grey;">
+    <script>
+        /*Regarding the code in the challenge below, I understand how to use an arrow function, but some of the details are confusing me. If “users”
+        is a variable that we created, why does the function also use the singular “user” and how is it distinguished from its plural form?
+        I read through this page on mozilla but haven’t been able to find the information I’m looking for. 
+
+        Challenge: Use the map Method to Extract Data from an Array*/
+
+        const users = [
+            { name: 'John', age: 34 },
+            { name: 'Amy', age: 20 },
+            { name: 'camperCat', age: 10 }
+        ];
+
+        const names = users.map(user => user.name);
+        console.log(names); // [ 'John', 'Amy', 'camperCat' ]
+
+        // Users es el nombre del array y user en singular es simplemente el nombre que le das a la variable para que recorra cada posicion del array
+        // puede poner otro cualquier nombre que va a seguir funcionando
+
+
+
+    </script>
+
+</body>
+
+</html>

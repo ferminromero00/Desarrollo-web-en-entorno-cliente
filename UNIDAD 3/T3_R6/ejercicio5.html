@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duda 5</title>
+</head>
+
+<body style="background-color: grey;">
+    <script>
+        /*I feel like somehow I never fully grasped the basics of functions. So, I’m reviewing the function lessons.
+        Anyway, I tried this code:*/
+
+        console.clear();
+        var sum;
+        sum = (a, b) => { a + b };
+        console.log(sum);
+
+        /*And in the dev console I get this: “Console was clearest test-evaluator.ce518…a06218e77ee8.js:569 TypeError:
+        Cannot read property ‘trim’ of undefined”So, I don’t understand why my arrow function isn’t working.Little help?*/
+
+
+        /*SOLUCION*/
+        /*El problema era que esta con {}, si lleva esto tiene que tener un return porque actua como una funcion, si quitamos los
+        {}, funcionario sin necesidad del return, aparte de que no le estabas pasando ningun parametro a sum*/
+
+        var sum;
+        sum2 = (a, b) => { return a + b };
+        console.log(sum2(2, 3));
+
+
+
+    </script>
+</body>
+
+</html>
