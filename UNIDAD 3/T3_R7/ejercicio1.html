@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personas</title>
+</head>
+
+<h2>Objeto literal</h2>
+
+<body style="background-color: grey;">
+    <script src="funciones.js"></script>
+    <script>
+        persona.esMayorDeEdad();
+
+    </script>
+
+
+    <h2>Funcion constructora</h2>
+    <script>
+        const persona1 = new Persona("Juan", 20);
+        const persona2 = new Persona("Ana", 16);
+
+        persona1.Ver();
+        persona2.Ver();
+
+    </script>
+
+
+    <h2>Devolver edad media</h2>
+    <script>
+        const personas = [new Persona("Juan", 20), new Persona("Ana", 16), new Persona("Luis", 25),
+        new Persona("Maria", 17), new Persona("Carlos", 30)];
+
+        edadMedia(personas)
+
+    </script>
+
+
+</body>
+
+</html>
