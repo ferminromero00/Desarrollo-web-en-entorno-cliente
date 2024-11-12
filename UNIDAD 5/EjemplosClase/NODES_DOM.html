@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <ul id="hobby-list">
+        <li class="hobby">Playing the banjo</li>
+        <li class="hobby">Paddleboarding</li>
+    </ul>
+
+    <a href="www.google.com"></a>
+
+    <div>
+        <p>contenido prueba</p>
+    </div>
+
+    <div class="div2">
+
+    </div>
+
+
+    <script>
+        (() => {
+            var hobbiesList = document.getElementById('hobby-list');
+            //hobbies.forEach(element => { console.log(element); });
+
+            // By Tag Name
+            var hobbies = document.getElementsByTagName('li');
+
+            for (let i = 0; i <= hobbies.length; i++) {
+                console.log(hobbies[i]);
+                //console.log(hobbies[i].textContent);
+                //console.log(hobbies[i].className);
+            };
+
+            // By Class Name
+            var alsoHobbies = document.getElementsByClassName('hobby');
+
+            // By CSS Query
+            var firstHobby = document.querySelector('ul li.hobby');
+            var againAlsoHobbies = document.querySelectorAll('ul li.hobby');
+
+            console.log(hobbiesList)
+            console.log(alsoHobbies)
+            console.log(firstHobby)
+            console.log(againAlsoHobbies)
+
+            console.log(document.getElementsByTagName('a')[0].href);
+            console.log(document.getElementsByTagName('a')[0].getAttribute("href"));
+
+            let nododiv = document.getElementsByTagName("div")[0]
+            console.log(nododiv);
+
+
+            let nodoNew = document.createTextNode('Nuevo texto')
+            nododiv.appendChild(nodoNew)
+
+
+            let nodoP = document.createElement("p")
+            let nodoText = document.createTextNode("Segundo parrafo")
+
+            nododiv.appendChild(nodoP)
+            nodoP.appendChild(nodoText)
+
+            for (let i = 0; i < 5; i++) {
+                var div2 = document.getElementsByClassName("div2")[0]
+                let variosP = document.createElement("p")
+                let nodoVariosP_Texto = document.createTextNode("Parrafo")
+
+                div2.appendChild(variosP)
+                variosP.appendChild(nodoVariosP_Texto)
+            }  
+
+
+            
+            let p_div_todos = document.getElementsByTagName("div")
+            for (nodo of p_div_todos) {
+                console.log(nodo);
+            }
+
+
+            var body = document.body;
+            body.style.color = "white"
+            body.style.fontSize = "22px"
+
+            console.log(body);
+            
+        })()
+    </script>
+
+</body>
+
+</html>

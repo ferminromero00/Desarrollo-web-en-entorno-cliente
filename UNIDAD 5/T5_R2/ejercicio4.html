@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos Elementos</title>
+</head>
+
+
+
+<body style="background-color: grey;">
+    <h1>Lista</h1>
+
+    <button onclick="nuevoElemento()">Introducir nuevo Elemento</button>
+
+    <div>
+        <h2>Elemento:</h2>
+        <ul>
+            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, voluptatum. Alias quibusdam totam
+                officia.
+                Molestias atque minus temporibus, dolores cupiditate ipsa quos ad error iure officia iusto voluptatibus
+                nemo
+                debitis.</li>
+        </ul>
+    </div>
+
+
+    <script>
+        const nuevoElemento = () => {
+            let nodo_body = document.getElementsByTagName("body")[0];
+            let nodo_div = document.createElement("div")
+            let nodo_h2 = document.createElement("h2")
+            let nodo_ul = document.createElement("ul")
+            let nodo_li = document.createElement("li")
+
+            let nodo_titulo = document.createTextNode("Elemento:")
+            let nodo_content = document.createTextNode("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, iste cumque. Sit illo placeat pariatur nisi perferendis dolor ut ipsa, suscipit dolorem. Eveniet, iure unde delectus illum quod voluptas? Voluptatum!")
+
+            nodo_body.appendChild(nodo_div)
+            nodo_div.appendChild(nodo_h2)
+            nodo_div.appendChild(nodo_ul)
+            nodo_ul.appendChild(nodo_li)
+
+            nodo_h2.appendChild(nodo_titulo)
+            nodo_li.appendChild(nodo_content)
+        }
+
+
+    </script>
+
+</body>
+
+
+</html>

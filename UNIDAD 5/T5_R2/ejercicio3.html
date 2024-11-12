@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulo completo y Esconderlo</title>
+</head>
+
+<body style="background-color: grey;">
+    <div class="article-preview">
+        <p id="Texto-Visible">
+            Producto: Ejemplo
+        </p>
+        <p id="hidden" style="display: none;">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, fugit optio! Praesentium quis dolorem
+            dignissimos cupiditate commodi. Accusantium libero quae voluptatibus quos magni dolore, similique
+            praesentium amet assumenda nostrum autem.
+        </p>
+        <button onclick="verTodo()">Ver Artículo Completo</button>
+        <button onclick="esconderTodo()" style="display: none;" id="boton">Esconder Articulo</button>
+
+    </div>
+
+
+    <script>
+        const verTodo = () => {
+            let textoHidden = document.getElementById("hidden")
+            textoHidden.style.display = "block"
+
+            let botonHidden = document.getElementById("boton")
+            botonHidden.style.display = "block"
+        }
+
+        const esconderTodo = () => {
+            let textoHidden = document.getElementById("hidden")
+            let botonHidden = document.getElementById("boton")
+
+            textoHidden.style.display = "none"
+            botonHidden.style.display = "none"
+        }
+    </script>
+
+
+</body>
+
+</html>

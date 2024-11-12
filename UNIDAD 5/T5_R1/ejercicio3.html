@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatear Datos articulos</title>
+</head>
+
+<body style="background-color: grey;">
+
+
+    <script type="module">
+
+        import { arrArticulos } from "./modulos/articulos.mjs";
+
+        arrArticulos.forEach((articulo) => {
+            let nodo_body = document.getElementsByTagName("body")[0];
+            let nodo_div = document.createElement("div")
+            let nodo_br1 = document.createElement("br")
+            let nodo_br2 = document.createElement("br")
+            let nodo_br3 = document.createElement("br")
+
+            let nodo_imagen = document.createElement("img")
+
+            let nodo_texto = document.createTextNode("ID-Articulo [" + articulo.id + "]-- Nombre: " + articulo.title +
+                " Precio: " + articulo.price + ". Descripcion: " + articulo.description + ". Categoria: " + articulo.category + ". Opiniones: " +
+                articulo.rating.rate + ". Calificaciones: " + articulo.rating.count
+            )
+
+            nodo_body.appendChild(nodo_div)
+            nodo_div.appendChild(nodo_texto)
+
+            nodo_div.appendChild(nodo_br1)
+
+            nodo_imagen.src = articulo.image
+            nodo_imagen.width = 150
+            nodo_div.appendChild(nodo_imagen)
+
+            nodo_div.appendChild(nodo_br2)
+            nodo_div.appendChild(nodo_br3)
+
+        });
+    </script>
+
+</body>
+
+</html>

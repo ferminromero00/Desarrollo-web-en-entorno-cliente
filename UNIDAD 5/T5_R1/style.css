@@ -1,0 +1,77 @@
+/* Resetear estilos predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5 !important; /* Sobreescribir estilo en línea */
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Estilo de tarjeta de producto */
+div {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    min-width: 280px;
+}
+
+/* Estilos de detalles del producto */
+.producto-id,
+.producto-nombre,
+.producto-precio,
+.producto-descripcion,
+.producto-categoria,
+.producto-valoracion {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.producto-id {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.producto-nombre {
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 12px;
+}
+
+.producto-precio {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.producto-descripcion {
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.producto-categoria {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.producto-valoracion {
+    color: #2c3e50;
+}
+
+/* Estilo de imagen */
+img {
+    display: block;
+    margin: 15px auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+

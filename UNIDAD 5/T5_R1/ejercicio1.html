@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear web con uso del DOM</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <p>
+        Texto de ejemplo 1 <br>
+        <a href="www.google.com">Enlace 1</a><br>
+        <a href="">Enlace 2</a><br>
+        <a href="">Enlace 3</a><br>
+        <a href="">Enlace 4</a><br>
+        <a href="">Enlace 5</a>
+    </p>
+    <p>
+        Texto de ejemplo 2 <br>
+        <a href="">Enlace 1</a><br>
+        <a href="">Enlace 2</a><br>
+        <a href="www.google.com">Enlace 3</a><br>
+        <a href="">Enlace 4</a><br>
+        <a href="">Enlace 5</a>
+    </p>
+    <p>
+        Texto de ejemplo 3 <br>
+        <a href="">Enlace 1</a><br>
+        <a href="">Enlace 2</a><br>
+        <a href="">Enlace 3</a><br>
+        <a href="www.google.com">Enlace 4</a><br>
+        <a href="">Enlace 5</a>
+    </p>
+
+    <script>
+        //• Número de enlaces de la página 
+        let numEnlaces = document.getElementsByTagName("a").length
+        document.write("El numero de enlaces en la pagina es: " + numEnlaces + "<br><br>")
+
+        //• Dirección a la que enlaza el penúltimo enlace 
+        let penultimoEnlace = document.getElementsByTagName("a")[numEnlaces - 2].getAttribute("href")
+        document.write("El penultimo enlace es: " + penultimoEnlace + "<br><br>")
+
+        //• Numero de enlaces que enlazan a google
+        let numEnlacesGoogle = document.getElementsByTagName("a")[0]
+
+        var cont = 0
+        for (let i = 0; i <= numEnlaces - 1; i++) {
+            var googlEnlaces = document.getElementsByTagName("a")[i].getAttribute("href")
+            if (googlEnlaces === "www.google.com") {
+                cont++
+            }
+        }
+        document.write("El penultimo enlace es: " + cont + "<br><br>")
+
+        //• Número de enlaces del tercer párrafo 
+        let tercerParrafo = document.getElementsByTagName("p")[2].getElementsByTagName("a").length
+        document.write("El numero de enlaces en el tercer parrafo es: " + tercerParrafo + "<br><br>")
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
