@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring</title>
+</head>
+
+<body style="background-color: grey;">
+    <script>
+        const elementos = [1, 2, 3, 4, 5]
+
+        //let primero=elementos[0]
+        //let segundo=elementos[1]
+
+        //Desmontar array
+        let [primero, , tercero, ...resto] = elementos
+
+        document.write(elementos + "<br>")
+        document.write(primero + "<br>")
+        document.write(tercero + "<br>")
+        document.write(resto + "<br><br><br>")
+
+        const articulo = { codigo: 5, nombre: 'Teclado', precio: 9.5 }
+        //let codigo = articulo.codigo
+        //let nombre = articulo.nombre
+
+        const { codigo, nombre, precio } = articulo
+
+        console.log(articulo)
+        console.log(codigo)
+
+        //Devolver precio con el IVA
+        function pvp(articulo) {
+            return Math.floor(articulo.precio * 21 / 100 + articulo.precio)
+        }
+        document.write(pvp(articulo))
+
+        document.write("<br>")
+
+        function pvp2(precio) {
+            return Math.floor(articulo.precio * 21 / 100 + articulo.precio)
+        }
+        document.write(pvp2(precio))
+
+        document.write("<br>")
+
+        //Funciones arrow, y destructuras array
+        const pvp3 = ({precio}) => Math.floor(precio * 21 / 100 + precio)
+        document.write(pvp3(articulo))
+
+
+
+
+
+    </script>
+</body>
+
+</html>

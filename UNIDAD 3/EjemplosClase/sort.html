@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenar</title>
+</head>
+
+<body style="background-color: grey;">
+    <script>
+        const numeros = [2, 3, 7, 21, 3, 1]
+        const personas = ["Juan", "Jose", "Antonio"]
+
+        console.log(numeros.sort())
+        console.log(personas.sort())
+
+
+
+        const fCompara = (n1, n2) => n1 - n2  //De menor a mayor
+        const fCompara2 = (n1, n2) => n2 - n1 //De mayor a menor
+
+        console.log(numeros.sort(fCompara)) //De menor a mayor
+        console.log(numeros.sort(fCompara2)) //De mayor a menor
+
+        const arrAlumnos = [{ nombre: 'Juan', grupo: '1SMR', edad: 25, notas: [2, 2] }, { nombre: 'Antonio', grupo: '1SMR', edad: 18, notas: [3, 3] },
+        { nombre: 'Zacarias', grupo: '1SMR', edad: 19, notas: [6, 6] }, { nombre: 'Pedro', grupo: '1SMR', edad: 22, notas: [10, 10] }]
+
+        const fComparaAlumno = (alumno1, alumno2) => { return alumno1.nombre.localeCompare(alumno2.nombre) }
+        console.log(arrAlumnos.sort(fComparaAlumno)) //De mayor a menor ordenado por nombre
+
+        console.log(arrAlumnos.sort((alumno1, alumno2) => alumno1.edad - alumno2.edad)); // de menor a mayor ordenado por edad
+
+        const notaMedia = (alum1, alum2) =>
+        console.log(arrAlumnos.sort((alumno1, alumno2) => notaMedia(alumno1.notas) - notaMedia(alumno1.notas)));
+
+
+
+
+    </script>
+
+</body>
+
+</html>

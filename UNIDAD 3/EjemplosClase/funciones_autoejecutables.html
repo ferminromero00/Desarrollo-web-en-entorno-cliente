@@ -1,0 +1,27 @@
+<script>
+    (() => {
+
+
+        var hobbiesList = document.getElementById('hobby-list');
+        //hobbies.forEach(element => { console.log(element); });
+
+        // By Tag Name
+        var hobbies = document.getElementsByTagName('li');
+
+        for (let i = 0; i <= hobbies.length; i++) {
+            console.log(hobbies[i]);
+        }
+
+        // By Class Name
+        var alsoHobbies = document.getElementsByClassName('hobby');
+
+        // By CSS Query
+        var firstHobby = document.querySelector('ul li.hobby');
+        var againAlsoHobbies = document.querySelectorAll('ul li.hobby');
+
+        console.log(hobbiesList)
+        console.log(alsoHobbies)
+        console.log(firstHobby)
+        console.log(againAlsoHobbies)
+    })()
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolver array x2</title>
+</head>
+
+<body style="background-color: grey; font-size: 20px;">
+    <h2>Multiplicar</h2>
+    <script>
+        const doble = (array) => {
+            const resultado = []
+            for (let i = 0; i < array.length; i++) {
+                resultado.push(array[i] * 2)
+            }
+            return resultado
+        }
+        document.write(doble([3, 3, 2]))
+    </script>
+    <br><br>
+
+    <h2>Incrementar</h2>
+    <script>
+        const incrementa = (array) => {
+            const resultado = []
+            for (let i = 0; i < array.length; i++) {
+                resultado.push(array[i] + 1)
+            }
+            return resultado
+        }
+        document.write(incrementa([10, 2, 1]));
+    </script>
+    <br><br>
+
+    <h2>Modificar Array Personalizado</h2>
+    <script>
+        const modificaArray = (array, fEjecuta) => {
+            const resultado = []
+            for (let i = 0; i < array.length; i++) {
+                resultado.push(fEjecuta(array[i]))
+            }
+            return resultado
+        }
+
+        document.write(modificaArray([5, 15, 20], valor => valor * 2));
+    </script>
+
+    <br><br>
+
+    <h2>Filtrar array</h2>
+    <script>
+        const filtraArray = (array, fVerifica) => {
+            const resultado = []
+            for (let i = 0; i < array.length; i++) {
+                const num = array[i]
+                if (fVerifica(array[i]) === true) {
+                    resultado.push(num)
+                }
+            }
+            return resultado
+        }
+        document.write(filtraArray([5, 3, 7, 10, 2], valor => valor >= 5));
+    </script>
+
+    <br><br>
+
+    <h2>Filtrar notas de alumnos</h2>
+    <script>
+        const alumno = {
+            nombre: 'Juan', grupo: '1SMR', notas: [4, 6, 5],
+            ShowNotas: function () { return this.notas.forEach(element => { document.write(element + " "); }); },
+            addNota: function (nota) { this.notas.push(nota); },
+            addNotas: function (arrNotas) { this.notas = this.notas.concat(arrNotas); },
+            filtrar: function (filtro) {
+                const arrSalida = [];
+                this.notas.forEach(element => { if (filtro(notas)) { arrSalida.push(element)}});
+                return arrSalida
+            }
+        };
+        document.write(alumno.filtrar(valor => valor >= 5))
+    </script>
+
+
+
+
+</body>
+
+</html>

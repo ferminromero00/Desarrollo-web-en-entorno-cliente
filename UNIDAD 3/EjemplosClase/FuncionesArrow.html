@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrows</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <script>
+        function suma(a, b) { return a + b };
+        function resta(a, b) { return a - b };
+        function multiplicar(a, b) { return a * b };
+        function dividir(a, b) { return a / b };
+
+
+        function operacion(a, b, op) {
+            return op(a, b)
+        }
+
+        document.write(operacion(10, 5, suma))
+    </script>
+
+    <br>
+
+    <script>
+        const suma2 = (a, b) => a + b;
+        const resta2 = (a, b) => a - b;
+        const multiplicar2 = (a, b) => a * b;
+        const dividir2 = (a, b) => a / b;
+
+        operacion2 = (a, b, op) => op(a, b)
+
+        document.write(operacion2(10, 5, resta2))
+    </script>
+
+    <br>
+
+    <script>
+        operacion3 = (a, b, op) => op(a, b)
+        document.write(operacion2(5, 5, (a, b) => a * b))
+    </script>
+
+
+</body>
+
+</html>

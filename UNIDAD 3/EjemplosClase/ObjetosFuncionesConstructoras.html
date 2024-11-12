@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos Funciones Constructoras</title>
+</head>
+
+<body>
+    <script>
+        function Usuario(dni, nombre, edad) {
+            this.dni = dni
+            this.nombre = nombre
+            this.edad = edad
+            this.ShowMe = function () {
+                document.write("Nombre: " + this.nombre + ", edad: " +
+                    this.edad + " dni: " + this.dni
+                )
+            }
+        }
+        let objUser = new Usuario('755423X', 'Juan', 19)
+        let objUser1 = new Usuario('755423X', 'Maria', 22)
+
+        const array = [
+            new Usuario('755423X', 'Juan', 19),
+            new Usuario('755423X', 'Maria', 22)
+        ]
+
+        class Empleado {
+            constructor(codigo, nombre, telefono) {
+                this.codigo = codigo
+                this.nombre = nombre
+                this.telefono = telefono
+            }
+            mostrarEmpleado() {
+                document.write("Empleado: " + this.nombre + "---Telefono: " + this.telefono
+                    + "---Codigo: " + this.codigo
+                )
+            }
+        }
+        let objEmpl = new Empleado(1,"Jose",32312321)
+
+
+
+        document.write(objUser.dni + "<br><br>")
+        objUser.ShowMe(); document.write("<br><br>")
+        objEmpl.mostrarEmpleado(); document.write("<br><br>")
+
+
+
+        console.table(array);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
