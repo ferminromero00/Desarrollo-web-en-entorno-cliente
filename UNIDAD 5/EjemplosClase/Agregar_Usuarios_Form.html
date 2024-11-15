@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Users Form</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <form onsubmit="return false">
+        <label>Codigo: </label>
+        <input type="text" name="user" id="cod">
+
+        <br>
+
+        <label>Nombre: </label>
+        <input type="text" name="user" id="nombre">
+
+        <br>
+
+        <label>Telefono: </label>
+        <input type="number" name="tel" id="tel">
+
+        <br>
+
+        <button onclick="agregar()">Enviar</button>
+
+        <br><br>
+
+        <p id="msj"></p>
+    </form>
+
+    <script>
+        class Empleado {
+            constructor(codigo, nombre, telefono) {
+                this.codigo = codigo;
+                this.nombre = nombre;
+                this.telefono = telefono;
+            }
+            mostrarEmpleado() {
+                return "Empleado: " + this.nombre + " --- Telefono: " + this.telefono + " --- Codigo: " + this.codigo;
+            }
+        }
+
+        const arrEmpleados = []; 
+
+        const agregar = () => {
+            let cod = document.getElementById("cod").value;
+            let nombre = document.getElementById("nombre").value;
+            let tel = document.getElementById("tel").value;
+
+            let empl = new Empleado(cod, nombre, tel);
+
+            arrEmpleados.push(empl);
+
+            let nodo_p = document.createElement("p");
+            let nodo_text = document.createTextNode(empl.mostrarEmpleado());
+
+            nodo_p.appendChild(nodo_text);
+            document.body.appendChild(nodo_p); 
+        }
+    </script>
+
+</body>
+
+</html>

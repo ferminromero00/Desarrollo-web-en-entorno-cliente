@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <form onsubmit="return false">
+        <label>Usuario: </label>
+        <input type="text" name="user" id="user">
+
+        <br>
+
+        <label>Contraseña: </label>
+        <input type="password" name="pass" id="pass" autocomplete=" ">
+
+        <br><br>
+
+        <button onclick="credenciales()">Enviar</button>
+
+        <br><br>
+
+        <p id="msj"></p>
+
+    </form>
+
+
+    <script>
+
+        const credenciales = () => {
+            let user = document.getElementById("user").value
+            let pass = document.getElementById("pass").value
+
+            let msj = document.getElementById("msj")
+
+
+            if (user === '') {
+                msj.textContent = "No puedes dejar el usuario vacio."
+            } else if (pass === '') {
+                msj.textContent = "No puedes dejar la contraseña vacia."
+            } else if (user === "pepe" && pass === "pepe") {
+                msj.textContent = "Inicio de sesion correcto."
+            } else {
+                msj.textContent = "Inicio de sesion incorrecto."
+            }
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
