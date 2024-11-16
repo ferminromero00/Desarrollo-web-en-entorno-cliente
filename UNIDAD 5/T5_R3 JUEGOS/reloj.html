@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj</title>
+</head>
+
+<body>
+    <div id="reloj">00:00:00</div>
+    <button id="botonIniciar" onclick="iniciar()">Iniciar</button>
+    <button id="botonDetener" onclick="detener()">Detener</button>
+    <button id="botonReiniciar" onclick="reiniciar()">Reiniciar</button>
+
+    <script>
+        let temporizador;
+        let corriendo = false;
+
+        function iniciar() {
+            if (!corriendo) {
+                corriendo = true;
+                temporizador = setInterval(actualizarReloj, 1000);
+            }
+        }
+
+        function detener() {
+            if (corriendo) {
+                corriendo = false;
+                clearInterval(temporizador);
+            }
+        }
+
+        function reiniciar() {
+            detener();
+            document.getElementById('reloj').innerText = "00:00:00";
+        }
+
+        function actualizarReloj() {
+            const reloj = document.getElementById('reloj');
+            let tiempo = reloj.innerText.split(":");
+            let horas = parseInt(tiempo[0]);
+            let minutos = parseInt(tiempo[1]);
+            let segundos = parseInt(tiempo[2]);
+            segundos++;
+            if (segundos === 60) {
+                segundos = 0; minutos++;
+                if (minutos === 60) {
+                    minutos = 0;
+                    horas++;
+                }
+            }
+            reloj.innerText = (horas < 10 ? "0" + horas : horas) + ":" + (minutos < 10 ? "0" + minutos : minutos) + ":" + (segundos < 10 ? "0" + segundos : segundos);
+        }
+    </script>
+</body>
+
+</html>

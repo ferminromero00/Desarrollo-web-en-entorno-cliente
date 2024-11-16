@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+</head>
+
+<body>
+    <h1>Juego del Ahorcado</h1>
+    <p id="mostrarPalabra">_ _ _ _ _</p>
+    <p>Intentos restantes: <span id="intentosRestantes">6</span></p>
+    <input type="text" id="entradaAdivinanza" maxlength="1">
+    <button onclick="hacerAdivinanza()">Adivinar</button>
+    <p id="mensaje"></p>
+
+    <script>
+        const palabras = ["javascript", "ahorcado", "codificación", "programación"];
+        let palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+        let intentosRestantes = 6;
+        let letrasAdivinadas = [];
+        let mostrarPalabra = Array(palabraSeleccionada.length).fill("_");
+
+        document.getElementById("mostrarPalabra").innerText = mostrarPalabra.join(" ");
+
+        function hacerAdivinanza() {
+            const entradaAdivinanza = document.getElementById("entradaAdivinanza");
+            const adivinanza = entradaAdivinanza.value.toLowerCase();
+            entradaAdivinanza.value = "";
+
+            if (letrasAdivinadas.includes(adivinanza) || adivinanza.length !== 1) {
+                document.getElementById("mensaje").innerText = "Adivinanza incorrecta o ya adivinada.";
+                return;
+            }
+
+            letrasAdivinadas.push(adivinanza);
+
+            if (palabraSeleccionada.includes(adivinanza)) {
+                for (let i = 0; i < palabraSeleccionada.length; i++) {
+                    if (palabraSeleccionada[i] === adivinanza) {
+                        mostrarPalabra[i] = adivinanza;
+                    }
+                }
+            } else {
+                intentosRestantes--;
+            }
+
+            document.getElementById("mostrarPalabra").innerText = mostrarPalabra.join(" ");
+            document.getElementById("intentosRestantes").innerText = intentosRestantes;
+
+            if (intentosRestantes === 0) {
+                document.getElementById("mensaje").innerText = "¡Juego terminado! La palabra era " + palabraSeleccionada;
+            } else if (!mostrarPalabra.includes("_")) {
+                document.getElementById("mensaje").innerText = "¡Felicidades! ¡Adivinaste la palabra!";
+            }
+        }
+    </script>
+</body>
+
+</html>

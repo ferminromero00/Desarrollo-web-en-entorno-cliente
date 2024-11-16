@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del 15 con Imagen</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #tablero {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(4, 100px);
+            gap: 5px;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-size: 400px 400px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .empty {
+            background-color: #fff;
+            border: none;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tablero"></div>
+    <script src="ejercicio3.js"></script>
+</body>
+
+</html>

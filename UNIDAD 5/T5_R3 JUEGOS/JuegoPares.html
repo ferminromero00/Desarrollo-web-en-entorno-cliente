@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Pares</title>
+    <style>
+        .tablero-juego {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 440px;
+            margin: 0 auto;
+        }
+        .carta {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carta.volteada {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Pares</h1>
+    <div class="tablero-juego" id="tableroJuego">
+        <!-- Las cartas se generarán dinámicamente aquí -->
+    </div>
+    <script>
+        var tableroJuego = document.getElementById('tableroJuego');
+        var cartas = [
+            'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D',
+            'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'
+        ];
+        var primeraCarta = null;
+        var segundaCarta = null;
+        var bloquearTablero = false;
+
+        // Barajar cartas
+        cartas.sort(function() { return 0.5 - Math.random(); });
+
+        // Crear elementos de carta
+        for (var i = 0; i < cartas.length; i++) {
+            var carta = cartas[i];
+            var elementoCarta = document.createElement('div');
+            elementoCarta.className = 'carta';
+            elementoCarta.setAttribute('data-valor', carta);
+            elementoCarta.setAttribute('onclick', 'voltearCarta(this)');
+            tableroJuego.appendChild(elementoCarta);
+        }
+
+        function voltearCarta(elemento) {
+            if (bloquearTablero) return;
+            if (elemento === primeraCarta) return;
+
+            elemento.classList.add('volteada');
+            elemento.textContent = elemento.getAttribute('data-valor');
+
+            if (!primeraCarta) {
+                primeraCarta = elemento;
+                return;
+            }
+
+            segundaCarta = elemento;
+            bloquearTablero = true;
+
+            verificarCoincidencia();
+        }
+
+        function verificarCoincidencia() {
+            if (primeraCarta.getAttribute('data-valor') === segundaCarta.getAttribute('data-valor')) {
+                deshabilitarCartas();
+            } else {
+                desvoltearCartas();
+            }
+        }
+
+        function deshabilitarCartas() {
+            primeraCarta.onclick = null;
+            segundaCarta.onclick = null;
+            reiniciarTablero();
+        }
+
+        function desvoltearCartas() {
+            setTimeout(function() {
+                primeraCarta.classList.remove('volteada');
+                segundaCarta.classList.remove('volteada');
+                primeraCarta.textContent = '';
+                segundaCarta.textContent = '';
+                reiniciarTablero();
+            }, 1000);
+        }
+
+        function reiniciarTablero() {
+            primeraCarta = null;
+            segundaCarta = null;
+            bloquearTablero = false;
+        }
+    </script>
+</body>
+</html>
