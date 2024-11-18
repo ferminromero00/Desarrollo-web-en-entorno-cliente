@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatear Datos Artículos CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script type="module">
+        import { arrArticulos } from "../T5_R1/modulos/articulos.mjs";
+        let fragment = document.createDocumentFragment();
+        
+        arrArticulos.forEach((articulo) => {
+            let nodo_div = document.createElement("div");
+            
+            let nodo_id = document.createElement("span");
+            nodo_id.className = "producto-id";
+            nodo_id.textContent = `ID-Artículo [${articulo.id}]`;
+            
+            let nodo_nombre = document.createElement("span");
+            nodo_nombre.className = "producto-nombre";
+            nodo_nombre.textContent = `Nombre: ${articulo.title}`;
+            
+            let nodo_precio = document.createElement("span");
+            nodo_precio.className = "producto-precio";
+            nodo_precio.textContent = `Precio: $${articulo.price}`;
+            
+            let nodo_descripcion = document.createElement("span");
+            nodo_descripcion.className = "producto-descripcion";
+            nodo_descripcion.textContent = `Descripción: ${articulo.description}`;
+            
+            let nodo_categoria = document.createElement("span");
+            nodo_categoria.className = "producto-categoria";
+            nodo_categoria.textContent = `Categoría: ${articulo.category}`;
+            
+            let nodo_valoracion = document.createElement("span");
+            nodo_valoracion.className = "producto-valoracion";
+            nodo_valoracion.textContent = `Opiniones: ${articulo.rating.rate} - Calificaciones: ${articulo.rating.count}`;
+            
+            let nodo_imagen = document.createElement("img");
+            nodo_imagen.src = articulo.image;
+            nodo_imagen.width = 150;
+            
+            nodo_div.appendChild(nodo_id);
+            nodo_div.appendChild(nodo_nombre);
+            nodo_div.appendChild(nodo_precio);
+            nodo_div.appendChild(nodo_descripcion);
+            nodo_div.appendChild(nodo_categoria);
+            nodo_div.appendChild(nodo_valoracion);
+            nodo_div.appendChild(nodo_imagen);
+            
+            fragment.appendChild(nodo_div);
+        });
+
+        document.body.appendChild(fragment);
+    </script>
+</body>
+</html>
