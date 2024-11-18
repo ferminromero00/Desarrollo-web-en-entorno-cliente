@@ -5,18 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reloj</title>
+    <style>
+        /* Estilos generales para eliminar márgenes y rellenos, y configurar el box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el contenedor principal */
+        .caja {
+            background-color: orange;
+            color: white;
+            padding: 160px 10px;
+            margin: 200px;
+            text-align: center;
+        }
+
+        /* Estilo para el reloj */
+        #reloj {
+            font-size: 90px;
+        }
+
+        /* Estilo para los botones dentro del contenedor */
+        .caja > button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 20px;
+            background-color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="reloj">00:00:00</div>
-    <button id="botonIniciar" onclick="iniciar()">Iniciar</button>
-    <button id="botonDetener" onclick="detener()">Detener</button>
-    <button id="botonReiniciar" onclick="reiniciar()">Reiniciar</button>
+    <!-- Contenedor principal -->
+    <div class="caja">
+        <!-- Elemento que muestra el reloj -->
+        <div id="reloj">00:00:00</div>
+        <!-- Botones para controlar el reloj -->
+        <button id="botonIniciar" onclick="iniciar()">Iniciar</button>
+        <button id="botonDetener" onclick="detener()">Detener</button>
+        <button id="botonReiniciar" onclick="reiniciar()">Reiniciar</button>
+    </div>
 
     <script>
         let temporizador;
         let corriendo = false;
 
+        // Función para iniciar el reloj
         function iniciar() {
             if (!corriendo) {
                 corriendo = true;
@@ -24,6 +61,7 @@
             }
         }
 
+        // Función para detener el reloj
         function detener() {
             if (corriendo) {
                 corriendo = false;
@@ -31,11 +69,13 @@
             }
         }
 
+        // Función para reiniciar el reloj
         function reiniciar() {
             detener();
             document.getElementById('reloj').innerText = "00:00:00";
         }
 
+        // Función para actualizar el reloj cada segundo
         function actualizarReloj() {
             const reloj = document.getElementById('reloj');
             let tiempo = reloj.innerText.split(":");
