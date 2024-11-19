@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Galería</title>
+</head>
+
+<body>
+    <script type="module">
+        const verParrafos = () => {
+            let parrafos = document.getElementsByTagName("p");
+
+            for (let i = 0; i < parrafos.length; i++) {
+                console.log(parrafos[i].textContent);
+            }
+        }
+
+        //verParrafos()
+
+        const verHijos = (filtro) => {
+            let articulo1 = document.getElementsByTagName("article")[0]
+
+            if (filtro == 0) {
+                for (const element of articulo1.childNodes) {
+                    if (element.nodeName !== "#text") {
+                        console.log(element);
+                    }
+                }
+            } else {
+                for (const element of articulo1.childNodes) {
+                    if (element.nodeName === "#text") {
+                        console.log(element);
+                    }
+                }
+            }
+        }
+
+        //verHijos(0)
+
+        const verNodos = (nodo_user) => {
+            console.log(nodo_user.tagName);
+
+            for (const element of nodo_user.children) {
+                console.log(element.tagName);
+            }
+
+        }
+        const nodo_user = document.getElementsByTagName("article")[0]
+        //verNodos(nodo_user)
+
+
+        const verNodostodo = (nodo_user1) => {
+            console.log(nodo_user1.tagName);
+
+            for (const element of nodo_user1.children) {
+                if (element !== "undefined") {
+                    verNodostodo(element)
+                }
+            }
+        }
+
+        const nodo_user1 = document.getElementsByTagName("article")[0]
+        //verNodostodo(nodo_user1)
+
+
+
+        const añadirArticulo = (padre, url) => {
+            let div = document.createElement("div")
+            let article = document.createElement("article")
+            let img = document.createElement("img")
+            let h2 = document.createElement("h2")
+            let p = document.createElement("p")
+
+            h2.textContent = "Galeria 5, insertada con DOM"
+            p.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsum expedita magni quos est.Expedita aspernatur, facere ut id porro voluptatibus quos quisquam illum maxime repellendus.Laudantium ipsum culpa quam!"
+            img.src = url;
+
+
+            padre.appendChild(article)
+            article.appendChild(div)
+            div.appendChild(h2)
+            div.appendChild(p)
+            article.appendChild(img)
+
+        }
+
+        let padre = document.getElementsByTagName("section")[1]
+        let url = document.getElementsByTagName("img")[0].getAttribute("src")
+
+        añadirArticulo(padre, url)
+
+        const articleArray = (padre) => {
+            let articulosArray = [
+                {
+                    titulo: "Galeria 6, con DOM",
+                    content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsum expedita magni quos est.Expedita aspernatur, facere ut id porro voluptatibus quos quisquam illum maxime repellendus.Laudantium ipsum culpa quam!",
+                    url: "./img/uno.jpg"
+                },
+                {
+                    titulo: "Galeria 7, con DOM",
+                    content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsum expedita magni quos est.Expedita aspernatur, facere ut id porro voluptatibus quos quisquam illum maxime repellendus.Laudantium ipsum culpa quam!",
+                    url: "./img/uno.jpg"
+                },
+                {
+                    titulo: "Galeria 8, con DOM",
+                    content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsum expedita magni quos est.Expedita aspernatur, facere ut id porro voluptatibus quos quisquam illum maxime repellendus.Laudantium ipsum culpa quam!",
+                    url: "./img/uno.jpg"
+                }
+            ]
+
+            articulosArray.forEach(e => {
+
+            })
+
+
+        }
+        articleArray()
+
+
+
+
+    </script>
+
+
+    <main>
+        <h1>Galería de imágenes</h1>
+        <section class="galeria">
+            <img src="./img/uno.jpg" alt="uno">
+            <img src="./img/dos.jpg" alt="dos">
+            <img src="./img/tres.jpg" alt="tres">
+            <img src="./img/cuatro.jpg" alt="cuatro">
+            <img src="./img/cinco.jpg" alt="cinco">
+            <img src="./img/seis.jpg" alt="seis">
+        </section>
+        <section>
+            <article>
+                <div>
+                    <h2>Galería 2</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsum expedita magni quos est.
+                        Expedita aspernatur, facere ut id porro voluptatibus quos quisquam illum maxime repellendus.
+                        Laudantium ipsum culpa quam!
+                    </p>
+                </div>
+                <img src="https://picsum.photos/id/21/300/300" alt="Zapato Blanco">
+            </article>
+            <article>
+                <img src="https://picsum.photos/id/20/300/300" alt="Zapato Blanco">
+                <div>
+                    <h2>Galería 3</h2>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic consequatur cupiditate sunt
+                        accusamus
+                        rem nobis necessitatibus ad. Non enim dolorum, perspiciatis sequi culpa dolore illo. Quibusdam
+                        vero
+                        facere atque quam.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <div>
+                    <h2>Galería 4</h2>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam quasi natus voluptate
+                        praesentium quae fugiat, asperiores soluta eius eum quod aut excepturi autem pariatur nesciunt
+                        laborum itaque? Beatae, ad enim.
+                    </p>
+                </div>
+                <img src="https://picsum.photos/id/24/300/300" alt="Zapato Blanco">
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>

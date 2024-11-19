@@ -28,7 +28,7 @@
         }
 
         /* Estilo para los botones dentro del contenedor */
-        .caja > button {
+        .caja>button {
             margin: 10px;
             padding: 10px;
             font-size: 20px;
@@ -50,48 +50,32 @@
     </div>
 
     <script>
-        let temporizador;
-        let corriendo = false;
-
-        // Función para iniciar el reloj
         function iniciar() {
-            if (!corriendo) {
-                corriendo = true;
-                temporizador = setInterval(actualizarReloj, 1000);
-            }
-        }
+            let reloj = document.getElementById("reloj");
 
-        // Función para detener el reloj
-        function detener() {
-            if (corriendo) {
-                corriendo = false;
-                clearInterval(temporizador);
-            }
-        }
+            let contador = 58;
+            let contador2 = 0;
 
-        // Función para reiniciar el reloj
-        function reiniciar() {
-            detener();
-            document.getElementById('reloj').innerText = "00:00:00";
-        }
-
-        // Función para actualizar el reloj cada segundo
-        function actualizarReloj() {
-            const reloj = document.getElementById('reloj');
-            let tiempo = reloj.innerText.split(":");
-            let horas = parseInt(tiempo[0]);
-            let minutos = parseInt(tiempo[1]);
-            let segundos = parseInt(tiempo[2]);
-            segundos++;
-            if (segundos === 60) {
-                segundos = 0; minutos++;
-                if (minutos === 60) {
-                    minutos = 0;
-                    horas++;
+            window.setInterval(function () {
+                if (contador) {
+                    reloj.innerHTML = contador++
+                } else if(contador == 59) {
+                    contador2++
+                    reloj.innerHTML = "0" + contador2 + ":" + contador
                 }
-            }
-            reloj.innerText = (horas < 10 ? "0" + horas : horas) + ":" + (minutos < 10 ? "0" + minutos : minutos) + ":" + (segundos < 10 ? "0" + segundos : segundos);
+            }, 1000)
+
+
+
+
+
+
+
         }
+
+
+
+
     </script>
 </body>
 
