@@ -8,51 +8,56 @@
 </head>
 
 <body>
-    <h1>Juego del Ahorcado</h1>
-    <p id="mostrarPalabra">_ _ _ _ _</p>
-    <p>Intentos restantes: <span id="intentosRestantes">6</span></p>
-    <input type="text" id="entradaAdivinanza" maxlength="1">
-    <button onclick="hacerAdivinanza()">Adivinar</button>
-    <p id="mensaje"></p>
+    <div>
+        <h1>Juego del Ahorcado</h1>
+        <p>Vidas: <span id="vidas">6</span></p>
+        <div id="palabra" class="word"></div>
+        <input type="text" id="letra" maxlength="1">
+        <button onclick="adivinar()">Adivinar</button>
+        <p id="mensaje"></p>
+    </div>
 
     <script>
-        const palabras = ["javascript", "ahorcado", "codificación", "programación"];
-        let palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
-        let intentosRestantes = 6;
-        let letrasAdivinadas = [];
-        let mostrarPalabra = Array(palabraSeleccionada.length).fill("_");
+        // lista palabras
+        const palabras = ["casa", "perro", "gato", "sol", "luna"];
 
-        document.getElementById("mostrarPalabra").innerText = mostrarPalabra.join(" ");
+        let palabra = palabras[Math.floor(Math.random() * palabras.length)];
+        let adivinado = Array(palabra.length).fill('_');
+        let vidas = 6;
 
-        function hacerAdivinanza() {
-            const entradaAdivinanza = document.getElementById("entradaAdivinanza");
-            const adivinanza = entradaAdivinanza.value.toLowerCase();
-            entradaAdivinanza.value = "";
+        // mostrar guiones bajos de letras de las palabras
+        document.getElementById('palabra').textContent = adivinado.join(' ');
 
-            if (letrasAdivinadas.includes(adivinanza) || adivinanza.length !== 1) {
-                document.getElementById("mensaje").innerText = "Adivinanza incorrecta o ya adivinada.";
-                return;
-            }
+        function adivinar() {
+            let letra = document.getElementById('letra').value.toLowerCase();
+            document.getElementById('letra').value = '';
 
-            letrasAdivinadas.push(adivinanza);
-
-            if (palabraSeleccionada.includes(adivinanza)) {
-                for (let i = 0; i < palabraSeleccionada.length; i++) {
-                    if (palabraSeleccionada[i] === adivinanza) {
-                        mostrarPalabra[i] = adivinanza;
-                    }
+            // confirmar si la letra se encuentra
+            let acierto = false;
+            for (let i = 0; i < palabra.length; i++) {
+                if (palabra[i] === letra) {
+                    adivinado[i] = letra;
+                    acierto = true;
                 }
-            } else {
-                intentosRestantes--;
             }
 
-            document.getElementById("mostrarPalabra").innerText = mostrarPalabra.join(" ");
-            document.getElementById("intentosRestantes").innerText = intentosRestantes;
+            // si falla, se resta una vida
+            if (!acierto) {
+                vidas--;
+                document.getElementById('vidas').textContent = vidas;
+            }
 
-            if (intentosRestantes === 0) {
-                document.getElementById("mensaje").innerText = "¡Juego terminado! La palabra era " + palabraSeleccionada;
-            } else if (!mostrarPalabra.includes("_")) {
-                document.getElementById("mensaje").innerText = "¡Felicidades! ¡Adivinaste la palabra!";
+            // Actualizar la palabra en pantalla
+            document.getElementById('palabra').textContent = adivinado.join(' ');
+
+            // confirmar si gana o pierde
+            if (!adivinado.includes('_')) {
+                document.getElementById('mensaje').textContent = '¡Ganaste!';
+                document.getElementById('letra').disabled = true;
+            }
+            if (vidas === 0) {
+                document.getElementById('mensaje').textContent = '¡Perdiste! La palabra era: ' + palabra;
+                document.getElementById('letra').disabled = true;
             }
         }
     </script>

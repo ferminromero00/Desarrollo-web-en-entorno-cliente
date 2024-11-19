@@ -1,107 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Pares</title>
     <style>
-        .tablero-juego {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            width: 440px;
-            margin: 0 auto;
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #e6f3ff;
         }
+
+        #tablero {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            margin: 20px auto;
+            width: fit-content;
+        }
+
         .carta {
             width: 100px;
             height: 100px;
-            background-color: #ccc;
+            background-color: #4287f5;
+            border-radius: 10px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            cursor: pointer;
+            color: white;
         }
-        .carta.volteada {
-            background-color: #fff;
+
+        .girada {
+            background-color: #2ecc71;
+        }
+
+        h1 {
+            color: #2c3e50;
         }
     </style>
 </head>
+
 <body>
-    <h1>Juego de Pares</h1>
-    <div class="tablero-juego" id="tableroJuego">
-        <!-- Las cartas se generarán dinámicamente aquí -->
-    </div>
+    <h1>Juego de Memoria</h1>
+    <div id="tablero"></div>
+
     <script>
-        var tableroJuego = document.getElementById('tableroJuego');
-        var cartas = [
-            'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D',
-            'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'
-        ];
-        var primeraCarta = null;
-        var segundaCarta = null;
-        var bloquearTablero = false;
+        // Las cartas que vamos a usar
+        let cartas = ['1', '1', '2', '2', '3', '3', '4', '4'];
 
-        // Barajar cartas
-        cartas.sort(function() { return 0.5 - Math.random(); });
+        // Mezclamos las cartas
+        cartas = cartas.sort(() => Math.random() - 0.5);
 
-        // Crear elementos de carta
-        for (var i = 0; i < cartas.length; i++) {
-            var carta = cartas[i];
-            var elementoCarta = document.createElement('div');
-            elementoCarta.className = 'carta';
-            elementoCarta.setAttribute('data-valor', carta);
-            elementoCarta.setAttribute('onclick', 'voltearCarta(this)');
-            tableroJuego.appendChild(elementoCarta);
-        }
+        // Creamos el tablero
+        let tablero = document.getElementById('tablero');
 
-        function voltearCarta(elemento) {
-            if (bloquearTablero) return;
-            if (elemento === primeraCarta) return;
+        // Variables para el juego
+        let cartaGirada1 = null;
+        let cartaGirada2 = null;
+        let puedoGirar = true;
 
-            elemento.classList.add('volteada');
-            elemento.textContent = elemento.getAttribute('data-valor');
+        // Creamos las cartas en el tablero
+        cartas.forEach((emoji, posicion) => {
+            let carta = document.createElement('div');
+            carta.className = 'carta';
 
-            if (!primeraCarta) {
-                primeraCarta = elemento;
-                return;
+            // Cuando hacemos clic en una carta
+            carta.onclick = function () {
+                girarCarta(carta, emoji, posicion);
+            };
+
+            tablero.appendChild(carta);
+        });
+
+        // Función para girar una carta
+        function girarCarta(carta, emoji, posicion) {
+            // Si no puedo girar, no hago nada
+            if (!puedoGirar) return;
+            // Si la carta ya está girada, no hago nada
+            if (carta.textContent !== '') return;
+
+            // Muestro el emoji
+            carta.textContent = emoji;
+            carta.classList.add('girada');
+
+            // Si es la primera carta
+            if (cartaGirada1 === null) {
+                cartaGirada1 = { carta, emoji, posicion };
             }
+            // Si es la segunda carta
+            else {
+                cartaGirada2 = { carta, emoji, posicion };
 
-            segundaCarta = elemento;
-            bloquearTablero = true;
+                // No dejo girar más cartas mientras compruebo
+                puedoGirar = false;
 
-            verificarCoincidencia();
-        }
-
-        function verificarCoincidencia() {
-            if (primeraCarta.getAttribute('data-valor') === segundaCarta.getAttribute('data-valor')) {
-                deshabilitarCartas();
-            } else {
-                desvoltearCartas();
+                // Compruebo si son iguales
+                if (cartaGirada1.emoji === cartaGirada2.emoji) {
+                    // Si son iguales, las dejo giradas
+                    cartaGirada1 = null;
+                    cartaGirada2 = null;
+                    puedoGirar = true;
+                } else {
+                    // Si no son iguales, las vuelvo a ocultar
+                    setTimeout(() => {
+                        cartaGirada1.carta.textContent = '';
+                        cartaGirada2.carta.textContent = '';
+                        cartaGirada1.carta.classList.remove('girada');
+                        cartaGirada2.carta.classList.remove('girada');
+                        cartaGirada1 = null;
+                        cartaGirada2 = null;
+                        puedoGirar = true;
+                    }, 1000);
+                }
             }
-        }
-
-        function deshabilitarCartas() {
-            primeraCarta.onclick = null;
-            segundaCarta.onclick = null;
-            reiniciarTablero();
-        }
-
-        function desvoltearCartas() {
-            setTimeout(function() {
-                primeraCarta.classList.remove('volteada');
-                segundaCarta.classList.remove('volteada');
-                primeraCarta.textContent = '';
-                segundaCarta.textContent = '';
-                reiniciarTablero();
-            }, 1000);
-        }
-
-        function reiniciarTablero() {
-            primeraCarta = null;
-            segundaCarta = null;
-            bloquearTablero = false;
         }
     </script>
 </body>
+
 </html>

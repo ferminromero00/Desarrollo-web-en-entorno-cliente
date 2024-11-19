@@ -42,7 +42,7 @@
     <!-- Contenedor principal -->
     <div class="caja">
         <!-- Elemento que muestra el reloj -->
-        <div id="reloj">00:00:00</div>
+        <div id="reloj">0:00</div>
         <!-- Botones para controlar el reloj -->
         <button id="botonIniciar" onclick="iniciar()">Iniciar</button>
         <button id="botonDetener" onclick="detener()">Detener</button>
@@ -50,32 +50,33 @@
     </div>
 
     <script>
+        let segundos = 0;
+        let minutos = 0;
+        let intervalo;
+
         function iniciar() {
             let reloj = document.getElementById("reloj");
 
-            let contador = 58;
-            let contador2 = 0;
-
-            window.setInterval(function () {
-                if (contador) {
-                    reloj.innerHTML = contador++
-                } else if(contador == 59) {
-                    contador2++
-                    reloj.innerHTML = "0" + contador2 + ":" + contador
+            intervalo = window.setInterval(function () {
+                segundos++;
+                if (segundos == 60) {
+                    minutos++;
+                    segundos = 0;
                 }
-            }, 1000)
-
-
-
-
-
-
-
+                reloj.innerHTML = minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+            }, 1000);
         }
 
+        function detener() {
+            clearInterval(intervalo);
+        }
 
-
-
+        function reiniciar() {
+            clearInterval(intervalo);
+            segundos = 0;
+            minutos = 0;
+            document.getElementById("reloj").innerHTML = "00:00";
+        }
     </script>
 </body>
 
