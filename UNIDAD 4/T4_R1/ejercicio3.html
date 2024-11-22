@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html id="pantalla" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onload</title>
+    <style>
+        html {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body style="background-color: grey;">
+    <h1>Tiempo trascurrido desde la carga de la pagina</h1>
+    <h2>
+        <p id="datos"></p>
+    </h2>
+
+    <script>
+        //EJERCICIO 3
+        const todo = document.getElementById("pantalla");
+        document.getElementById("datos").innerHTML = "Tiempo de carga:" + todo.onload(event)
+    </script>
+</body>
+
+</html>

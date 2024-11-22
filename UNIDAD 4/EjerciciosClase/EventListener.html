@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuchar hasta que se ejecute...</title>
+</head>
+
+<body style="background-color: grey;">
+
+    <button onclick="holaMundo()">Cambiar a gris</button>
+
+
+    <button id="color">Cambiar a negro</button>
+
+
+    <button id="color2">Cambiar a verde</button>
+
+
+    <button id="color3">Hover a rojo</button>
+
+    <button id="color4">Hover a naranja</button>
+
+
+
+    <script>
+        //Opcion 1
+        const holaMundo = () => { document.body.style.backgroundColor = "grey" }
+        const holaMundo2 = () => { document.body.style.backgroundColor = "black" }
+        const holaMundo3 = () => { document.body.style.backgroundColor = "green" }
+        const holaMundo4 = () => { document.body.style.backgroundColor = "red" }
+        const holaMundo5 = () => { document.body.style.backgroundColor = "orange" }
+
+        //Opcion 2
+        const btn = document.getElementById("color"); btn.onclick = holaMundo2
+
+        //Opcion 3
+        const btn2 = document.getElementById("color2"); btn2.addEventListener("click", holaMundo3)
+        const btn3 = document.getElementById("color3"); btn3.addEventListener("mouseover", holaMundo4)
+        const btn4 = document.getElementById("color4"); btn4.addEventListener("mouseover", () => { document.body.style.backgroundColor = "orange" })
+
+        //Opcion 4, objeto del evento, para mostrarlo en consola
+
+        btn4.addEventListener("mouseover", (evento) => { console.log(evento); })
+        //Funciona de igual manera
+        btn4.addEventListener("mouseover", () => { console.log(event); })
+
+        //Opcion 5, Pulsar tecla
+        
+
+
+    </script>
+
+</body>
+
+</html>

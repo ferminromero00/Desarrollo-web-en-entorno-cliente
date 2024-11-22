@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar</title>
+    <style>
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            width: 800px;
+        }
+
+        .div {
+            border: 1px solid black;
+            min-height: 40px;
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body style="background-color: grey;">
+    <h1>Crear cuadricula para dibujar</h1>
+
+    <div class="contenedor" id="contenedor"></div>
+
+    <script>
+        //EJERCICIO 4
+        const container = document.getElementById("contenedor");
+
+        for (let i = 0; i < 209; i++) {
+            const div = document.createElement("div");
+            div.className = "div";
+            container.appendChild(div);
+        }
+
+        const divDibu = document.getElementById("div")
+
+        divDibu.onmousemove(() => { document.body.style.backgroundColor = "black" })
+
+
+
+    </script>
+</body>
+
+</html>
