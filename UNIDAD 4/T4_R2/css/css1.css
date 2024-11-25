@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    background-color: #ffffcc;
+    font-size: 22px;
+}
+
+.marco {
+    background-color: yellow;
+    border: 1px solid black;
+    height: 50px;
+    line-height: 0.4;
+    padding: 17px;
+    width: 1501px;
+    margin-left: 213px;
+    margin-top: 20px;
+}
+
+div {
+    background-color: #26bff2;
+    height: 100vh;
+    width: 200px;
+    float: left;
+    position: relative;
+    margin-right: 20px;
+    margin-left: -8px;
+}
+
+nav {
+    line-height: 2.6;
+    background-color: #eeeeff;
+    height: 60px;
+}
+
+.visible {
+    visibility: visible;
+}

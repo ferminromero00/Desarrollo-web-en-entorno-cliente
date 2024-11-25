@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <style>
+        .help-text {
+            display: none;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulario de Contacto</h1>
+    <form>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <p id="nombre-help" class="help-text">Introduce tu nombre completo.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo">
+            <p id="correo-help" class="help-text">Introduce tu dirección de correo electrónico.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario"></textarea>
+            <p id="comentario-help" class="help-text">Escribe tu comentario o mensaje.</p>
+        </div>
+
+        <button type="submit">Enviar</button>
+        <button type="reset">Resetear</button>
+    </form>
+
+    <script>
+        document.getElementById("nombre").addEventListener("focus", function() {
+            document.getElementById("nombre-help").style.display = "block";
+        });
+
+        document.getElementById("nombre").addEventListener("blur", function() {
+            document.getElementById("nombre-help").style.display = "none";
+        });
+
+        document.getElementById("correo").addEventListener("focus", function() {
+            document.getElementById("correo-help").style.display = "block";
+        });
+
+        document.getElementById("correo").addEventListener("blur", function() {
+            document.getElementById("correo-help").style.display = "none";
+        });
+
+        document.getElementById("comentario").addEventListener("focus", function() {
+            document.getElementById("comentario-help").style.display = "block";
+        });
+
+        document.getElementById("comentario").addEventListener("blur", function() {
+            document.getElementById("comentario-help").style.display = "none";
+        });
+    </script>
+</body>
+
+</html>

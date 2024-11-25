@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1 ver2</title>
+    <!-- Carga un estilo predeterminado -->
+    <link id="estilo" rel="stylesheet" href="css/css1.css">    
+</head>
+<body>
+    <div id="div"></div>
+
+    <nav>
+        <a href="#" id="normal-link" onclick="cambiarTema('css/css1.css')">Tema Normal</a> |
+        <a href="#" id="minimalista-link" onclick="cambiarTema('css/css2.css')">Tema Minimalista</a>
+    </nav>
+
+    <h1>Página de Ejemplo</h1>
+
+    <p>
+        En esta página vamos a comprobar lo fácil que es aplicar estilos mediante CSS a un documento seleccionado.
+    </p>
+
+    <p>
+        Lo ideal es que al seleccionar un estilo, este permanezca siempre igual para el usuario. Hasta ahora no hemos
+        visto cómo hacerlo.
+        ¿Se te ocurre cómo podremos hacerlo?
+    </p>
+
+    <p class="visible">
+        Utilizando CSS podemos incluso ocultar partes del sitio.<br>
+        <b>Este párrafo debe ser solo visible en el tema Normal</b>
+    </p>
+
+    <p class="marco">
+        Esto está dentro de un marco.
+    </p>
+
+    <script>
+        function cambiarTema(estilo) {
+            // Cambia dinámicamente la hoja de estilos
+            document.getElementById('estilo').setAttribute('href', estilo);
+        }
+    </script>
+</body>
+</html>

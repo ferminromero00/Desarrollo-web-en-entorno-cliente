@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+        }
+
+        .contenedor-texto {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .controles {
+            margin-bottom: 20px;
+        }
+
+        .controles button {
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-texto">
+        <div class="controles">
+            <button onclick="aumentarTamañoFuente()">Aumentar Fuente</button>
+            <button onclick="disminuirTamañoFuente()">Disminuir Fuente</button>
+            <button onclick="restablecerTamañoFuente()">Tamaño Predeterminado</button>
+            <button onclick="alinearIzquierda()">Alinear Izquierda</button>
+            <button onclick="justificarTexto()">Justificar</button>
+        </div>
+        
+        <div id="contenido">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique accumsan libero, non tincidunt felis consectetur sit amet.</p>
+            <p>Fusce malesuada mi nec sem bibendum, nec gravida ligula vehicula. Ut quis justo feugiat, suscipit lectus id, vehicula eros.</p>
+            <p>Proin dignissim augue vel lorem tempus, sed aliquam justo consectetur. Nam vehicula justo et eros feugiat, ac facilisis erat vehicula.</p>
+            <p>Nullam convallis tortor id felis malesuada, sit amet interdum sem consectetur. Mauris blandit nisi vel turpis fermentum pharetra.</p>
+        </div>
+    </div>
+
+    <script>
+        let tamañoFuentePredeterminado = 16; // Tamaño de fuente predeterminado
+        let tamañoFuenteActual = tamañoFuentePredeterminado;
+
+        // Función para aumentar el tamaño de la fuente
+        function aumentarTamañoFuente() {
+            tamañoFuenteActual += 2;
+            document.getElementById('contenido').style.fontSize = tamañoFuenteActual + 'px';
+        }
+
+        // Función para disminuir el tamaño de la fuente
+        function disminuirTamañoFuente() {
+            if (tamañoFuenteActual > 10) { // Evitar tamaño demasiado pequeño
+                tamañoFuenteActual -= 2;
+                document.getElementById('contenido').style.fontSize = tamañoFuenteActual + 'px';
+            }
+        }
+
+        // Función para restablecer el tamaño de la fuente al predeterminado
+        function restablecerTamañoFuente() {
+            tamañoFuenteActual = tamañoFuentePredeterminado;
+            document.getElementById('contenido').style.fontSize = tamañoFuentePredeterminado + 'px';
+        }
+
+        // Función para alinear texto a la izquierda
+        function alinearIzquierda() {
+            document.getElementById('contenido').style.textAlign = 'left';
+        }
+
+        // Función para justificar texto
+        function justificarTexto() {
+            document.getElementById('contenido').style.textAlign = 'justify';
+        }
+    </script>
+</body>
+</html>

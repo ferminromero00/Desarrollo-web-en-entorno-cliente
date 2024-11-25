@@ -19,9 +19,13 @@
     </h2>
 
     <script>
-        //EJERCICIO 3
-        const todo = document.getElementById("pantalla");
-        document.getElementById("datos").innerHTML = "Tiempo de carga:" + todo.onload(event)
+        window.onload = () => {
+            let tiempoTranscurrido = 0;
+            setInterval(() => {
+                tiempoTranscurrido++;
+                document.getElementById("datos").innerHTML = `La pagina se cargo hace ${tiempoTranscurrido} segundos`
+            }, 1000);
+        }
     </script>
 </body>
 

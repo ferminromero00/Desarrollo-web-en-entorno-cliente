@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colores Hexadecimales</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .color-cell {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <img style="width: 100px;" id="titulo" src="avif.png" alt="Título">
+    </h1>
+    <p>Coloca el puntero sobre los códigos hexadecimales para ver el color representado. Al salir, se mostrará el nombre del color.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Código Hexadecimal</th>
+                <th>Nombre del Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="color-cell" data-color="#FF0000">#FF0000</td>
+                <td>Rojo</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#00FF00">#00FF00</td>
+                <td>Verde</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#0000FF">#0000FF</td>
+                <td>Azul</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#FFFF00">#FFFF00</td>
+                <td>Amarillo</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#FF00FF">#FF00FF</td>
+                <td>Magenta</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#00FFFF">#00FFFF</td>
+                <td>Cian</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#000000">#000000</td>
+                <td>Negro</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#FFFFFF">#FFFFFF</td>
+                <td>Blanco</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#808080">#808080</td>
+                <td>Gris</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#800000">#800000</td>
+                <td>Marrón</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#800080">#800080</td>
+                <td>Púrpura</td>
+            </tr>
+            <tr>
+                <td class="color-cell" data-color="#008080">#008080</td>
+                <td>Verde Azulado</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("titulo").addEventListener("mouseover", function() {
+            this.src = "avif2.png";
+        });
+
+        document.getElementById("titulo").addEventListener("mouseout", function() {
+            this.src = "avif.png";
+        });
+
+        const colorCells = document.querySelectorAll(".color-cell");
+
+        colorCells.forEach(cell => {
+            cell.addEventListener("mouseover", function() {
+                this.style.backgroundColor = this.dataset.color;
+                this.style.color = "#fff"; 
+            });
+
+            cell.addEventListener("mouseout", function() {
+                this.style.backgroundColor = "";
+                this.style.color = "";
+                this.textContent = this.dataset.color.replace("#", "").toUpperCase();
+            });
+        });
+    </script>
+</body>
+
+</html>

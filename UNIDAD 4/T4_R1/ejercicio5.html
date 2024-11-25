@@ -22,14 +22,15 @@
 
 <body style="background-color: grey;">
     <h1>Crear cuadricula para dibujar</h1>
-
+    <button id="borrarCanvas">Borrar Canvas</button>
     <div class="contenedor" id="contenedor"></div>
 
     <script>
         window.onload = function() {
             const container = document.getElementById("contenedor");
+            const borrarCanvas = document.getElementById("borrarCanvas");
 
-            for (let i = 0; i < 6000; i++) {
+            for (let i = 0; i < 10000; i++) {
                 const div = document.createElement("div");
                 div.className = "celda";
                 container.appendChild(div);
@@ -41,10 +42,21 @@
                         event.target.style.backgroundColor = "red";
                     } else if (event.shiftKey) {
                         event.target.style.backgroundColor = "blue";
+                    } else if (event.buttons === 2) { 
+                        event.target.style.backgroundColor = "";
                     }
                 }
             });
+
+            borrarCanvas.addEventListener("click", function() {
+                const celdas = container.getElementsByClassName("celda");
+                for (let celda of celdas) {
+                    celda.style.backgroundColor = "";
+                }
+            });
         };
+
+        
     </script>
 </body>
 

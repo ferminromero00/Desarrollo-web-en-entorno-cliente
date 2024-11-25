@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8</title>
+    <script>
+        function replaceAmpersand(event) {
+            event.target.value = event.target.value.replace(/&/g, 'and');
+        }
+
+        window.onload = function() {
+            var inputField = document.getElementById('inputField');
+            inputField.addEventListener('blur', replaceAmpersand);
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="inputField">Campo de texto:</label>
+        <input type="text" id="inputField" name="inputField">
+    </form>
+</body>
+</html>
