@@ -5,10 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estilos</title>
+    <!-- <style>
+        * {
+            padding: 0;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        div {
+            background-color: #26bff2;
+            height: 100vh;
+            width: 200px;
+            float: left;
+            position: relative;
+            margin-right: 20px;
+            margin-left: -8px;
+        }
+
+        nav {
+            line-height: 2.6;
+            background-color: #eeeeff;
+            height: 60px;
+            margin-right: -20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: bolder;
+            color: blue;
+        }
+
+        h1 {
+            font-size: 40px;
+            padding: 20px;
+        }
+
+        p {
+            font-size: 25px;
+            padding: 17px;
+        }
+
+        .marco {
+            background-color: yellow;
+            border: 1px solid black;
+            height: 50px;
+            line-height: 0.4;
+            padding: 17px;
+            width: 1501px;
+            margin-left: 213px;
+            margin-top: 20px;
+        }
+    </style> -->
+    <style>
+        body {
+            visibility: visible;
+        }
+    </style>
+
 </head>
 
-<body style="background-color: grey; font-size: 22px;">
-    <a href="#">Tema Normal</a> <a href="#">Tema minimalista</a>
+<body>
+
+    <div id="div"></div>
+
+    <nav>
+        <a href="#" id="normal-link" onclick="TemaNormal()">Tema Normal</a> |
+        <a href="#" id="minimalista-link" onclick="TemaMinimalista()">Tema minimalista</a>
+    </nav>
+
 
     <h1>Pagina de Ejemplo</h1>
 
@@ -22,20 +86,94 @@
         ¿Se te ocurre como podremos hacerlo?
     </p>
 
-    <p>
+    <p class="visible">
+        Utilizando CSS podemos incluso ocultar partes del sitio <br>
+        <b>Este parrafo debe ser solo visible en el tema Normal</b>
+    </p>
+
+    <p class="marco">
         Esto esta dentro de un marco
     </p>
 
-    <div style="
-        border: 1px solid black;
-    
-    "></div>
-
 
     <script>
+        function TemaNormal() {
+            document.body.style.margin = 0
+            document.body.style.backgroundColor = '#ffffcc';
+            document.body.style.fontSize = '22px';
+            document.querySelectorAll('.marco').forEach(function(el) {
+                el.style.backgroundColor = 'yellow';
+                el.style.border = '1px solid black';
+                el.style.height = '50px';
+                el.style.lineHeight = '0.4';
+                el.style.padding = '17px';
+                el.style.width = '1501px';
+                el.style.marginLeft = '213px';
+                el.style.marginTop = '20px';
+            });
+            document.querySelector('div').style.backgroundColor = '#26bff2';
+            document.querySelector('div').style.height = '100vh';
+            document.querySelector('div').style.width = '200px';
+            document.querySelector('div').style.float = 'left';
+            document.querySelector('div').style.position = 'relative';
+            document.querySelector('div').style.marginRight = '20px';
+            document.querySelector('div').style.marginLeft = '-8px';
+            document.querySelector('nav').style.lineHeight = '2.6';
+            document.querySelector('nav').style.backgroundColor = '#eeeeff';
+            document.querySelector('nav').style.height = '60px';
+            document.querySelector('nav').style.marginRight = '-20px';
+            document.querySelectorAll('nav a').forEach(function(el) {
+                el.style.textDecoration = 'none';
+                el.style.fontWeight = 'bolder';
+                el.style.color = 'blue';
+            });
+            document.querySelector('h1').style.fontSize = '40px';
+            document.querySelector('h1').style.padding = '20px';
+            document.querySelectorAll('p').forEach(function(el) {
+                el.style.fontSize = '25px';
+                el.style.padding = '17px';
+            });
+            document.getElementById("visible").style.visibility = "visible";
+        }
 
+        function TemaMinimalista() {
+            document.body.style.backgroundColor = 'white';
+            document.body.style.fontSize = '16px';
+            document.querySelectorAll('.marco').forEach(function(el) {
+                el.style.backgroundColor = 'white';
+                el.style.border = '0px';
+                el.style.height = 'auto';
+                el.style.lineHeight = 'normal';
+                el.style.padding = '0px';
+                el.style.width = 'auto';
+                el.style.marginLeft = '0px';
+                el.style.marginTop = '0px';
+            });
+            document.querySelector('div').style.backgroundColor = 'white';
+            document.querySelector('div').style.height = 'auto';
+            document.querySelector('div').style.width = 'auto';
+            document.querySelector('div').style.float = 'none';
+            document.querySelector('div').style.position = 'static';
+            document.querySelector('div').style.marginRight = '0px';
+            document.querySelector('div').style.marginLeft = '0px';
+            document.querySelector('nav').style.lineHeight = 'normal';
+            document.querySelector('nav').style.backgroundColor = 'white';
+            document.querySelector('nav').style.height = 'auto';
+            document.querySelector('nav').style.marginRight = '0px';
+            document.querySelectorAll('nav a').forEach(function(el) {
+                el.style.textDecoration = 'underline';
+                el.style.fontWeight = 'normal';
+                el.style.color = 'black';
+            });
+            document.querySelector('h1').style.fontSize = '32px';
+            document.querySelector('h1').style.padding = '0px';
+            document.querySelectorAll('p').forEach(function(el) {
+                el.style.fontSize = '16px';
+                el.style.padding = '0px';
+            });
+            document.getElementById("visible").style.visibility = "hidden";
 
-
+        }
     </script>
 </body>
 
