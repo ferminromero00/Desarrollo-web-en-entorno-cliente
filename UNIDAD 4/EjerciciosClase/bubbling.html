@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubbling en eventos</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body style="background-color: grey;">
+    <form onclick="alert('form')">FORM
+        <div onclick="alert('div')">DIV
+            <p onclick="alert('p')">P</p>
+        </div>
+    </form>
+
+    <br><br><br>
+
+    <form onclick="alert('form event.target: '+event.target.tagName)">FORM
+        <div onclick="alert('div event.target: '+event.target.tagName)">DIV
+            <p onclick="alert('p event.target: '+event.target.tagName)">P</p>
+        </div>
+    </form>
+
+    <br><br><br>
+
+    <form onclick="alert('this: '+this.tagName + ' event: '+ event.target.tagName)">FORM
+        <div onclick="alert('this: '+this.tagName + ' event: '+ event.target.tagName)">DIV
+            <p onclick="alert('this: '+this.tagName + ' event: '+ event.target.tagName)">P</p>
+        </div>
+    </form>
+
+    <br><br><br>
+
+    <form onclick="alert('this: '+this.tagName + ' event: '+ event.target.tagName)">FORM
+        <div onclick="event.stopPropagation()">DIV
+            <p onclick="alert('this: '+this.tagName + ' event: '+ event.target.tagName)">P</p>
+        </div>
+    </form>
+</body>
+
+</html>
