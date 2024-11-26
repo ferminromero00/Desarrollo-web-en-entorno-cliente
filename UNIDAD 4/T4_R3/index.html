@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego colores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 700px;
+            align-items: center;
+            align-content: center;
+            margin-left: 550px;
+            margin-top: 100px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .cajas {
+            width: 150px;
+            height: 150px;
+            border: 2px solid black;
+            min-width: 204px;
+            border-radius: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body style="background-color: grey;">
+
+    <section class="container">
+        <b>
+            <p id="adivinanza"></p>
+        </b>
+    </section>
+
+    <section class="container">
+        <div class="cajas"></div>
+        <div class="cajas"></div>
+        <div class="cajas"></div>
+        <div class="cajas"></div>
+        <div class="cajas"></div>
+        <div class="cajas"></div>
+    </section>
+
+    <script>
+        const divs = document.querySelectorAll("div");
+        const backgrounds = [];
+
+        const generarColores = () => {
+            for (let i = 0; i < 6; i++) {
+                let num1 = Math.floor(Math.random() * 256);
+                let num2 = Math.floor(Math.random() * 256);
+                let num3 = Math.floor(Math.random() * 256);
+
+                backgrounds.push("rgb(" + num1 + "," + num2 + "," + num3 + ")")
+            }
+        }
+        generarColores()
+
+        let cont = 0;
+        divs.forEach(e => { e.style.backgroundColor = backgrounds[cont]; cont++ })
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

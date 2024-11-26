@@ -22,6 +22,12 @@ function ValoresArrays(...num) {
 
 /*2. Nombre del archivo: T4_EJ2.htmlDado un array que contiene ["azul", "amarillo", "rojo", "verde", "café", "rosa"] determinar si un
 color introducido por el usuario a través de un prompt se encuentra dentro del array o no*/
+
+
+/**
+ * 
+ * @param {*} valor 
+ */
 function CompararValoresArray(valor) {
     let ArrayColores = ["azul", "amarillo", "rojo", "verde", "café", "rosa"]
     //Facil el bucle, simplemente si tu color coincide con alguno del array lo recoge y te da el resultado
@@ -35,6 +41,7 @@ function CompararValoresArray(valor) {
         }
     }
 }
+
 
 /*3. Nombre del archivo: T4_EJ3.html Crear un array vacío, luego generar 20 números al azar (utiliza random del objeto Math ) y
 guardarlos en un array, N es introducido por el usuario*/
