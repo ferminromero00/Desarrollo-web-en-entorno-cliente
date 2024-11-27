@@ -18,7 +18,7 @@
             align-items: center;
             align-content: center;
             margin-left: 550px;
-            margin-top: 100px;
+            margin-top: 80px;
             font-size: 30px;
             text-align: center;
         }
@@ -41,7 +41,11 @@
 
     <section class="container">
         <b>
-            <p id="adivinanza"></p>
+            <p>Color que debes adivinar:</p> <p id="adivinanza"></p>
+            <br><br>
+        </b>
+        <b>
+            <p id="result"></p>
         </b>
     </section>
 
@@ -58,19 +62,42 @@
         const divs = document.querySelectorAll("div");
         const backgrounds = [];
 
+
         const generarColores = () => {
             for (let i = 0; i < 6; i++) {
                 let num1 = Math.floor(Math.random() * 256);
                 let num2 = Math.floor(Math.random() * 256);
                 let num3 = Math.floor(Math.random() * 256);
 
-                backgrounds.push("rgb(" + num1 + "," + num2 + "," + num3 + ")")
+                backgrounds.push("rgb(" + num1 + ", " + num2 + ", " + num3 + ")")
             }
         }
         generarColores()
 
         let cont = 0;
-        divs.forEach(e => { e.style.backgroundColor = backgrounds[cont]; cont++ })
+        divs.forEach(e => {
+            e.style.backgroundColor = backgrounds[cont];
+            cont++
+        })
+
+        document.getElementById("adivinanza").innerHTML = backgrounds[Math.floor(Math.random() * 6)]
+
+        let vidas = 3;
+        document.getElementById("result").innerHTML = "Vidas: " + vidas;
+
+        divs.forEach(e => {
+            e.addEventListener("click", (evento) => {
+                if (evento.target.style.backgroundColor === document.getElementById("adivinanza").textContent) {
+                    document.getElementById("result").innerHTML = "Ganaste!!";
+                } else {
+                    vidas--;
+                    document.getElementById("result").innerHTML = "Vidas: " + vidas;
+                    if (vidas <= 0) {
+                        document.getElementById("result").innerHTML = "Perdiste!!";
+                    }
+                }
+            });
+        });
 
 
 
