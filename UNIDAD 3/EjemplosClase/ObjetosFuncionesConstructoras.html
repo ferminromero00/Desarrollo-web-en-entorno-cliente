@@ -24,7 +24,8 @@
 
         const array = [
             new Usuario('755423X', 'Juan', 19),
-            new Usuario('755423X', 'Maria', 22)
+            new Usuario('755423X', 'Maria', 22),
+            new Usuario('755423X', 'Jose', 22)
         ]
 
         class Empleado {
@@ -46,6 +47,11 @@
         document.write(objUser.dni + "<br><br>")
         objUser.ShowMe(); document.write("<br><br>")
         objEmpl.mostrarEmpleado(); document.write("<br><br>")
+
+
+        document.write(new Usuario('755423X', 'Jose', 22).ShowMe() + "<br>") 
+        document.write(new Usuario('755423X', 'Jose', 20).ShowMe())
+
 
 
 
