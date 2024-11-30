@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body style="background-color: grey;">
     <script src="componentes/Clases.js"></script>
 
     <form onsubmit="return false">
-        <label for="">Title</label>
+        <label for="">Titulo</label>
         <input type="text" name="Title" id="Title"><br>
 
-        <label for="">Author</label>
+        <label for="">Autor</label>
         <input type="text" name="Author" id="Author"><br>
 
-        <label for="">Genre</label>
+        <label for="">Genero</label>
         <input type="text" name="Genre" id="Genre"><br><br>
         
         <input type="submit" value="Add_Book" onclick="recogerDatosLibro()">
@@ -25,6 +26,7 @@
 
     <section id="lista">
         <h3>My reading list</h3>
+        <h4 id="contador_libros" style="text-align: center;"></h4>
 
 
 
