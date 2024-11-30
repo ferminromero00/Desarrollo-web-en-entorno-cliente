@@ -9,16 +9,12 @@ class BookLists {
         this.libros.push(book)
         this.noleidos.push(book)
 
-
-
         const section_nodo = document.getElementById("lista")
         const div_nodo = document.createElement("div")
         div_nodo.className = "div"
         const p_nodo = document.createElement("p")
 
         book.Read = "No leido"
-
-
 
         p_nodo.innerHTML =
             "Titulo: " + book.Title + "<br>Autor: " + book.Author + "<br>Genero: " + book.Genre
