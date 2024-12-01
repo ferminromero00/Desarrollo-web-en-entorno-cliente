@@ -1,17 +1,13 @@
 function Contador60Segundos() {
-    //empiezo el contador en 60
     let cont = 60;
-    /*Con setInterval hacemos un funcion dentro de el, como si fuera un bucle FOR, que recorre hasta que sea 0, y con clearInterval se termina, y por ultimo
-    el 1000 son milisegundos, osea, lo pinta cada segundo*/
     let cuentaAtras = setInterval(function () {
-        cont--
-        document.write(cont + "<br>")
+        cont--;
+        document.getElementById("contador").innerHTML = cont;
         if (cont == 0) {
-            document.write("Contador terminado")
-            clearInterval(cuentaAtras)
+            document.getElementById("contador").innerHTML = "Contador terminado";
+            clearInterval(cuentaAtras);
         }
-    }, 1000)
-
+    }, 1000);
 }
 
 function muestraReloj() {

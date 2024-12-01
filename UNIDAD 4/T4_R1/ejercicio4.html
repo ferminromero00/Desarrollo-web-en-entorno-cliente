@@ -35,7 +35,7 @@
                 container.appendChild(div);
             }
 
-            container.addEventListener("mousemove", function(event) {
+            container.addEventListener("mousemove", (event) => {
                 if (event.target.classList.contains("celda")) {
                     if (event.ctrlKey) {
                         event.target.style.backgroundColor = "red";

@@ -26,7 +26,7 @@
     <div class="contenedor" id="contenedor"></div>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const container = document.getElementById("contenedor");
             const borrarCanvas = document.getElementById("borrarCanvas");
 
@@ -36,27 +36,27 @@
                 container.appendChild(div);
             }
 
-            container.addEventListener("mousemove", function(event) {
+            container.addEventListener("mousemove", function (event) {
                 if (event.target.classList.contains("celda")) {
                     if (event.ctrlKey) {
                         event.target.style.backgroundColor = "red";
                     } else if (event.shiftKey) {
                         event.target.style.backgroundColor = "blue";
-                    } else if (event.buttons === 2) { 
+                    } else if (event.buttons === 2) {
                         event.target.style.backgroundColor = "";
                     }
                 }
             });
 
-            borrarCanvas.addEventListener("click", function() {
-                const celdas = container.getElementsByClassName("celda");
-                for (let celda of celdas) {
+            borrarCanvas.addEventListener("click", function () {
+                const celdas = container.querySelectorAll(".celda");
+                celdas.forEach(celda => {
                     celda.style.backgroundColor = "";
-                }
+                });
             });
         };
 
-        
+
     </script>
 </body>
 

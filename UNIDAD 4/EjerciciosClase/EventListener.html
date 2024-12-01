@@ -26,12 +26,18 @@
         const holaMundo5 = () => { document.body.style.backgroundColor = "orange" }
 
         //Opcion 2
-        const btn = document.getElementById("color"); btn.onclick = holaMundo2
+        const btn = document.getElementById("color"); 
+        btn.onclick = holaMundo2
 
         //Opcion 3
-        const btn2 = document.getElementById("color2"); btn2.addEventListener("click", holaMundo3)
-        const btn3 = document.getElementById("color3"); btn3.addEventListener("mouseover", holaMundo4)
-        const btn4 = document.getElementById("color4"); btn4.addEventListener("mouseover", () => { document.body.style.backgroundColor = "orange" })
+        const btn2 = document.getElementById("color2"); 
+        btn2.addEventListener("click", holaMundo3)
+
+        const btn3 = document.getElementById("color3"); 
+        btn3.addEventListener("mouseover", holaMundo4)
+
+        const btn4 = document.getElementById("color4"); 
+        btn4.addEventListener("mouseover", () => { document.body.style.backgroundColor = "orange" })
 
         //Opcion 4, objeto del evento, para mostrarlo en consola
 

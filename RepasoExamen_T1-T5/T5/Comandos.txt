@@ -1,0 +1,128 @@
+---DATE---
+
+Fecha
+let HoraActual = new Date()---> HoraActual.getHours()----HoraActual.getMinutes()----HoraActual.getSeconds() 
+
+
+
+---CADENAS---
+
+Detectar letra
+fraseMinus = frase.toLocaleLowerCase()
+fraseMinus.charAt(i) === "a" || fraseMinus.charAt(i) === "e"
+
+Cadena al reves
+palabras[i].split('').reverse().join('')
+
+Limitador, cuando pongas un espacio sera otra palabra
+.split(" ")
+
+Mayusculas y minusculas
+cad_arg.charAt(0).toUpperCase();
+cad_arg.substr(1).toLowerCase();
+
+
+
+
+---CONTADOR---
+
+Contador
+let cuentaAtras = setInterval(function () {}, 1000)
+
+
+
+
+---VENTANAS---
+
+Crear nueva ventana
+nuevaVentana = window.open("width=500,height=400,top=0, left=0")
+nuevaVentana.document.write("<h1> Titulo: " + titulo + "</h1>")
+
+
+
+---IMPORT E EXPORT---
+
+export {Usuario} 
+import { Usuario } from "../clases/user.mjs";
+
+
+---ARRAY OBJETOS---
+
+const articulos = [
+    { codigo: 5, nombre: 'Teclado', precio: 9.5 },
+    { codigo: 6, nombre: 'Ratón', precio: 12.0 }];
+articulos.push({ codigo, nombre, precio });
+
+
+
+---OBJETOS LITERALES---
+
+const alumno = {
+            nombre: 'Juan', grupo: '1SMR', notas: [4, 6],
+            ShowNotas: function () {
+                this.notas.forEach(element => { console.log(element); });
+            },
+            addNota: function (nota) { this.notas.push(nota); },
+            addNotas: function (arrNotas) { this.notas = this.notas.concat(arrNotas); }
+        };
+
+
+
+
+---BORRAR Y AÑADIR
+
+De la posicion (1), borra 1
+array2.splice(1, 1)
+
+De la posicion 3, no borres nada y a partir de hay añade 2
+splice(3, 0, "Naranjas", "Sandia")
+
+
+
+
+---forEach---
+
+forEach(elemento => console.log(elemento))
+
+
+
+
+---FUNCIONES AUTOEJECUTABLES---
+
+(() => {
+
+})()
+
+
+---MAP---
+
+document.write([2, 3, 4].map(valor => valor + 1))
+
+
+---SORT---
+
+const fCompara = (n1, n2) => n1 - n2  //De menor a mayor
+const fCompara2 = (n1, n2) => n2 - n1 //De mayor a menor
+
+
+---EVENT.KEY--
+
+container.addEventListener("mousemove", (event) => {
+    if (event.target.classList.contains("celda")) {
+        if (event.ctrlKey) {
+            event.target.style.backgroundColor = "red";
+            } else if (event.shiftKey) {
+                event.target.style.backgroundColor = "blue";
+            }
+        }
+    });
+
+
+
+
+
+
+
+
+
+

@@ -42,51 +42,51 @@
         </thead>
         <tbody>
             <tr>
-                <td class="color-cell" data-color="#FF0000">#FF0000</td>
+                <td id="colorFF0000" class="color-cell">#FF0000</td>
                 <td>Rojo</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#00FF00">#00FF00</td>
+                <td id="color00FF00" class="color-cell">#00FF00</td>
                 <td>Verde</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#0000FF">#0000FF</td>
+                <td id="color0000FF" class="color-cell">#0000FF</td>
                 <td>Azul</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#FFFF00">#FFFF00</td>
+                <td id="colorFFFF00" class="color-cell">#FFFF00</td>
                 <td>Amarillo</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#FF00FF">#FF00FF</td>
+                <td id="colorFF00FF" class="color-cell">#FF00FF</td>
                 <td>Magenta</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#00FFFF">#00FFFF</td>
+                <td id="color00FFFF" class="color-cell">#00FFFF</td>
                 <td>Cian</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#000000">#000000</td>
+                <td id="color000000" class="color-cell">#000000</td>
                 <td>Negro</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#FFFFFF">#FFFFFF</td>
+                <td id="colorFFFFFF" class="color-cell">#FFFFFF</td>
                 <td>Blanco</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#808080">#808080</td>
+                <td id="color808080" class="color-cell">#808080</td>
                 <td>Gris</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#800000">#800000</td>
+                <td id="color800000" class="color-cell">#800000</td>
                 <td>Marrón</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#800080">#800080</td>
+                <td id="color800080" class="color-cell">#800080</td>
                 <td>Púrpura</td>
             </tr>
             <tr>
-                <td class="color-cell" data-color="#008080">#008080</td>
+                <td id="color008080" class="color-cell">#008080</td>
                 <td>Verde Azulado</td>
             </tr>
         </tbody>
@@ -104,15 +104,15 @@
         const colorCells = document.querySelectorAll(".color-cell");
 
         colorCells.forEach(cell => {
-            cell.addEventListener("mouseover", function() {
-                this.style.backgroundColor = this.dataset.color;
-                this.style.color = "#fff"; 
+            cell.addEventListener("mouseover", (event) => {
+                event.target.style.backgroundColor = event.target.id.replace("color", "#");
+                event.target.style.color = "#fff"; 
             });
 
-            cell.addEventListener("mouseout", function() {
-                this.style.backgroundColor = "";
-                this.style.color = "";
-                this.textContent = this.dataset.color.replace("#", "").toUpperCase();
+            cell.addEventListener("mouseout", (event) => {
+                event.target.style.backgroundColor = "";
+                event.target.style.color = "";
+                event.target.textContent = event.target.id.replace("color", "#").toUpperCase();
             });
         });
     </script>

@@ -5,17 +5,17 @@ mayor de edad o no.*/
 
 const persona = {
     nombre: "Juan",
-    edad: 20,
+    edad: 2,
 
     // Método para determinar si es mayor de edad
-    esMayorDeEdad: function () {
+    esMayorDeEdad() {
         if (this.edad >= 18) {
             return document.write(this.nombre + " es mayor de edad.<br>");
         } else {
             return document.write(this.nombre + " no es mayor de edad.<br>");
         }
     }
-};
+}
 
 /*Crear una función constructora que permita crear objetos del tipo personas pasándole solo
 un nombre y edad, agregar el método. */
@@ -30,7 +30,7 @@ function Persona(nombre, edad) {
 /**• Crear un array que contenga varios objetos persona*/
 const personaObjeto = {
     nombre: "Juan", edad: 20,
-    Ver: function () { return document.write("Persona: " + this.nombre + " , con edad de " + this.edad); }
+    Ver() { return document.write("Persona: " + this.nombre + " , con edad de " + this.edad); }
 };
 
 /**• Crear una función que reciba el array y devuelva la edad promedio del grupo de personas.*/
