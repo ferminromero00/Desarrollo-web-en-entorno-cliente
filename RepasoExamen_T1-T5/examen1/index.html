@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+</head>
+
+<body style="background-color: grey;">
+    <script src="estudiantes.js"></script>
+
+    <form onclick="return false">
+        <label for="">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+
+        <br>
+
+        <label for="">Edad</label>
+        <input type="number" name="edad" id="edad">
+
+        <br>
+
+        <label for="">Calificaciones</label>
+        <input type="text" name="notas" id="notas" placeholder="6,5,4....">
+
+        <br>
+
+        <input type="submit" value="Agregar" onclick="añadirAlum()">
+    </form>
+
+    <button onclick="promedioNotas()">Calcular Promedio</button>
+    <p id="promedio"></p>
+
+    <br>
+
+    <h1>Lista de estudiantes</h1>
+    <h3>Buscar estudiante por nombre:</h3>
+
+    <form onclick="return false">
+        <input type="text" name="nombre_Est" id="nombre_lista">
+        <input type="submit" value="Actualizar" onclick="listaAlums()">
+        <input type="submit" value="Buscar por Nombre" onclick="buscarNombre()">
+    </form>
+
+    <section id="lista"></section>
+
+
+
+
+</body>
+
+</html>

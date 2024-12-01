@@ -1,0 +1,29 @@
+Parte 1: Configuración inicial
+Crea un archivo HTML básico con lo siguiente:
+--Un formulario con campos para ingresar el nombre, la edad y las calificaciones de un estudiante.
+--Un botón para agregar el estudiante.
+--Una tabla vacía para mostrar la lista de estudiantes.
+--Un campo de búsqueda para buscar estudiantes por nombre.
+
+
+Parte 2: Funcionalidad de estudiantes
+Crea un archivo JavaScript con los siguientes módulos:
+--Un módulo llamado estudiantes.js que contiene:
+--Una clase Estudiante con propiedades nombre, edad, y calificaciones. Agrega un método para calcular el promedio.
+--Una función para crear y agregar estudiantes a un array.
+--Una función para buscar estudiantes por nombre.
+--Una función para listar todos los estudiantes.
+
+Parte 3: Requisitos específicos
+Implementa los siguientes puntos:
+Usa una función constructora como alternativa para crear estudiantes antes de implementar la clase Estudiante.
+Usa una arrow function para calcular el promedio de calificaciones.
+Usa manipulación del DOM para agregar filas dinámicamente a la tabla y mostrar los datos de los estudiantes.
+Usa eventos para que el botón del formulario agregue estudiantes, y para que la búsqueda funcione en tiempo real.
+
+
+
+Parte 4: Validación
+Asegúrate de que:
+Si el usuario no completa un campo obligatorio, muestra un mensaje de error.
+La tabla se actualiza dinámicamente cada vez que se agrega un estudiante o se realiza una búsqueda.

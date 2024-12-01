@@ -1,0 +1,70 @@
+
+
+------HECHO------
+Examen Práctico: Sistema de Gestión de Biblioteca
+Tiempo recomendado: 2 horas
+Puntuación total: 100 puntos
+
+--Parte 1: Estructuras de Datos (20 puntos)
+(10 puntos) Crea una clase Libro con las siguientes propiedades:
+
+título (string)
+autor (string)
+año (number)
+disponible (boolean)
+préstamos (array de objetos con fecha y usuario)
+Método para registrar un préstamo
+(10 puntos) Implementa una función constructora Usuario que incluya:
+nombre
+id
+libros prestados (array)
+historial de préstamos
+Parte 2: Gestión de Datos (30 puntos)
+(15 puntos) Desarrolla las siguientes funciones:
+Registrar nuevo libro
+
+
+
+------POR HACER------
+
+
+
+
+
+Prestar libro
+Devolver libro
+Buscar libros por autor o título
+(15 puntos) Crea un módulo separado (libraryManager.ts) que:
+
+Gestione el inventario de libros
+Maneje los préstamos activos
+Genere reportes de libros más prestados
+Parte 3: Interfaz de Usuario (30 puntos)
+(15 puntos) Implementa un panel de control que incluya:
+
+Formulario para registrar nuevos libros
+Sistema de búsqueda
+Vista de libros disponibles/prestados
+(15 puntos) Desarrolla una interfaz de préstamos que:
+
+Muestre el catálogo de libros en cards
+Permita filtrar por disponibilidad
+Incluya un sistema de reservas
+Parte 4: Funcionalidad Avanzada (20 puntos)
+(10 puntos) Implementa:
+
+Sistema de notificaciones para préstamos vencidos
+Historial de transacciones
+Estadísticas de préstamos
+(10 puntos) Añade:
+
+Sistema de categorías y etiquetas para libros
+Recomendaciones basadas en préstamos anteriores
+Exportación de reportes
+Criterios de Evaluación:
+Uso correcto de clases y herencia
+Implementación efectiva de módulos
+Gestión de estado y eventos
+Diseño responsivo y usable
+Manejo de errores y validaciones
+Organización del código
