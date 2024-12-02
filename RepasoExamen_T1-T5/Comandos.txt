@@ -64,7 +64,7 @@ const alumno = {
             },
             addNota: function (nota) { this.notas.push(nota); },
             addNotas: function (arrNotas) { this.notas = this.notas.concat(arrNotas); }
-        };
+};
 
 
 

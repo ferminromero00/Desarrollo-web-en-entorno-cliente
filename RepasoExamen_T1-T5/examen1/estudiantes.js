@@ -78,3 +78,5 @@ const buscarNombre = () => {
         section.appendChild(p_nodo);
     }
 }
+
+setInterval
