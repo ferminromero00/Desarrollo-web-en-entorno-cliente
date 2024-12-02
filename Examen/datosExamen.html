@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Objetos</title>
+</head>
+
+
+<form onclick="return false">
+    <label for="">Filtro:</label>
+    <input type="text" name="filtro" id="filtro" placeholder="price, rate, count">
+    <br>
+    <label for="">Valor</label>
+    <input type="text" name="filtro" id="valor">
+
+    <input type="submit" value="Filtrar" onclick="Filtra()">
+</form>
+
+<body style="background-color: grey;">
+    <section id="lista">
+
+    </section>
+
+
+
+
+    <script src="BDExamen.js"></script>
+    <script>CreaCard()</script>
+</body>
+
+</html>
