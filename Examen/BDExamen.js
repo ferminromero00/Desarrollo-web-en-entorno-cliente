@@ -470,8 +470,6 @@ const cadJSonUsuarios = `
 ]
 `
 
-
-
 var arrObjBDProductos = JSON.parse(cadJsonBDProductos);
 
 var arrObjUsuarios = JSON.parse(cadJSonUsuarios);
@@ -479,12 +477,20 @@ var arrObjUsuarios = JSON.parse(cadJSonUsuarios);
 
 // export { arrObjUsuarios, arrObjBDProductos };
 
-
+/**
+ * En mi caso recogi los datos del formulario manualmente en vez de enviarlos por formulario porque no me 
+ * funcionaba, el redireccionamiento tampoco lo hice, pero la validacion la hace correctamente
+ * 
+ * @param usuario
+ * @param password
+ * 
+ * @returns validacion del login
+ */
 const valida = () => {
   let usuario = document.getElementById("nombre").value
   let password = document.getElementById("pass").value
 
-  for (let i = 0; i < cadJSonUsuarios.length; i++) {
+  for (let i = 0; i < arrObjUsuarios.length; i++) {
     if (usuario === arrObjUsuarios[i].username && password === arrObjUsuarios[i].password) {
       document.getElementById("result").innerHTML = "Login correcto (no funciona redirect)"
     } else {
@@ -493,74 +499,185 @@ const valida = () => {
   }
 }
 
-// const CreaCard = () => {
+/**
+ * Creo todos los nuevos elementos dentro de un FOR que se ira repetiendo tantas veces como tamaño tenga
+ * el array de productos, genera la pagina correctamente
+ * 
+ * @returns Pagina generada con Dom
+ */
+const CreaCard = () => {
 
-//   for (let i = 0; i < cadJsonBDProductos.length; i++) {
-//     let body = document.getElementsByTagName("body")[0]
-//     let section_nodo = document.createElement("section")
-//     let div_nodo = document.createElement("div")
-//     let p_nodo = document.createElement("p")
-//     let img_nodo = document.createElement("img")
+  for (let i = 0; i < arrObjBDProductos.length; i++) {
+    let section_nodo = document.createElement("section")
+    let section_lista = document.getElementById("lista")
+    let div_nodo = document.createElement("div")
+    let p_nodo = document.createElement("p")
+    let img_nodo = document.createElement("img")
+    let boton_nodo = document.createElement("button")
+    boton_nodo.textContent = "Añadir al carrito"
 
-//     img_nodo.src = arrObjBDProductos[i].image
-//     img_nodo.width = 200
+    img_nodo.src = arrObjBDProductos[i].image
+    img_nodo.width = 200
 
 
-//     p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
-//       " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
-//       " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
-//       " / count: " + arrObjBDProductos[i].rating.count
+    p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
+      " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
+      " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
+      " / count: " + arrObjBDProductos[i].rating.count;
 
-//     body.appendChild(section_nodo)
-//     section_nodo.appendChild(div_nodo)
+    section_lista.appendChild(section_nodo)
+    section_nodo.appendChild(div_nodo)
+    div_nodo.appendChild(p_nodo)
+    div_nodo.appendChild(img_nodo)
+    div_nodo.appendChild(boton_nodo)
 
-//     div_nodo.appendChild(p_nodo)
-//     div_nodo.appendChild(img_nodo)
-//   }
-// }
+  }
+}
 
+/**
+ * Pido perdon cuando veas esto, claramente esta no es la mejor manera de hacerlo supongo, exceso de codigo
+ * pero prefiero que funcione y que veas algo a quedarme pillado sin hacer nada.
+ * 
+ * Con un if detecto que filtro se ha seleccionado, y limpio el section donde estan los objetos y lo modifico
+ * segun el filtro, funciona pero no es optimo lo se.
+ * 
+ * @returns Objetos fitrados segun el filtro que se haya seleccionado
+ */
 const Filtra = () => {
   let filtro = document.getElementById("filtro").value
-  let valor = parseInt(document.getElementById("valor").value) 
-  
-  
-      for (let i = 0; i < cadJsonBDProductos.length; i++) {
+  let valor = parseInt(document.getElementById("valor").value)
+  document.getElementById("lista").innerHTML = ""
 
-        if (arrObjBDProductos[i].price < valor) {
-          document.getElementsByTagName("body")
+  if (filtro === "price") {
+    for (let i = 0; i < arrObjBDProductos.length; i++) {
+      if (arrObjBDProductos[i].price < valor) {
+        document.getElementsByTagName("body")
 
-          let body = document.getElementsByTagName("body")[0]
-          let section_lista = document.getElementById("lista")
-          let section_nodo = document.createElement("section")
-          let div_nodo = document.createElement("div")
-          let p_nodo = document.createElement("p")
-          let img_nodo = document.createElement("img")
+        let section_lista = document.getElementById("lista")
+        let section_nodo = document.createElement("section")
+        let div_nodo = document.createElement("div")
+        let p_nodo = document.createElement("p")
+        let img_nodo = document.createElement("img")
 
-          img_nodo.src = arrObjBDProductos[i].image
-          img_nodo.width = 200
+        img_nodo.src = arrObjBDProductos[i].image
+        img_nodo.width = 200
 
 
-          p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
-            " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
-            " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
-            " / count: " + arrObjBDProductos[i].rating.count
+        p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
+          " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
+          " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
+          " / count: " + arrObjBDProductos[i].rating.count
 
-          body.appendChild(section_nodo)
-          section_nodo.appendChild(div_nodo)
+        section_lista.appendChild(section_nodo)
+        section_nodo.appendChild(div_nodo)
+        div_nodo.appendChild(p_nodo)
+        div_nodo.appendChild(img_nodo)
+      }
+    }
+  } else if (filtro === "rate") {
+    for (let i = 0; i < arrObjBDProductos.length; i++) {
+      if (arrObjBDProductos[i].rating.rate < valor) {
+        document.getElementsByTagName("body")
 
-          div_nodo.appendChild(p_nodo)
-          div_nodo.appendChild(img_nodo)
-        }
-       
+        let section_lista = document.getElementById("lista")
+        let section_nodo = document.createElement("section")
+        let div_nodo = document.createElement("div")
+        let p_nodo = document.createElement("p")
+        let img_nodo = document.createElement("img")
 
-      console.log(valor);
-      
+        img_nodo.src = arrObjBDProductos[i].image
+        img_nodo.width = 200
 
+
+        p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
+          " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
+          " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
+          " / count: " + arrObjBDProductos[i].rating.count
+
+        section_lista.appendChild(section_nodo)
+        section_nodo.appendChild(div_nodo)
+        div_nodo.appendChild(p_nodo)
+        div_nodo.appendChild(img_nodo)
+      }
+    }
+  } else if (filtro === "count") {
+    for (let i = 0; i < arrObjBDProductos.length; i++) {
+      if (arrObjBDProductos[i].rating.count < valor) {
+        document.getElementsByTagName("body")
+
+        let section_lista = document.getElementById("lista")
+        let section_nodo = document.createElement("section")
+        let div_nodo = document.createElement("div")
+        let p_nodo = document.createElement("p")
+        let img_nodo = document.createElement("img")
+
+        img_nodo.src = arrObjBDProductos[i].image
+        img_nodo.width = 200
+
+
+        p_nodo.textContent = "ID: " + arrObjBDProductos[i].id + " / Title: " + arrObjBDProductos[i].title +
+          " / Price: " + arrObjBDProductos[i].price + " / Description: " + arrObjBDProductos[i].description +
+          " / category: " + arrObjBDProductos[i].category + " / rate:" + arrObjBDProductos[i].rating.rate +
+          " / count: " + arrObjBDProductos[i].rating.count
+
+        section_lista.appendChild(section_nodo)
+        section_nodo.appendChild(div_nodo)
+        div_nodo.appendChild(p_nodo)
+        div_nodo.appendChild(img_nodo)
+      }
+    }
+  }
+
+
+
+
+}
+
+/**
+ * @param arrObjBDProductos
+ * 
+ * @returns arrayCategorias
+ * 
+ * Recorro todo el array y si la categoria no se encuentra en el array la añado
+ */
+const DevuelveGeneros = () => {
+  let arrayCategorias = []
+
+  for (let i = 0; i < arrObjBDProductos.length; i++) {
+    if (!arrayCategorias.includes(arrObjBDProductos[i].category)) {
+      arrayCategorias.push(arrObjBDProductos[i].category)
+    }
+  }
+
+  return console.log(arrayCategorias);
+}
+
+
+class Carrito {
+  constructor(arrayArticulo) {
+    this.arrayArticulo = []
+  }
+
+  add(elemento) {
+
+  }
+
+  dibujaCarrito() {
 
   }
 }
 
 
+const añadirCarrito = () => {
+  let botones = document.querySelectorAll("button")
 
+  botones.forEach(e => {
+    e.addEventListener("click", (event) => {
+      console.log(event);
 
+    })
+  })
 
+  console.log(botones);
+
+}
