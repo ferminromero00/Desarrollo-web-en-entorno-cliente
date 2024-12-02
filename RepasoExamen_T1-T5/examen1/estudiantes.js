@@ -54,13 +54,10 @@ const listaAlums = () => {
     }
 }
 
-
-
-
 const buscarNombre = () => {
     let nombre = document.getElementById("nombre_lista").value;
     let section = document.getElementById("lista");
-    section.innerHTML = ""; // Limpiar la sección antes de agregar nuevos elementos
+    section.innerHTML = "";
 
     let encontrado = false;
 
