@@ -1,0 +1,228 @@
+<html>
+
+<head>Ejemplo llamada api</head>
+
+<body>
+
+    <script>
+        //https://rickandmortyapi.com/documentation/#get-a-single-character
+        function RealizaSolicitud() {
+            var xhr = new XMLHttpRequest();
+            //xhr.open("GET", "https://reqres.in/api/products/3", true);
+            xhr.open("GET", "https://fakestoreapi.com/products/", true);
+
+            xhr.onload = function () {
+                console.log(xhr.responseText);
+
+                document.getElementById("respuestaDelServidor").innerHTML = xhr.responseText;
+                //formateaJson(xhr.responseText);
+            };
+            xhr.send();
+        }
+
+
+        function CargarDatos() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("respuestaDelServidor").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "https://reqres.in/api/users?page=1", true);
+            xhttp.send();
+        }
+
+
+        var myPromise = new Promise(function (resolve, reject) {
+            // objeto AJAX
+            var request = new XMLHttpRequest();
+
+            // Solicitud de petición
+            request.open('GET', 'https://reqres.in/api/users?page=1');
+
+            // Set function to call when resource is loaded.
+            request.onload = function () {
+                if (request.status === 200) {
+                    resolve(request.response);  //respuesta correcta de la promesa
+                } else {
+                    reject('Error en la solicitud'); //respuesta errónea de la promesa
+                }
+            };
+
+            request.send();
+        });
+
+
+        function CargarDatosPromesa() {
+            myPromise.then(function (result) {
+                // Imprimimos por la consola el elmento resultado.
+                console.log(result);
+                document.getElementById("respuestaDelServidor").innerHTML = result;
+            }, function (result) {
+                // Error en la solicitud
+                console.error(result);
+            });
+        }
+
+
+        async function getFetch() {
+
+            //El operador await es usado para esperar a una Promise. Sólo puede ser usado dentro de una función async function.
+            //a expresión await provoca que la ejecución de una función async sea pausada hasta que una Promise
+
+            let response = await fetch('https://reqres.in/api/users?page=1');
+            console.log(response);
+
+            if (response.ok) { // si el HTTP-status es 200-299
+                // obtener cuerpo de la respuesta (método debajo)
+
+                document.getElementById("respuestaDelServidor").innerHTML = await response.text();
+                //let json = await response.json();
+            } else {
+                alert("Error-HTTP: " + response.status);
+            }
+
+        }
+
+
+
+
+        // el método then recibe dos argumentos 
+        //                el primero: la función que se ejecuta cuando se resuelve la promesa
+        //                el segundo (lo podemos omitir): la función que se ejecuta en caso de error                      
+
+        function getFetchV3() {
+            fetch('https://reqres.in/api/users?page=1')
+                .then(response => response.json()) //para devolver un objeto promesa con los datos en json
+                .then(data => {
+                    console.log("salida.." + data); //aqui tenemos un objeto
+                    document.getElementById("respuestaDelServidor").innerHTML = JSON.stringify(data);
+                    //formateaJson(JSON.stringify(data));
+                    formateaJsonObjeto(data);
+                    //formateaJsonSimple(JSON.stringify(data))
+                });
+        }
+
+        function getFetchV4() {
+            fetch('https://fakestoreapi.com/products/1')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+        }
+
+        //formatea texto en formato Json Simple
+        function formateaJsonSimple(sTextoJson) {
+
+            let cajaInfo = document.querySelector('#cajaResultados');
+            cajaInfo.innerHTML = '';
+
+            let respuestaObjeto = JSON.parse(sTextoJson);
+            document.getElementById("respuestaDelServidorFormateada").innerHTML = respuestaObjeto.data;
+
+            let lista = document.createElement('ul');
+            let texto = '';
+            for (var i = 0; i < respuestaObjeto.data.length; i++) {
+                let parrafo = document.createElement('p');
+                texto = 'Nombre:' + respuestaObjeto.data[i].first_name + ' ' + respuestaObjeto.data[i].last_name;
+                texto += ' Email:' + respuestaObjeto.data[i].email;
+                parrafo.innerText = texto;
+                cajaInfo.append(parrafo);
+
+                let img = document.createElement('img');
+                img.setAttribute('src', respuestaObjeto.data[i].avatar);
+                img.setAttribute('width', '50px');
+                img.style.margin = '5px';
+
+                parrafo.append(img);
+
+            }
+
+
+        }
+
+        //formatea texto en formato Json
+        function formateaJson(sTextoJson) {
+
+            let cajaInfo = document.querySelector('#cajaResultados');
+            cajaInfo.innerHTML = '';
+
+            let respuestaObjeto = JSON.parse(sTextoJson);
+            document.getElementById("respuestaDelServidorFormateada").innerHTML = respuestaObjeto.data;
+
+            let lista = document.createElement('ul');
+
+            respuestaObjeto.data.forEach(usuario => {
+                // Creamos el elemento de la lista
+                let li = document.createElement('li');
+                li.textContent = `Correo: ${usuario.email} | Nombre: ${usuario.first_name} ${usuario.last_name}`;
+
+                // Creamos la imagen del usuario
+                let img = document.createElement('img');
+                img.setAttribute('src', usuario.avatar);
+                img.setAttribute('width', '50px');
+                img.style.margin = '5px';
+
+                // Añadimos al li la imagén
+                li.append(img);
+
+                // Añadimos li a lista
+                lista.append(li);
+            });
+
+            // Finalmente agregamos lista a la caja
+            cajaInfo.append(lista);
+        }
+
+        function formateaJsonObjeto(TextoJson) {
+
+            let cajaInfo = document.querySelector('#cajaResultados');
+            cajaInfo.innerHTML = '';
+
+            let respuestaObjeto = TextoJson;
+            document.getElementById("respuestaDelServidorFormateada").innerHTML = respuestaObjeto.data;
+
+            let lista = document.createElement('ul');
+
+            respuestaObjeto.data.forEach(usuario => {
+                // Creamos el elemento de la lista
+                let li = document.createElement('li');
+                li.textContent = `Correo: ${usuario.email} | Nombre: ${usuario.first_name} ${usuario.last_name}`;
+
+                // Creamos la imagen del usuario
+                let img = document.createElement('img');
+                img.setAttribute('src', usuario.avatar);
+                img.setAttribute('width', '50px');
+                img.style.margin = '5px';
+
+                // Añadimos al li la imagén
+                li.append(img);
+
+                // Añadimos li a lista
+                lista.append(li);
+            });
+
+            // Finalmente agregamos lista a la caja
+            cajaInfo.append(lista);
+        }
+
+
+
+    </script>
+
+
+    <h1>HTML API REST</h1>
+    <h2>Prueba de Api rest</h2>
+
+    <p>Carga los datos de una api REST al pulsar</p>
+
+    <button onclick="getFetchV3()">Realiza solicitud</button>
+
+    <p id="respuestaDelServidor"></p>
+
+    <p id="respuestaDelServidorFormateada"></p>
+
+
+    <div id="cajaResultados"></div>
+
+</body>
+
+</html>
