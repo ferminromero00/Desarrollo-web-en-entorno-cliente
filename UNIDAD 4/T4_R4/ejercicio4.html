@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Registro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .illustration {
+            flex: 1;
+            background: url(multitud-cuadro.jpg) no-repeat center center/cover;
+        }
+
+        .form-container {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-container input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-container input:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        .form-container button {
+            padding: 10px;
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: #6a11cb;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .terms input {
+            margin-right: 10px;
+        }
+
+        .login-link {
+            font-size: 14px;
+            text-align: center;
+            color: #2575fc;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="illustration"></div>
+        <div class="form-container">
+            <h2>Welcome to Crowdwise</h2>
+            <form id="registro">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Enter your first name" required>
+
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter your last name" required>
+
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" placeholder="123-456-7890" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the Terms, Privacy Policy and Fees</label>
+                </div>
+
+                <button type="button" onclick="validarFormulario()">Register</button>
+            </form>
+
+            <p id="resultado"></p>
+
+            <div class="login-link">
+                <a href="#">Already have an account? Log in</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validarNombre(nombre) {
+            const regex = /^[A-Za-z\s]+$/;
+            return regex.test(nombre);
+        }
+
+        function validarTelefono(telefono) {
+            const regex = /^\d{3}-\d{3}-\d{4}$/;
+            return regex.test(telefono);
+        }
+
+        function validarCorreo(correo) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(correo);
+        }
+
+        function validarPassword(password) {
+            return password.length >= 8;
+        }
+
+        function validarFormulario() {
+            const nombre = document.getElementById('firstName').value;
+            const apellidos = document.getElementById('lastName').value;
+            const telefono = document.getElementById('phone').value;
+            const correo = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            let resultado = '';
+
+            if (!validarNombre(nombre)) {
+                resultado += 'El nombre no es válido.<br>';
+            }
+            if (!validarNombre(apellidos)) {
+                resultado += 'Los apellidos no son válidos.<br>';
+            }
+            if (!validarTelefono(telefono)) {
+                resultado += 'El teléfono no tiene un formato válido. Debe ser 123-456-7890.<br>';
+            }
+            if (!validarCorreo(correo)) {
+                resultado += 'El correo no tiene un formato válido.<br>';
+            }
+            if (!validarPassword(password)) {
+                resultado += 'La contraseña debe tener al menos 8 caracteres.<br>';
+            }
+            if (password !== confirmPassword) {
+                resultado += 'Las contraseñas no coinciden.<br>';
+            }
+            if (!terms) {
+                resultado += 'Debe aceptar los términos y condiciones.<br>';
+            }
+
+            if (resultado === '') {
+                resultado = 'Todos los campos son válidos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+
+</html>

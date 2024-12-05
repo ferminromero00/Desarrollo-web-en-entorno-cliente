@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <form id="registro">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required><br><br>
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="usuario">Nombre de Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+
+        <button type="button" onclick="validarFormulario()">Registrar</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+        function validarNombreUsuario(usuario) {
+            const regex = /^(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+            return regex.test(usuario);
+        }
+
+        function validarDNI(dni) {
+            const regex = /^\d{8}[A-Za-z]$/;
+            return regex.test(dni);
+        }
+
+        function validarTelefono(telefono) {
+            const regex = /^\d{9}$/;
+            return regex.test(telefono);
+        }
+
+        function validarCorreo(correo) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(correo);
+        }
+
+        function validarFormulario() {
+            const nombre = document.getElementById('nombre').value;
+            const apellidos = document.getElementById('apellidos').value;
+            const dni = document.getElementById('dni').value;
+            const telefono = document.getElementById('telefono').value;
+            const email = document.getElementById('email').value;
+            const usuario = document.getElementById('usuario').value;
+
+            let resultado = '';
+
+            if (nombre === '') {
+                resultado += 'El nombre es obligatorio.<br>';
+            }
+            if (apellidos === '') {
+                resultado += 'Los apellidos son obligatorios.<br>';
+            }
+            if (!validarDNI(dni)) {
+                resultado += 'El DNI no tiene un formato válido.<br>';
+            }
+            if (!validarTelefono(telefono)) {
+                resultado += 'El teléfono no tiene un formato válido.<br>';
+            }
+            if (!validarCorreo(email)) {
+                resultado += 'El correo no tiene un formato válido.<br>';
+            }
+            if (!validarNombreUsuario(usuario)) {
+                resultado += 'El nombre de usuario debe tener al menos 8 caracteres, incluyendo un número y un signo de puntuación.<br>';
+            }
+
+            if (resultado === '') {
+                resultado = 'Todos los campos son válidos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>

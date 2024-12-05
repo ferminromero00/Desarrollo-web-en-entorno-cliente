@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f26c67;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid white;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #f26c67;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #fa8072;
+        }
+
+        .feedback {
+            text-align: left;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .valid {
+            color: lightgreen;
+        }
+
+        .invalid {
+            color: #ffcccb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>username</h2>
+        <input type="text" id="usuario" placeholder="Nombre de usuario">
+        <div class="feedback">
+            <p id="minChar" class="invalid">• 6 minimum characters</p>
+            <p id="lowerChar" class="invalid">• 1 lowercase character</p>
+            <p id="upperChar" class="invalid">• 1 uppercase character</p>
+        </div>
+        <button id="submit" disabled>Submit</button>
+    </div>
+
+    <script>
+        const usuarioInput = document.getElementById('usuario');
+        const minChar = document.getElementById('minChar');
+        const lowerChar = document.getElementById('lowerChar');
+        const upperChar = document.getElementById('upperChar');
+        const submitButton = document.getElementById('submit');
+
+        usuarioInput.addEventListener('input', () => {
+            const value = usuarioInput.value;
+
+            // Validación de longitud mínima
+            if (value.length >= 6) {
+                minChar.classList.remove('invalid');
+                minChar.classList.add('valid');
+            } else {
+                minChar.classList.remove('valid');
+                minChar.classList.add('invalid');
+            }
+
+            // Validación de letra minúscula
+            if (/[a-z]/.test(value)) {
+                lowerChar.classList.remove('invalid');
+                lowerChar.classList.add('valid');
+            } else {
+                lowerChar.classList.remove('valid');
+                lowerChar.classList.add('invalid');
+            }
+
+            // Validación de letra mayúscula
+            if (/[A-Z]/.test(value)) {
+                upperChar.classList.remove('invalid');
+                upperChar.classList.add('valid');
+            } else {
+                upperChar.classList.remove('valid');
+                upperChar.classList.add('invalid');
+            }
+
+            // Activar o desactivar el botón según las validaciones
+            const allValid = document.querySelectorAll('.feedback .valid').length === 3;
+            submitButton.disabled = !allValid;
+        });
+    </script>
+</body>
+</html>

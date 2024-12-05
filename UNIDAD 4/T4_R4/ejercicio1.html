@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form id="formulario">
+        <label for="texto">Texto:</label>
+        <input type="text" id="texto" name="texto"><br><br>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo"><br><br>
+
+        <label for="tarjeta">Tarjeta de Crédito:</label>
+        <input type="text" id="tarjeta" name="tarjeta"><br><br>
+
+        <button type="button" onclick="validarFormulario()">Validar</button>
+    </form>
+
+    <p id="resultado"></p>
+
+
+
+
+    <script>
+        function validarMayuscula(texto) {
+            const regex = /[A-Z]/;
+            return regex.test(texto);
+        }
+
+        function validarCaracteresEspeciales(texto) {
+            const regex = /[!@#$%^&]/;
+            return regex.test(texto);
+        }
+
+        function validarCorreo(correo) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(correo);
+        }
+
+        function validarTarjetaCredito(tarjeta) {
+            const regex = /^\d{13,19}$/;
+            return regex.test(tarjeta);
+        }
+
+        function validarLongitud(texto) {
+            return texto.length >= 8;
+        }
+
+        function validarNumero(texto) {
+            const regex = /\d/;
+            return regex.test(texto);
+        }
+
+        function validarFormulario() {
+            const texto = document.getElementById('texto').value;
+            const correo = document.getElementById('correo').value;
+            const tarjeta = document.getElementById('tarjeta').value;
+
+            let resultado = '';
+
+            if (!validarMayuscula(texto)) {
+                resultado += 'El texto debe contener al menos una mayúscula.<br>';
+            }
+            if (!validarCaracteresEspeciales(texto)) {
+                resultado += 'El texto debe contener al menos un carácter especial (!@#$%^&).<br>';
+            }
+            if (!validarCorreo(correo)) {
+                resultado += 'El correo no tiene un formato válido.<br>';
+            }
+            if (!validarTarjetaCredito(tarjeta)) {
+                resultado += 'La tarjeta de crédito no tiene un formato válido.<br>';
+            }
+            if (!validarLongitud(texto)) {
+                resultado += 'El texto debe tener al menos 8 caracteres.<br>';
+            }
+            if (!validarNumero(texto)) {
+                resultado += 'El texto debe contener al menos un dígito.<br>';
+            }
+
+            if (resultado === '') {
+                resultado = 'Todos los campos son válidos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+
+</html>

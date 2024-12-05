@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Credit Card Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #e3f2fd;
+        }
+
+        .container {
+            width: 350px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .credit-card {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: url(banknorwegian_cc_big.png) no-repeat center center/cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .container:hover .credit-card {
+            transform: rotateY(10deg) translateY(-10px);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+        }
+
+        button {
+            background: #2196f3;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #1769aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="credit-card"></div>
+        <form id="creditCardForm" onclick="return false">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="#### #### #### ####" maxlength="19" required>
+
+            <label for="cardHolder">Card Holder</label>
+            <input type="text" id="cardHolder" placeholder="Full Name" required>
+
+            <label for="expiryDate">Expiration Date</label>
+            <div style="display: flex; gap: 10px;">
+                <select id="expiryMonth" required>
+                    <option value="" disabled selected>Month</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <!-- Add more months -->
+                    <option value="12">12</option>
+                </select>
+                <select id="expiryYear" required>
+                    <option value="" disabled selected>Year</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <!-- Add more years -->
+                </select>
+            </div>
+
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" placeholder="###" maxlength="3">
+
+            <button type="button" onclick="validarFormulario()">Submit</button>
+        </form>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function validarNumeroTarjeta(numero) {
+            const regex = /^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$/;
+            return regex.test(numero);
+        }
+
+        function validarNombreTitular(nombre) {
+            const regex = /^[A-Za-z\s]+$/;
+            return regex.test(nombre);
+        }
+
+        function validarCVV(cvv) {
+            const regex = /^\d{3}$/;
+            return regex.test(cvv);
+        }
+
+        function validarFormulario() {
+            const numeroTarjeta = document.getElementById('cardNumber').value;
+            const nombreTitular = document.getElementById('cardHolder').value;
+            const mesExpiracion = document.getElementById('expiryMonth').value;
+            const añoExpiracion = document.getElementById('expiryYear').value;
+            const cvv = document.getElementById('cvv').value;
+
+            let resultado = '';
+
+            if (!validarNumeroTarjeta(numeroTarjeta)) {
+                resultado += 'El número de tarjeta no tiene un formato válido. Debe ser #### #### #### ####.<br>';
+            }
+            if (!validarNombreTitular(nombreTitular)) {
+                resultado += 'El nombre del titular no es válido.<br>';
+            }
+            if (!mesExpiracion) {
+                resultado += 'Debe seleccionar un mes de expiración.<br>';
+            }
+            if (!añoExpiracion) {
+                resultado += 'Debe seleccionar un año de expiración.<br>';
+            }
+            if (!validarCVV(cvv)) {
+                resultado += 'El CVV no tiene un formato válido. Debe ser ###.<br>';
+            }
+
+            if (resultado === '') {
+                resultado = 'Todos los campos son válidos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</html>
