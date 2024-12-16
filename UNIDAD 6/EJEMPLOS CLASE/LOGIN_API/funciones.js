@@ -10,7 +10,7 @@ function fetch1(url) {
 const eventLogin = () => {
     let btn = document.getElementById("botonLogin");
 
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", async() => {
         let nombre = document.getElementById("nombre").value;
         let pass = document.getElementById("pass").value;
         let url = "http://localhost:3000/users";
