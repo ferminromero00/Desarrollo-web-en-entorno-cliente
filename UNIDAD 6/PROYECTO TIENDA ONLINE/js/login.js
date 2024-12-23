@@ -1,4 +1,4 @@
-/* INICIO DE SESION, VALIDACION Y REDIRECCION*/
+/* INICIO DE SESION, SEGURIDAD ANTI BOOT Y TOKEN*/
 
 function fetch1(url) {
     return fetch(url)
@@ -17,11 +17,18 @@ const eventLogin = () => {
         let pass = document.getElementById("pass").value;
         let url = "http://localhost:3000/users";
 
-        valida(nombre, pass, await fetch1(url));
+        if (nombre == "" || pass == "") {
+            document.getElementById("data").innerHTML = "No dejes campos vacios"
+        } else {
+            valida(nombre, pass, await fetch1(url));
+        }
+
     });
 }
 
+
 const valida = (nombre, pass, users) => {
+
     let result
 
     users.find((e) => {
@@ -32,8 +39,8 @@ const valida = (nombre, pass, users) => {
 
     if (result) {
         location.href = "vistas/paginaPrincipal.html"
-    } else {
-        alert("El usuario o la contraseña no son valido")
+    } else if (!result) {
+        document.getElementById("data").innerHTML = "Usuario no encontrado"
     }
 };
 
@@ -47,7 +54,11 @@ const eventRegistrar = () => {
         let pass = document.getElementById("pass").value;
         let url = "http://localhost:3000/users";
 
-        registrar(nombre, pass, await fetch1(url));
+        if (nombre == "" || pass == "") {
+            document.getElementById("data").innerHTML = "No dejes campos vacios"
+        } else {
+            registrar(nombre, pass, await fetch1(url));
+        }
     });
 }
 
@@ -67,16 +78,61 @@ const registrar = (nombre, pass, users) => {
             name: nombre,
             pass: pass
         })
-        alert("Usuario creado con exito")
+        document.getElementById("data").innerHTML = "Usuario creado con exito";
     } else {
-        alert("Ese nombre de usuario ya existe, intentalo otra vez")
+        document.getElementById("data").innerHTML = "Ese nombre de usuario ya existe, intentalo otra vez";
     }
 };
+
+/* BORRAR USUARIO */
+
+const eventBorrar = () => {
+    let btn = document.getElementById("borrarUser");
+
+    btn.addEventListener("click", async () => {
+        let nombre = document.getElementById("user").value;
+        let pass = document.getElementById("pass").value;
+        let url = 'http://localhost:3000/users';
+
+        if (nombre == "" || pass == "") {
+            document.getElementById("data").innerHTML = "No dejes campos vacios"
+        } else {
+            borrarUser(nombre, pass, await fetch1(url));
+        }
+    });
+}
+
+const borrarUser = (nombre, pass, users) => {
+
+    let result
+    let id = 0;
+
+    users.find((e) => {
+        if (e.name == nombre && e.pass == pass) {
+            id = e.id;
+            return result = true
+        }
+    });
+
+    if (result) {
+        let deleteurl = `http://localhost:3000/users/${id}`;
+        axios.delete(deleteurl)
+        document.getElementById("data").innerHTML = "Borrado con exito"
+    } else {
+        document.getElementById("data").innerHTML = "No se pudo borrar el usuario seleccionado"
+    }
+
+
+};
+
+/* MAIN */
 
 const main = () => {
     eventLogin();
     eventRegistrar();
+    eventBorrar();
 }
+
 document.addEventListener("DOMContentLoaded", main);
 
 
