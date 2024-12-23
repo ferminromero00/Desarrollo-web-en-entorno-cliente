@@ -8,6 +8,15 @@ La aplicación debe, basandose en el desarrollo de interfaz entregado:
 
 0. LOGIN-> -json-server  -Seguridad anti boot  -simulacion token
 
+voy a hacer un crud para el login: npx json-server miinfo.json para iniciar el crud
+
+npm install axios
+
+
+
+
+
+
 1. Mostrar listados de productos.
 
 
