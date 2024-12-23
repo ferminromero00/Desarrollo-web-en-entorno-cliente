@@ -52,9 +52,18 @@ const eventRegistrar = () => {
 }
 
 const registrar = (nombre, pass, users) => {
-
+    axios.post('http://localhost:3000/users', {
+        id: users.length + 1,
+        name: nombre,
+        pass: pass
+    })
+        .then(response => {
+            alert('User creado:', response.data);
+        })
+        .catch(error => {
+            alert('Error al crear el usuario:', error);
+        });
 };
-
 
 const main = () => {
     eventLogin();
