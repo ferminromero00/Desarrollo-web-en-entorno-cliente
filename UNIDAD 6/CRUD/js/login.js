@@ -1,5 +1,7 @@
 // login.js
 
+import { fetch1 } from './utils.js';
+
 export const eventLogin = () => {
     let btn = document.getElementById("validacionUser");
 
