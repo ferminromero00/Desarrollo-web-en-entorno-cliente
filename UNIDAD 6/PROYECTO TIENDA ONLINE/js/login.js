@@ -52,17 +52,25 @@ const eventRegistrar = () => {
 }
 
 const registrar = (nombre, pass, users) => {
-    axios.post('http://localhost:3000/users', {
-        id: users.length + 1,
-        name: nombre,
-        pass: pass
-    })
-        .then(response => {
-            alert('User creado:', response.data);
+
+    let result
+
+    users.find((e) => {
+        if (e.name == nombre) {
+            return result = true
+        }
+    });
+
+    if (!result) {
+        axios.post('http://localhost:3000/users', {
+            id: users.length + 1,
+            name: nombre,
+            pass: pass
         })
-        .catch(error => {
-            alert('Error al crear el usuario:', error);
-        });
+        alert("Usuario creado con exito")
+    } else {
+        alert("Ese nombre de usuario ya existe, intentalo otra vez")
+    }
 };
 
 const main = () => {
