@@ -10,11 +10,13 @@ La aplicación debe, basandose en el desarrollo de interfaz entregado:
 voy a hacer un crud para el login: npx json-server miinfo.json para iniciar el crud
 npm install axios--> usare esta libreria para el login
 axios.post(), axios.delete()
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 1. Mostrar listados de productos.
+
+
+
+
+
 
 
 2. Los productos se listan de 8 en 8, cargando nuevos si los hay mediante la técnica
