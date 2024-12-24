@@ -20,18 +20,15 @@ información al respecto al usuario mediante algún tipo de preload o mensaje.
 HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 3. Mostrar listados por categoría.
-
-
-
-
+HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 4. Ordenar los listados ascendentemente o descendentemente.
-
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 5. Mostrar inicialmente un listado de productos, teniendo cada uno de ellos al
 menos un nombre, imagen y precio.
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 6. Gestionar un carrito de la compra, de tal modo que cada producto debe ser
 posible agregarlo al carrito.
