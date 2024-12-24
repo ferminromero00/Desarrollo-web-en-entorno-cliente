@@ -39,6 +39,8 @@ export const eventLogin = () => {
 
 // Configuración inicial del contador de intentos fallidos.
 localStorage.setItem("cont", 5);
+let contador = parseInt(localStorage.getItem("cont"));
+
 
 /**
  * Función `valida`:
@@ -49,7 +51,6 @@ localStorage.setItem("cont", 5);
  * @param {Array<Object>} users - Lista de usuarios obtenida del servidor.
  */
 const valida = (nombre, pass, users) => {
-    let contador = parseInt(localStorage.getItem("cont"));
     let result;
 
     // Busca si el usuario y contraseña coinciden con algún registro.
@@ -64,6 +65,8 @@ const valida = (nombre, pass, users) => {
             document.getElementById("data").innerHTML = "Demasiados intentos...";
         } else {
             location.href = "vistas/paginaPrincipal.html";
+            const simulatedToken = generarToken(128);
+            document.cookie = `TOKEN=${simulatedToken}`;
         }
     } else {
         if (contador >= 1) {
@@ -185,3 +188,21 @@ const borrarUser = (nombre, pass, users) => {
         }
     }
 };
+
+/* SIMULACION DEL TOKEN */
+
+/**
+ * Función `generarToken`:
+ * Genera un token aleatorio de 128 caracteres utilizando un conjunto de letras, números y símbolos permitidos.
+ * Este token puede ser utilizado para simular un identificador único de sesión o autenticación.
+ * @returns {string} - Token generado aleatoriamente.
+ */
+
+function generarToken() {
+    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-';
+    let token = '';
+    for (let i = 0; i < 128; i++) {
+        token += letras.charAt(Math.floor(Math.random() * letras.length));
+    }
+    return token;
+}

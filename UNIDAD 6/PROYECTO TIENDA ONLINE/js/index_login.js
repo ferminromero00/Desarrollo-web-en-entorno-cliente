@@ -5,11 +5,11 @@ import { eventLogin, eventRegistrar, eventBorrar } from './login.js';
 * Función principal que inicializa los eventos de la aplicación.
 */
 const main = () => {
-    // Configura el evento para el inicio de sesión.
+    // Evento para el inicio de sesión.
     eventLogin();
-    // Configura el evento para registrar un nuevo usuario.
+    // Evento para registrar un nuevo usuario.
     eventRegistrar();
-    // Configura el evento para borrar un usuario existente.
+    // Evento para borrar un usuario existente.
     eventBorrar();
 }
 document.addEventListener("DOMContentLoaded", main);

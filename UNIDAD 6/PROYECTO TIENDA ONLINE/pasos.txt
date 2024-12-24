@@ -12,20 +12,19 @@ npm install axios--> usare esta libreria para el login
 axios.post(), axios.delete()
 -----------------------------------------------------------------------------------------------------------------------------------------
 1. Mostrar listados de productos.
-
-
-
-
-
-
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 2. Los productos se listan de 8 en 8, cargando nuevos si los hay mediante la técnica
 conocida como Scroll Infinito o paginación. Cuando este se realice debe darse
 información al respecto al usuario mediante algún tipo de preload o mensaje.
-
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 3. Mostrar listados por categoría.
 
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 4. Ordenar los listados ascendentemente o descendentemente.
 
