@@ -1,7 +1,6 @@
 /* FETCH PARA CONSEGUIR INFORMACION DE LA API */
 
 /**
- * Función `fetch1`:
  * Realiza una solicitud HTTP GET a la URL proporcionada y retorna la respuesta en formato JSON.
  * También registra la respuesta en la consola para fines de depuración.
  * @param {string} url - URL del recurso a obtener.
@@ -15,21 +14,40 @@ function fetch1(url) {
         });
 }
 
+
 /* DIBUJAR JUEGOS Y SCROLL INFINITO*/
 
+// Lleva un registro de la página actual que se está mostrando en la interfaz.
+let paginaActual = 0;
+
+// Define cuántos juegos se mostrarán por página.
+const juegosPorPagina = 8;
+
+// Indica si se está realizando actualmente una solicitud para cargar más juegos. Evita realizar múltiples solicitudes simultáneas.
+let cargando = false;
+
+// Almacena la categoría actualmente seleccionada para filtrar los juegos, se actualiza cuando el usuario selecciona una categoría diferente
+let categoriaSeleccionada = "";
+
+// Indica el orden de clasificación de los juegos. Se alterna al hacer clic en el botón de ordenar.
+let ordenlistado = "desc";
+
+
+/**
+* Inicia el proceso de dibujo de juegos en la interfaz.
+* Llama a la función `dibujar` con los datos iniciales y configura el scroll infinito
+*/
 export const eventDibujar = async () => {
-    let url = "http://localhost:3000/games";
-    dibujar(await fetch1(url), 1);
-    cargarMas();
+    cargarPaginas();
     ordenar()
 }
 
-let paginaActual = 1;
-const juegosPorPagina = 8;
-let cargando = false;
-let categoriaSeleccionada = "";
-let ordenlistado = "desc"
-
+/**
+* Muestra una lista de juegos en la interfaz basándose en los datos proporcionados y la página actual.
+* Ordena los datos según el precio más barato y los organiza por páginas.
+* @param {Array<Object>} data - Lista de juegos obtenidos desde la API.
+* @param {number} pagina - Número de página a mostrar.
+*/
 const dibujar = (data, pagina) => {
     data.sort((a, b) => {
         if (ordenlistado === "asc") {
@@ -44,6 +62,9 @@ const dibujar = (data, pagina) => {
     let objetos = data.slice(principio, final);
 
     let lista = document.getElementById("lista_juegos");
+    if (pagina === 1) {
+        lista.innerHTML = "";
+    }
 
     objetos.forEach(e => {
         let div = document.createElement("div");
@@ -51,7 +72,7 @@ const dibujar = (data, pagina) => {
         let p = document.createElement("p");
         let img = document.createElement("img");
         let p2 = document.createElement("p");
-        let br = document.createElement("br")
+        let br = document.createElement("br");
 
         h1.textContent = e.info.title;
         p.textContent = "Precio: " + e.cheapestPriceEver.price + "€";
@@ -63,14 +84,17 @@ const dibujar = (data, pagina) => {
         div.appendChild(p);
         div.appendChild(p2);
         div.appendChild(img);
-        lista.appendChild(br)
+        lista.appendChild(br);
     });
 
     cargando = false;
     document.getElementById("cargando").style.display = "none";
 }
 
-const cargarMas = async () => {
+/**
+* Se encargar de dibujar los juegos de 8 en 8 mientras haces el scroll
+*/
+const cargarPaginas = async () => {
     if (cargando) return;
     cargando = true;
     document.getElementById("cargando").style.display = "block";
@@ -81,21 +105,35 @@ const cargarMas = async () => {
     dibujar(data, paginaActual);
 }
 
+/* 
+* Detecta cuando el usuario hace scroll hasta el final de la página y llama a `cargarPaginas` para cargar más juegos.
+*/
 window.addEventListener('scroll', () => {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        cargarMas("http://localhost:3000/games");
+        cargarPaginas("http://localhost:3000/games");
     }
 });
 
 
+
 /* LISTAR POR CATEGORIAS */
 
+/**
+* Obtiene todas las categorías disponibles desde la API y las muestra en un menú desplegable.
+* Configura el evento para filtrar los juegos por categoría seleccionada.
+*/
 export const eventCategorias = async () => {
     let url = "http://localhost:3000/games"
     let categorias = listarCategorias(await fetch1(url));
     insertarCategorias(categorias);
     filtrar();
 }
+
+/**
+* Extrae y devuelve una lista de categorías únicas de los juegos proporcionados.
+* @param {Array<Object>} url - Lista de juegos obtenidos desde la API.
+* @returns {Array<string>} - Lista de categorías únicas.
+*/
 
 const listarCategorias = (url) => {
     let categorias = []
@@ -109,6 +147,10 @@ const listarCategorias = (url) => {
     return categorias;
 }
 
+/**
+* Agrega las categorías proporcionadas al menú desplegable en la interfaz.
+* @param {Array<string>} lista - Lista de categorías únicas.
+*/
 const insertarCategorias = (lista) => {
     let lista_html = document.getElementById("lista_categorias")
     lista.forEach(e => {
@@ -119,6 +161,9 @@ const insertarCategorias = (lista) => {
     })
 }
 
+/* 
+* Configura el evento para filtrar juegos al seleccionar una categoría del menú desplegable. 
+*/
 const filtrar = () => {
     let lista_html = document.getElementById("lista_categorias");
 
@@ -129,15 +174,17 @@ const filtrar = () => {
         document.getElementById("lista_juegos").innerHTML = "";
         let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
         dibujar(await fetch1(url), paginaActual);
-
-        console.log(url);
-
     });
 
 }
 
+
+
 /* CAMBIAR ASCENDENTE O DESCENDENTE */
 
+/* 
+* Configura el botón para alternar entre ordenar los juegos de manera ascendente o descendente por precio.
+*/
 const ordenar = () => {
     let ordenar_btn = document.getElementById("ordenar_btn");
 
@@ -152,6 +199,21 @@ const ordenar = () => {
         dibujar(data, paginaActual);
     });
 }
+
+
+
+/* CARRITO */
+
+export const eventCarrito = () => {
+
+}
+
+
+
+
+
+
+
 
 
 
