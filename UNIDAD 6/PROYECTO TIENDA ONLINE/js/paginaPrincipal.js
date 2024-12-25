@@ -73,18 +73,25 @@ const dibujar = (data, pagina) => {
         let img = document.createElement("img");
         let p2 = document.createElement("p");
         let br = document.createElement("br");
+        let button = document.createElement("button")
 
         h1.textContent = e.info.title;
         p.textContent = "Precio: " + e.cheapestPriceEver.price + "€";
         img.src = e.info.thumb;
         p2.textContent = "Categoria: " + e.info.category;
+        button.textContent = "Añadir"
+        button.addEventListener("click", () => {
+            eventCarrito(e);
+        });
 
         lista.appendChild(div);
         div.appendChild(h1);
         div.appendChild(p);
         div.appendChild(p2);
         div.appendChild(img);
+        lista.appendChild(button)
         lista.appendChild(br);
+
     });
 
     cargando = false;
@@ -204,13 +211,59 @@ const ordenar = () => {
 
 /* CARRITO */
 
-export const eventCarrito = () => {
 
+export const eventCarrito = (datos) => {
+    if (datos !== undefined) {
+        añadir_al_carrito.add(datos)
+    }
 }
 
+class Carrito {
+    constructor() {
+        this.carrito = [];
+    }
+
+    add(juego) {
+        let titulo = juego.info.title
+        let precio = juego.cheapestPriceEver.price
+        let img = juego.info.thumb
+        let id_producto = juego.id
+
+        this.carrito.push({ titulo, precio, img, id_producto })
+        console.log(this.carrito);
+
+        this.dibujarCarrito(this.carrito);
+    }
+
+    dibujarCarrito(elementoCarrito) {
+
+        let carrito_html = document.getElementById("carrito")
+        carrito_html.innerHTML = ""
+        elementoCarrito.forEach(e => {
+            let p = document.createElement("p")
+            let p2 = document.createElement("p")
+            let p3 = document.createElement("p")
+            let img = document.createElement("img")
+
+            p.textContent = "Titulo: " + e.titulo
+            p2.textContent = "Precio: " + e.precio
+            p3.textContent = "ID-Producto: " + e.id_producto
+
+            img.src = e.img
+            img.width = 50
+            img.height = 50
+
+            carrito_html.appendChild(p)
+            carrito_html.appendChild(p2)
+            carrito_html.appendChild(p3)
+            carrito_html.appendChild(img)
+        })
 
 
 
+    }
+}
+const añadir_al_carrito = new Carrito();
 
 
 

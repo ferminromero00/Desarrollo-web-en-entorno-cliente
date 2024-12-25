@@ -29,10 +29,10 @@ HECHO
 menos un nombre, imagen y precio.
 HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
-
 6. Gestionar un carrito de la compra, de tal modo que cada producto debe ser
 posible agregarlo al carrito.
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 7. Si se selecciona un artículo debe mostrarse el detalle completo para éste (todos
 los datos que proporciona la API), dando la posibilidad de comprarlo.

@@ -1,5 +1,5 @@
 class BookLists {
-    constructor(leidos, noleidos, libros) {
+    constructor() {
         this.leidos = []
         this.noleidos = []
         this.libros = []
