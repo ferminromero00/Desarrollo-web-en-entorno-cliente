@@ -43,7 +43,7 @@ HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 9. Debe ser posible acceder al carro de la compra completo para simular la
 realización final del pedido.
-
+HECHO
 
 
 Todos los puntos anteriores son los mínimos e imprescindibles para alcanzar un total de

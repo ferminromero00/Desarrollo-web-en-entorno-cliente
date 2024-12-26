@@ -240,10 +240,17 @@ class Carrito {
         let precio = juego.cheapestPriceEver.price
         let img = juego.info.thumb
         let id_producto = juego.id
+        let cantidad = 1
 
-        // Recuperar el carrito actual desde localStorage
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
-        carrito.push({ titulo, precio, img, id_producto });
+
+        // Verificar si el juego ya existe en el carrito
+        let juegoExistente = carrito.find(item => item.titulo === titulo);
+
+        if (juegoExistente) { juegoExistente.cantidad += 1; } else {
+            carrito.push({ titulo, precio, img, cantidad, id_producto });
+        }
+
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
         // Dibujar el carrito actualizado
@@ -262,11 +269,13 @@ class Carrito {
             let p = document.createElement("p");
             let p2 = document.createElement("p");
             let p3 = document.createElement("p");
+            let p4 = document.createElement("p")
             let img = document.createElement("img");
 
             p.textContent = "Titulo: " + e.titulo;
             p2.textContent = "Precio: " + e.precio;
             p3.textContent = "ID-Producto: " + e.id_producto;
+            p4.textContent = "Cantidad: " + e.cantidad
 
             img.src = e.img;
             img.width = 50;
@@ -275,6 +284,7 @@ class Carrito {
             carrito_html.appendChild(p);
             carrito_html.appendChild(p2);
             carrito_html.appendChild(p3);
+            carrito_html.appendChild(p4);
             carrito_html.appendChild(img);
         });
     }
@@ -299,11 +309,13 @@ export const pintarCarritoCompleto = () => {
             let p = document.createElement("p");
             let p2 = document.createElement("p");
             let p3 = document.createElement("p");
+            let p4 = document.createElement("p");
             let img = document.createElement("img");
 
             p.textContent = "Titulo: " + e.titulo;
             p2.textContent = "Precio: " + e.precio;
             p3.textContent = "ID-Producto: " + e.id_producto;
+            p4.textContent = "Cantidad: " + e.cantidad
 
             img.src = e.img;
             img.width = 50;
@@ -312,6 +324,7 @@ export const pintarCarritoCompleto = () => {
             carrito.appendChild(p);
             carrito.appendChild(p2);
             carrito.appendChild(p3);
+            carrito.appendChild(p4)
             carrito.appendChild(img);
         });
     } else {

@@ -32,6 +32,7 @@ const main = () => {
     } else if (path.includes('Carrito.html')) {
 
         pintarCarritoCompleto()
+        cerrarSesion()
 
     }
 }
