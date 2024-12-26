@@ -276,12 +276,15 @@ class Carrito {
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
         let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
         let div_p = div.querySelectorAll("p")[3];
+        let carritoHTML = document.getElementById("carrito");
 
         if (buscarJuego.cantidad > 1) {
             buscarJuego.cantidad--
             div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
         } else if (buscarJuego.cantidad == 1) {
             div.remove();
+            carrito = carrito.filter(e => e.titulo !== juego.titulo);
+            carritoHTML.innerHTML = "No hay nada en el carrito"
         }
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }

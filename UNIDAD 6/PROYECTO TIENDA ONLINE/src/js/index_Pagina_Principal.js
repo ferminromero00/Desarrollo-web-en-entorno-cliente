@@ -25,7 +25,9 @@ const main = () => {
         cerrarSesion()
 
     } else if (path.includes('informacionProducto.html')) {
-
+        
+        eventCarrito()
+        verCarrito()
         dibujarProductoSeleccionado()
         cerrarSesion()
 
