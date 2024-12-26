@@ -64,6 +64,8 @@ const valida = (nombre, pass, users) => {
         if (contador === 0) {
             document.getElementById("data").innerHTML = "Demasiados intentos...";
         } else {
+            localStorage.clear();
+            localStorage.setItem("contadorCarrito", 0)
             location.href = "src/views/paginaPrincipal.html";
             const simulatedToken = generarToken(128);
             document.cookie = `TOKEN=${simulatedToken}`;

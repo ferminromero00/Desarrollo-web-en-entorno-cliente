@@ -111,7 +111,6 @@ const cargarPaginas = async () => {
     let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
     let data = await fetch1(url);
     paginaActual++;
-    añadir_al_carrito.dibujarCarrito(JSON.parse(localStorage.getItem("Carrito")) || []);
     dibujar(data, paginaActual);
 }
 
@@ -214,11 +213,17 @@ const ordenar = () => {
 
 /* CARRITO */
 
+
+
 /**
 * Añade un juego al carrito.
 * @param {Object} datos - Datos del juego a añadir al carrito.
 */
 export const eventCarrito = (datos) => {
+    let contador = localStorage.getItem("contadorCarrito")
+    let tituloCarrito = document.getElementById("ContadorCarrito");
+    tituloCarrito.innerHTML = "Carrito (" + contador + ")"
+    
     if (datos !== undefined) {
         añadir_al_carrito.add(datos)
     }
@@ -236,6 +241,13 @@ class Carrito {
     * @param {Object} juego - Datos del juego a añadir al carrito.
     */
     add(juego) {
+        let contador = localStorage.getItem("contadorCarrito")
+        contador++
+        localStorage.setItem("contadorCarrito", contador)
+        document.getElementById("ContadorCarrito").innerHTML = "Carrito (" + contador + ")"
+
+
+
         let titulo = juego.info.title
         let precio = juego.cheapestPriceEver.price
         let img = juego.info.thumb
@@ -253,43 +265,12 @@ class Carrito {
 
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
-        // Dibujar el carrito actualizado
-        this.dibujarCarrito(carrito);
-    }
 
-    /**
-    * Muestra los elementos del carrito en la interfaz.
-    * @param {Array<Object>} carrito - Lista de juegos en el carrito.
-    */
-    dibujarCarrito(carrito) {
-        let carrito_html = document.getElementById("carrito");
-        carrito_html.innerHTML = "";
-
-        carrito.forEach(e => {
-            let p = document.createElement("p");
-            let p2 = document.createElement("p");
-            let p3 = document.createElement("p");
-            let p4 = document.createElement("p")
-            let img = document.createElement("img");
-
-            p.textContent = "Titulo: " + e.titulo;
-            p2.textContent = "Precio: " + e.precio;
-            p3.textContent = "ID-Producto: " + e.id_producto;
-            p4.textContent = "Cantidad: " + e.cantidad
-
-            img.src = e.img;
-            img.width = 50;
-            img.height = 50;
-
-            carrito_html.appendChild(p);
-            carrito_html.appendChild(p2);
-            carrito_html.appendChild(p3);
-            carrito_html.appendChild(p4);
-            carrito_html.appendChild(img);
-        });
     }
 }
+
 const añadir_al_carrito = new Carrito();
+
 
 export const verCarrito = () => {
     let btn = document.getElementById("verCarrito")
