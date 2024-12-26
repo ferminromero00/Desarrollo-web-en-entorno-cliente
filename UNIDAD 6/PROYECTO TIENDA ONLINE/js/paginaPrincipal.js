@@ -80,9 +80,9 @@ const dibujar = (data, pagina) => {
         img.src = e.info.thumb;
         p2.textContent = "Categoria: " + e.info.category;
         button.textContent = "Añadir"
-        button.addEventListener("click", () => {
-            eventCarrito(e);
-        });
+        button.addEventListener("click", () => { eventCarrito(e); });
+        div.style.cursor = "pointer";
+        div.addEventListener("click", () => { eventVerMasInformacion(e) })
 
         lista.appendChild(div);
         div.appendChild(h1);
@@ -211,18 +211,27 @@ const ordenar = () => {
 
 /* CARRITO */
 
-
+/**
+* Añade un juego al carrito.
+* @param {Object} datos - Datos del juego a añadir al carrito.
+*/
 export const eventCarrito = (datos) => {
     if (datos !== undefined) {
         añadir_al_carrito.add(datos)
     }
 }
 
+/**
+* Clase Carrito, maneja las operaciones del carrito de compras.
+*/
 class Carrito {
     constructor() {
         this.carrito = [];
     }
-
+    /**
+    * Añade un juego al carrito y actualiza la visualización del carrito.
+    * @param {Object} juego - Datos del juego a añadir al carrito.
+    */
     add(juego) {
         let titulo = juego.info.title
         let precio = juego.cheapestPriceEver.price
@@ -235,6 +244,10 @@ class Carrito {
         this.dibujarCarrito(this.carrito);
     }
 
+    /**
+    * Muestra los elementos del carrito en la interfaz.
+    * @param {Array<Object>} carrito - Lista de juegos en el carrito.
+    */
     dibujarCarrito(elementoCarrito) {
 
         let carrito_html = document.getElementById("carrito")
@@ -258,15 +271,19 @@ class Carrito {
             carrito_html.appendChild(p3)
             carrito_html.appendChild(img)
         })
-
-
-
     }
 }
 const añadir_al_carrito = new Carrito();
 
 
+/* VER MAS INFORMACION DEL PRODUCTO */
 
+export const eventVerMasInformacion = (datos) => {
+    if (datos != undefined) {
+        localStorage.setItem("productoseleccionado", JSON.stringify(datos))
+        window.open("informacionProducto.html", "_blank");
+    }
+}
 
 
 
