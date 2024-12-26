@@ -32,7 +32,9 @@ let categoriaSeleccionada = "";
 // Indica el orden de clasificación de los juegos. Se alterna al hacer clic en el botón de ordenar.
 let ordenlistado = "desc";
 
-
+if (!localStorage.getItem("Carrito")) {
+    localStorage.setItem("Carrito", JSON.stringify([]));
+}
 /**
 * Inicia el proceso de dibujo de juegos en la interfaz.
 * Llama a la función `dibujar` con los datos iniciales y configura el scroll infinito
@@ -109,6 +111,7 @@ const cargarPaginas = async () => {
     let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
     let data = await fetch1(url);
     paginaActual++;
+    añadir_al_carrito.dibujarCarrito(JSON.parse(localStorage.getItem("Carrito")) || []);
     dibujar(data, paginaActual);
 }
 
@@ -226,7 +229,7 @@ export const eventCarrito = (datos) => {
 */
 class Carrito {
     constructor() {
-        this.carrito = [];
+        this.carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
     }
     /**
     * Añade un juego al carrito y actualiza la visualización del carrito.
@@ -238,39 +241,44 @@ class Carrito {
         let img = juego.info.thumb
         let id_producto = juego.id
 
-        this.carrito.push({ titulo, precio, img, id_producto })
-        console.log(this.carrito);
-
-        this.dibujarCarrito(this.carrito);
+        // Recuperar el carrito actual desde localStorage
+        let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
+        carrito.push({ titulo, precio, img, id_producto });
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem("Carrito", JSON.stringify(carrito));
+        // Dibujar el carrito actualizado
+        this.dibujarCarrito(carrito);
     }
 
     /**
     * Muestra los elementos del carrito en la interfaz.
     * @param {Array<Object>} carrito - Lista de juegos en el carrito.
     */
-    dibujarCarrito(elementoCarrito) {
+    dibujarCarrito(carrito) {
+        console.log(carrito);
 
-        let carrito_html = document.getElementById("carrito")
-        carrito_html.innerHTML = ""
-        elementoCarrito.forEach(e => {
-            let p = document.createElement("p")
-            let p2 = document.createElement("p")
-            let p3 = document.createElement("p")
-            let img = document.createElement("img")
+        let carrito_html = document.getElementById("carrito");
+        carrito_html.innerHTML = "";
 
-            p.textContent = "Titulo: " + e.titulo
-            p2.textContent = "Precio: " + e.precio
-            p3.textContent = "ID-Producto: " + e.id_producto
+        carrito.forEach(e => {
+            let p = document.createElement("p");
+            let p2 = document.createElement("p");
+            let p3 = document.createElement("p");
+            let img = document.createElement("img");
 
-            img.src = e.img
-            img.width = 50
-            img.height = 50
+            p.textContent = "Titulo: " + e.titulo;
+            p2.textContent = "Precio: " + e.precio;
+            p3.textContent = "ID-Producto: " + e.id_producto;
 
-            carrito_html.appendChild(p)
-            carrito_html.appendChild(p2)
-            carrito_html.appendChild(p3)
-            carrito_html.appendChild(img)
-        })
+            img.src = e.img;
+            img.width = 50;
+            img.height = 50;
+
+            carrito_html.appendChild(p);
+            carrito_html.appendChild(p2);
+            carrito_html.appendChild(p3);
+            carrito_html.appendChild(img);
+        });
     }
 }
 const añadir_al_carrito = new Carrito();
@@ -289,7 +297,6 @@ export const dibujarProductoSeleccionado = () => {
     let infoProduct = JSON.parse(localStorage.getItem("productoseleccionado"));
 
     let lista = document.getElementById("lista")
-    console.log(infoProduct);
 
     let div = document.createElement("div");
     let h1 = document.createElement("h1");
@@ -313,3 +320,13 @@ export const dibujarProductoSeleccionado = () => {
     lista.appendChild(button)
 }
 
+/* CERRAR SESION */
+
+export const cerrarSesion = () => {
+    let btn = document.getElementById("cerrarSesion")
+
+    btn.addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "../../index.html"
+    })
+}
