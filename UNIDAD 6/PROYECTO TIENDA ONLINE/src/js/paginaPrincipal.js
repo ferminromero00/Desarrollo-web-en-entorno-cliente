@@ -255,8 +255,6 @@ class Carrito {
     * @param {Array<Object>} carrito - Lista de juegos en el carrito.
     */
     dibujarCarrito(carrito) {
-        console.log(carrito);
-
         let carrito_html = document.getElementById("carrito");
         carrito_html.innerHTML = "";
 
@@ -283,13 +281,52 @@ class Carrito {
 }
 const añadir_al_carrito = new Carrito();
 
+export const verCarrito = () => {
+    let btn = document.getElementById("verCarrito")
+
+    btn.addEventListener("click", () => {
+        window.location.href = "Carrito.html";
+    })
+}
+
+export const pintarCarritoCompleto = () => {
+    let carrito = document.getElementById("carrito");
+    carrito.innerHTML = "";
+    let elementos = JSON.parse(localStorage.getItem("Carrito")) || [];
+
+    if (elementos.length > 0) {
+        elementos.forEach(e => {
+            let p = document.createElement("p");
+            let p2 = document.createElement("p");
+            let p3 = document.createElement("p");
+            let img = document.createElement("img");
+
+            p.textContent = "Titulo: " + e.titulo;
+            p2.textContent = "Precio: " + e.precio;
+            p3.textContent = "ID-Producto: " + e.id_producto;
+
+            img.src = e.img;
+            img.width = 50;
+            img.height = 50;
+
+            carrito.appendChild(p);
+            carrito.appendChild(p2);
+            carrito.appendChild(p3);
+            carrito.appendChild(img);
+        });
+    } else {
+        carrito.innerHTML = "No hay nada en el carrito"
+    }
+}
+
+
 
 /* VER MAS INFORMACION DEL PRODUCTO */
 
 export const eventVerMasInformacion = (datos) => {
     if (datos != undefined) {
         localStorage.setItem("productoseleccionado", JSON.stringify(datos))
-        window.open("informacionProducto.html", "_blank");
+        window.location.href = "informacionProducto.html";
     }
 }
 
