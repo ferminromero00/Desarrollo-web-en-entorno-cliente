@@ -61,6 +61,7 @@ const dibujar = (data, pagina) => {
 
     let principio = (pagina - 1) * juegosPorPagina;
     let final = pagina * juegosPorPagina;
+    // Obtengo solo los juegos para la página actual.
     let objetos = data.slice(principio, final);
 
     let lista = document.getElementById("lista_juegos");
@@ -96,6 +97,7 @@ const dibujar = (data, pagina) => {
 
     });
 
+    // Indica que la carga ha terminado.
     cargando = false;
     document.getElementById("cargando").style.display = "none";
 }
@@ -213,8 +215,6 @@ const ordenar = () => {
 
 /* CARRITO */
 
-
-
 /**
 * Añade un juego al carrito.
 * @param {Object} datos - Datos del juego a añadir al carrito.
@@ -223,7 +223,7 @@ export const eventCarrito = (datos) => {
     let contador = localStorage.getItem("contadorCarrito")
     let tituloCarrito = document.getElementById("ContadorCarrito");
     tituloCarrito.innerHTML = "Carrito (" + contador + ")"
-    
+
     if (datos !== undefined) {
         añadir_al_carrito.add(datos)
     }
@@ -246,8 +246,6 @@ class Carrito {
         localStorage.setItem("contadorCarrito", contador)
         document.getElementById("ContadorCarrito").innerHTML = "Carrito (" + contador + ")"
 
-
-
         let titulo = juego.info.title
         let precio = juego.cheapestPriceEver.price
         let img = juego.info.thumb
@@ -257,7 +255,7 @@ class Carrito {
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
 
         // Verificar si el juego ya existe en el carrito
-        let juegoExistente = carrito.find(item => item.titulo === titulo);
+        let juegoExistente = carrito.find(e => e.titulo === titulo);
 
         if (juegoExistente) { juegoExistente.cantidad += 1; } else {
             carrito.push({ titulo, precio, img, cantidad, id_producto });
@@ -265,21 +263,60 @@ class Carrito {
 
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
-
     }
+    /**
+    * Borra un producto del carrito basado en su ID.
+    * @param {number} id_producto - ID del producto a eliminar.
+    */
+    borrar(juego, div) {
+        let contador = localStorage.getItem("contadorCarrito")
+        contador--
+        localStorage.setItem("contadorCarrito", contador)
+
+        let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
+        let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
+        let div_p = div.querySelectorAll("p")[3];
+
+        if (buscarJuego.cantidad > 1) {
+            buscarJuego.cantidad--
+            div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+        } else if (buscarJuego.cantidad == 1) {
+            div.remove();
+        }
+        localStorage.setItem("Carrito", JSON.stringify(carrito));
+    }
+    /**
+     * Vacía completamente el carrito.
+     */
+    vaciar() {
+        localStorage.removeItem("Carrito");
+        localStorage.setItem("contadorCarrito", 0);
+        document.getElementById("ContadorCarrito").innerHTML = "Carrito (0)";
+    }
+
 }
 
 const añadir_al_carrito = new Carrito();
 
 
+/**
+ * Añade un evento de clic al botón con ID "verCarrito" para redirigir al usuario
+ * a la página del carrito (Carrito.html).
+ */
 export const verCarrito = () => {
     let btn = document.getElementById("verCarrito")
 
+    // Escucha el evento "click" en el botón y redirige a la página "Carrito.html".
     btn.addEventListener("click", () => {
         window.location.href = "Carrito.html";
     })
 }
 
+/**
+ * Recupera los elementos almacenados en el localStorage bajo la clave "Carrito",
+ * limpia el contenedor del carrito en el DOM y lo actualiza con los elementos obtenidos.
+ * Si no hay elementos en el carrito, muestra un mensaje indicándolo.
+ */
 export const pintarCarritoCompleto = () => {
     let carrito = document.getElementById("carrito");
     carrito.innerHTML = "";
@@ -287,26 +324,41 @@ export const pintarCarritoCompleto = () => {
 
     if (elementos.length > 0) {
         elementos.forEach(e => {
+            let div = document.createElement("div");
             let p = document.createElement("p");
             let p2 = document.createElement("p");
             let p3 = document.createElement("p");
             let p4 = document.createElement("p");
             let img = document.createElement("img");
 
+            let btn_borrar = document.createElement("button")
+            btn_borrar.addEventListener("click", () => {
+                añadir_al_carrito.borrar(e, div)
+            })
+
+            let br = document.createElement("br");
+
+            div.id = "contenedorCarrito"
+
             p.textContent = "Titulo: " + e.titulo;
-            p2.textContent = "Precio: " + e.precio;
+            p2.textContent = "Precio: " + (e.precio * e.cantidad).toFixed(2) + " €";
             p3.textContent = "ID-Producto: " + e.id_producto;
+
             p4.textContent = "Cantidad: " + e.cantidad
+            btn_borrar.textContent = "Borrar"
 
             img.src = e.img;
-            img.width = 50;
-            img.height = 50;
+            img.width = 150;
+            img.height = 100;
 
-            carrito.appendChild(p);
-            carrito.appendChild(p2);
-            carrito.appendChild(p3);
-            carrito.appendChild(p4)
-            carrito.appendChild(img);
+            carrito.appendChild(div)
+            div.appendChild(p);
+            div.appendChild(p2);
+            div.appendChild(p3);
+            div.appendChild(p4)
+            div.appendChild(img);
+            div.appendChild(br);
+            div.appendChild(btn_borrar)            
         });
     } else {
         carrito.innerHTML = "No hay nada en el carrito"
@@ -314,15 +366,23 @@ export const pintarCarritoCompleto = () => {
 }
 
 
-
 /* VER MAS INFORMACION DEL PRODUCTO */
 
+/**
+* Guarda la información de un producto seleccionado en el localStorage y redirige
+* al usuario a la página de detalles del producto (informacionProducto.html).
+* @param {Object} datos - Información del producto seleccionado.
+*/
 export const eventVerMasInformacion = (datos) => {
     if (datos != undefined) {
         localStorage.setItem("productoseleccionado", JSON.stringify(datos))
         window.location.href = "informacionProducto.html";
     }
 }
+/**
+* Recupera los detalles de un producto seleccionado desde el localStorage y lo
+* dibuja en el contenedor especificado en la página.
+*/
 
 export const dibujarProductoSeleccionado = () => {
     let infoProduct = JSON.parse(localStorage.getItem("productoseleccionado"));
@@ -353,6 +413,10 @@ export const dibujarProductoSeleccionado = () => {
 
 /* CERRAR SESION */
 
+/**
+* Limpia todos los datos almacenados en el localStorage y redirige al usuario
+* a la página de inicio (index.html).
+*/
 export const cerrarSesion = () => {
     let btn = document.getElementById("cerrarSesion")
 

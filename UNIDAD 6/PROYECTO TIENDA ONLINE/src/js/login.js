@@ -124,8 +124,9 @@ const registrar = (nombre, pass, users) => {
         document.getElementById("data").innerHTML = "Demasiados intentos...";
     } else {
         if (!result) {
+            let lengt_id = users.length
             axios.post('http://localhost:3000/users', {
-                id: users.length + 1,
+                id: `${lengt_id + 1}`,
                 name: nombre,
                 pass: pass
             });

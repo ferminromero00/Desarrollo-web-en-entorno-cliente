@@ -6,7 +6,7 @@ import {
     dibujarProductoSeleccionado,
     cerrarSesion,
     verCarrito,
-    pintarCarritoCompleto
+    pintarCarritoCompleto,
 } from './paginaPrincipal.js';
 
 /**
