@@ -35,14 +35,12 @@ HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 7. Si se selecciona un artículo debe mostrarse el detalle completo para éste (todos
 los datos que proporciona la API), dando la posibilidad de comprarlo.
-
-
-
-
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 8. Logueo de usuarios. Si la API proporciona logueo de usuario lo usaremos, sino
 lo simulamos.
-
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 9. Debe ser posible acceder al carro de la compra completo para simular la
 realización final del pedido.
