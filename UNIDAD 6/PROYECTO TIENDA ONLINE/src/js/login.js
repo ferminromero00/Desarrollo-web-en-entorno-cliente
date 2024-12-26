@@ -64,7 +64,7 @@ const valida = (nombre, pass, users) => {
         if (contador === 0) {
             document.getElementById("data").innerHTML = "Demasiados intentos...";
         } else {
-            location.href = "vistas/paginaPrincipal.html";
+            location.href = "src/views/paginaPrincipal.html";
             const simulatedToken = generarToken(128);
             document.cookie = `TOKEN=${simulatedToken}`;
         }
