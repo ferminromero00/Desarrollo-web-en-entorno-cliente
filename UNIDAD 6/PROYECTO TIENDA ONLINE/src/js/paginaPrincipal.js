@@ -125,8 +125,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-
-
 /* LISTAR POR CATEGORIAS */
 
 /**
@@ -189,8 +187,6 @@ const filtrar = () => {
 
 }
 
-
-
 /* CAMBIAR ASCENDENTE O DESCENDENTE */
 
 /* 
@@ -210,8 +206,6 @@ const ordenar = () => {
         dibujar(data, paginaActual);
     });
 }
-
-
 
 /* CARRITO */
 
@@ -264,11 +258,29 @@ class Carrito {
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
+    añadir(juego, div) {
+        let contador = localStorage.getItem("contadorCarrito")
+        contador++
+        localStorage.setItem("contadorCarrito", contador)
+
+        let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
+        let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
+        let div_p = div.querySelectorAll("p")[3];
+
+        if (buscarJuego.cantidad) {
+            buscarJuego.cantidad++
+            div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+        }
+        localStorage.setItem("Carrito", JSON.stringify(carrito));
+    }
     /**
     * Borra un producto del carrito basado en su ID.
     * @param {number} id_producto - ID del producto a eliminar.
+    * @param {number} id_producto - ID del producto a eliminar.
     */
     borrar(juego, div) {
+        console.log(div);
+        
         let contador = localStorage.getItem("contadorCarrito")
         contador--
         localStorage.setItem("contadorCarrito", contador)
@@ -284,7 +296,6 @@ class Carrito {
         } else if (buscarJuego.cantidad == 1) {
             div.remove();
             carrito = carrito.filter(e => e.titulo !== juego.titulo);
-            carritoHTML.innerHTML = "No hay nada en el carrito"
         }
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
@@ -292,9 +303,10 @@ class Carrito {
      * Vacía completamente el carrito.
      */
     vaciar() {
+        let carrito = document.getElementById("carrito")
         localStorage.removeItem("Carrito");
         localStorage.setItem("contadorCarrito", 0);
-        document.getElementById("ContadorCarrito").innerHTML = "Carrito (0)";
+        carrito.innerHTML = ""
     }
 
 }
@@ -333,22 +345,26 @@ export const pintarCarritoCompleto = () => {
             let p3 = document.createElement("p");
             let p4 = document.createElement("p");
             let img = document.createElement("img");
-
             let btn_borrar = document.createElement("button")
+            let btn_añadir = document.createElement("button")
+
             btn_borrar.addEventListener("click", () => {
                 añadir_al_carrito.borrar(e, div)
             })
+            btn_borrar.textContent = "Borrar"
+
+            btn_añadir.addEventListener("click", () => {
+                añadir_al_carrito.añadir(e, div)
+            })
+            btn_añadir.textContent = "Añadir"
 
             let br = document.createElement("br");
 
             div.id = "contenedorCarrito"
-
             p.textContent = "Titulo: " + e.titulo;
             p2.textContent = "Precio: " + (e.precio * e.cantidad).toFixed(2) + " €";
             p3.textContent = "ID-Producto: " + e.id_producto;
-
             p4.textContent = "Cantidad: " + e.cantidad
-            btn_borrar.textContent = "Borrar"
 
             img.src = e.img;
             img.width = 150;
@@ -361,12 +377,22 @@ export const pintarCarritoCompleto = () => {
             div.appendChild(p4)
             div.appendChild(img);
             div.appendChild(br);
-            div.appendChild(btn_borrar)            
+            div.appendChild(btn_añadir)
+            div.appendChild(btn_borrar)
         });
     } else {
         carrito.innerHTML = "No hay nada en el carrito"
     }
 }
+
+export const vaciarCarrito = () => {
+    let btn_vaciar = document.getElementById("vaciar")
+
+    btn_vaciar.addEventListener("click", () => {
+        añadir_al_carrito.vaciar()
+    })
+}
+
 
 
 /* VER MAS INFORMACION DEL PRODUCTO */

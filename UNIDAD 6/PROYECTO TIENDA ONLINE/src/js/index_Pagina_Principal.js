@@ -7,6 +7,7 @@ import {
     cerrarSesion,
     verCarrito,
     pintarCarritoCompleto,
+    vaciarCarrito
 } from './paginaPrincipal.js';
 
 /**
@@ -34,6 +35,7 @@ const main = () => {
     } else if (path.includes('Carrito.html')) {
 
         pintarCarritoCompleto()
+        vaciarCarrito()
         cerrarSesion()
 
     }
