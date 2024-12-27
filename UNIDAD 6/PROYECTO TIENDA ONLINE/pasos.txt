@@ -59,10 +59,11 @@ HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 3. (0,5 punto) El carrito permite modificar el número de artículos, pudiendo
 borrarlos o modificar su número de unidades.
-
+HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 4. (1 punto) Haciendo uso de la librería emailjs.com haz que tu web envíe emails al
 usuario al finalizar pedido.
+HECHO
 -----------------------------------------------------------------------------------------------------------------------------------------
 5. La interfaz será según las especificaciones al respecto del proyecto
 correspondiente del módulo Desarrollo de Interfaces Web. Debe desarrollarse

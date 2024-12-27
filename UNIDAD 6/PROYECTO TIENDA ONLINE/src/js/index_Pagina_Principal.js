@@ -7,7 +7,8 @@ import {
     cerrarSesion,
     verCarrito,
     pintarCarritoCompleto,
-    vaciarCarrito
+    vaciarCarrito,
+    eventEmail
 } from './paginaPrincipal.js';
 
 /**
@@ -36,6 +37,7 @@ const main = () => {
 
         pintarCarritoCompleto()
         vaciarCarrito()
+        eventEmail()
         cerrarSesion()
 
     }

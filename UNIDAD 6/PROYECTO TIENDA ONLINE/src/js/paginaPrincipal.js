@@ -64,42 +64,45 @@ const dibujar = (data, pagina) => {
     // Obtengo solo los juegos para la página actual.
     let objetos = data.slice(principio, final);
 
-    let lista = document.getElementById("lista_juegos");
-    if (pagina === 1) {
-        lista.innerHTML = "";
+    if (document.getElementById("lista_juegos") !== null) {
+        let lista = document.getElementById("lista_juegos");
+
+        if (pagina === 1) {
+            lista.innerHTML = "";
+        }
+
+        objetos.forEach(e => {
+            let div = document.createElement("div");
+            let h1 = document.createElement("h1");
+            let p = document.createElement("p");
+            let img = document.createElement("img");
+            let p2 = document.createElement("p");
+            let br = document.createElement("br");
+            let button = document.createElement("button")
+
+            h1.textContent = e.info.title;
+            p.textContent = "Precio: " + e.cheapestPriceEver.price + "€";
+            img.src = e.info.thumb;
+            p2.textContent = "Categoria: " + e.info.category;
+            button.textContent = "Añadir"
+            button.addEventListener("click", () => { eventCarrito(e); });
+            div.style.cursor = "pointer";
+            div.addEventListener("click", () => { eventVerMasInformacion(e) })
+
+            lista.appendChild(div);
+            div.appendChild(h1);
+            div.appendChild(p);
+            div.appendChild(p2);
+            div.appendChild(img);
+            lista.appendChild(button)
+            lista.appendChild(br);
+
+        });
+
+        // Indica que la carga ha terminado.
+        cargando = false;
+        document.getElementById("cargando").style.display = "none";
     }
-
-    objetos.forEach(e => {
-        let div = document.createElement("div");
-        let h1 = document.createElement("h1");
-        let p = document.createElement("p");
-        let img = document.createElement("img");
-        let p2 = document.createElement("p");
-        let br = document.createElement("br");
-        let button = document.createElement("button")
-
-        h1.textContent = e.info.title;
-        p.textContent = "Precio: " + e.cheapestPriceEver.price + "€";
-        img.src = e.info.thumb;
-        p2.textContent = "Categoria: " + e.info.category;
-        button.textContent = "Añadir"
-        button.addEventListener("click", () => { eventCarrito(e); });
-        div.style.cursor = "pointer";
-        div.addEventListener("click", () => { eventVerMasInformacion(e) })
-
-        lista.appendChild(div);
-        div.appendChild(h1);
-        div.appendChild(p);
-        div.appendChild(p2);
-        div.appendChild(img);
-        lista.appendChild(button)
-        lista.appendChild(br);
-
-    });
-
-    // Indica que la carga ha terminado.
-    cargando = false;
-    document.getElementById("cargando").style.display = "none";
 }
 
 /**
@@ -108,7 +111,10 @@ const dibujar = (data, pagina) => {
 const cargarPaginas = async () => {
     if (cargando) return;
     cargando = true;
-    document.getElementById("cargando").style.display = "block";
+
+    if (document.getElementById("cargando") !== null) {
+        document.getElementById("cargando").style.display = "block";
+    }
 
     let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
     let data = await fetch1(url);
@@ -241,7 +247,7 @@ class Carrito {
         document.getElementById("ContadorCarrito").innerHTML = "Carrito (" + contador + ")"
 
         let titulo = juego.info.title
-        let precio = juego.cheapestPriceEver.price
+        let precio = juego.cheapestPriceEver.price 
         let img = juego.info.thumb
         let id_producto = juego.id
         let cantidad = 1
@@ -254,7 +260,8 @@ class Carrito {
         if (juegoExistente) { juegoExistente.cantidad += 1; } else {
             carrito.push({ titulo, precio, img, cantidad, id_producto });
         }
-
+        
+        
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
@@ -266,10 +273,12 @@ class Carrito {
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
         let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
         let div_p = div.querySelectorAll("p")[3];
+        let div_precio = div.querySelectorAll("p")[1];
 
         if (buscarJuego.cantidad) {
             buscarJuego.cantidad++
             div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+            div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
         }
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
@@ -279,8 +288,6 @@ class Carrito {
     * @param {number} id_producto - ID del producto a eliminar.
     */
     borrar(juego, div) {
-        console.log(div);
-        
         let contador = localStorage.getItem("contadorCarrito")
         contador--
         localStorage.setItem("contadorCarrito", contador)
@@ -288,11 +295,12 @@ class Carrito {
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
         let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
         let div_p = div.querySelectorAll("p")[3];
-        let carritoHTML = document.getElementById("carrito");
+        let div_precio = div.querySelectorAll("p")[1];
 
         if (buscarJuego.cantidad > 1) {
             buscarJuego.cantidad--
             div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+            div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
         } else if (buscarJuego.cantidad == 1) {
             div.remove();
             carrito = carrito.filter(e => e.titulo !== juego.titulo);
@@ -334,6 +342,7 @@ export const verCarrito = () => {
  */
 export const pintarCarritoCompleto = () => {
     let carrito = document.getElementById("carrito");
+    let section = document.getElementById("section_carrito")
     carrito.innerHTML = "";
     let elementos = JSON.parse(localStorage.getItem("Carrito")) || [];
 
@@ -382,6 +391,7 @@ export const pintarCarritoCompleto = () => {
         });
     } else {
         carrito.innerHTML = "No hay nada en el carrito"
+        section.innerHTML = ""
     }
 }
 
@@ -439,6 +449,53 @@ export const dibujarProductoSeleccionado = () => {
     div.appendChild(img);
     lista.appendChild(button)
 }
+
+/* EMAILJS */
+
+export const eventEmail = () => {
+    if (document.getElementById("email") !== null) {
+        let btn = document.getElementById("email");
+
+        // Inicializa EmailJS con tu Public Key
+        emailjs.init("rt09wWs6HtBPV7qQO");
+
+        btn.addEventListener("click", () => {
+            // Obtiene los valores del formulario
+            let nombre = document.getElementById("nom").value;
+            let correo = document.getElementById("correo").value;
+
+            let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
+            let resumenCarrito = "";
+            let precioTotal = 0
+
+            carrito.forEach(e => {
+                let titulo = e.titulo
+                let precio = parseInt(e.precio)
+                let cantidad = e.cantidad
+
+                resumenCarrito += `- Titulo: ${titulo}\n  -Precio: ${precio * cantidad}€\n -Cantidad: ${cantidad}\n\n`;
+                precioTotal += precioTotal + precio * cantidad
+            })
+
+            // Define los parámetros para el correo
+            var parametros = {
+                to_name: nombre,
+                from_name: 'Tienda de Videojuegos',
+                message: `Gracias por tu compra. Aquí tienes los detalles de tu pedido:\n\n${resumenCarrito}\n
+                "Precio Total: ${precioTotal}€`,
+                correo: correo
+            };
+
+            // Envía el correo con EmailJS
+            emailjs.send('service_essgrlt', 'template_b5o6vz6', parametros)
+                .then(function (response) {
+                    console.log('¡Correo enviado exitosamente!', response.status, response.text);
+                }, function (error) {
+                    console.error('Error al enviar el correo:', error);
+                });
+        });
+    }
+};
 
 /* CERRAR SESION */
 
