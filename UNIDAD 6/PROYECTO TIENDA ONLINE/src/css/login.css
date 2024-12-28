@@ -18,7 +18,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #7f5d5d;
+    background: url('../gif/video_login.gif') no-repeat center center fixed;
+    background-size: cover;
+
 }
 
 /* Formulario */
@@ -26,7 +28,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(151, 151, 151, 0.3);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 1rem;
     padding: 2rem;
 }
@@ -41,6 +43,7 @@
 label {
     font-weight: var(--font-weight-bold);
     font-size: 1.5rem;    
+    color: white;
 }
 
 input {
@@ -49,6 +52,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 0.3rem;
     padding: 1rem 1.6rem;
+    margin-top: 0.5rem;
 }
 
 .botones button {
@@ -66,4 +70,9 @@ input {
 
 .botones button:hover {
     background-color: #555;
+}
+
+.mensaje {
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-bold);
 }
