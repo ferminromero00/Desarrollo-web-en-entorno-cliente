@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.caja_login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.login__formulario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #808080;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.formulario__table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.formulario__table td {
+    border: 1px solid black;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input {
+    width: 90%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+}
+
+button {
+    width: 90%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.table__tr:nth-of-type(1) td:nth-of-type(2) button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*

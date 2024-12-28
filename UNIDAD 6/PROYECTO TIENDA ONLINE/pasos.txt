@@ -64,29 +64,4 @@ HECHO
 4. (1 punto) Haciendo uso de la librería emailjs.com haz que tu web envíe emails al
 usuario al finalizar pedido.
 HECHO
------------------------------------------------------------------------------------------------------------------------------------------
-5. La interfaz será según las especificaciones al respecto del proyecto
-correspondiente del módulo Desarrollo de Interfaces Web. Debe desarrollarse
-una web del tipo SAP en la que en ningún momento se produce recarga, tan sólo
-cambiamos las vistas.
 
-
-La entrega del proyecto se hará a través de un repositorio github, indicando claramente
-en el README la URL. La nota final se consigue tras la defensa personalizada del
-proyecto para comprobar que el alumno/a entiende perfectamente su código y es capaz
-de realizar cambios sencillos conforme se le piden. La incapacidad para comprender y
-defender su propio código supone el suspenso del proyecto.
-SCROLL INFINITO
-Como podéis ver consiste en trabajar el evento scroll que saltará cada vez que se
-mueve la barra de scroll. Luego comprobamos cuando queremos que salte. En el
-siguiente ejemplo salta justo al llegar al final, pero sería deseable hacerlo antes
-(así el usuario no ve que llegas al final y espera hasta recibir nuevos datos, sino
-que cuando llegue estos ya están maquetados). Para ello basta cambiar la
-comparación , por ejemplo ">= window.scrollY-200" para que salte 200px antes
-del final. IMPORTANTE: El evento va a saltar cada vez que mováis el ratón,
-con lo que puede que lancéis muchísimas peticiones AJAX seguidas. Debemos
-evitar esto, para lo cual es tan sencillo como, mediante una variable, marcar que
-ya se ha lanzado una petición y hasta que no llega la respuesta y cambiamos esa
-petición no debemos dejar que se lance ninguna otra. Del mismo modo podéis
-probar a habilitar una imagen (gif animado) a modo de preload.
-https://dev.to/tingchun0113/how-to-implement-infinite-scroll-with-vanilla-js3791

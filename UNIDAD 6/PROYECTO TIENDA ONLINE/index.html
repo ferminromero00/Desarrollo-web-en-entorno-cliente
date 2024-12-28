@@ -6,21 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Sesion</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/css/login.css">
 </head>
 
-<body style="background-color: grey;">
-
-    <form onclick="return false">
-        <label for="user">Usuario</label>
-        <input type="text" name="user" id="user"><br>
-
-        <label for="pass">Contraseña</label>
-        <input type="password" name="pass" id="pass" required><br><br>
-
-        <button type="submit" id="validacionUser">Entrar</button>
-        <button type="submit" id="registrarUsuario">Registrarse</button>
-        <button type="submit" id="borrarUser">Borrar</button>
-    </form>
+<body>
+    <section class="caja_login">
+        <section class="login__formulario">
+            <form onclick="return false">
+                <table class="formulario__table">
+                    <tbody>
+                        <tr class="table__tr">
+                            <td rowspan="3" colspan="3">
+                                <label for="user">Usuario</label>
+                                <input type="text" name="user" id="user">
+                            </td>
+                            <td colspan="3" rowspan="6">
+                                <button type="submit" id="validacionUser">Entrar</button>
+                                <button type="submit" id="registrarUsuario">Registrarse</button>
+                                <button type="submit" id="borrarUser">Borrar</button>
+                            </td>
+                        </tr>
+                        <tr class="table__tr"></tr>
+                        <tr class="table__tr"></tr>
+                        <tr class="table__tr">
+                            <td rowspan="3" colspan="3">
+                                <label for="pass">Contraseña</label>
+                                <input type="password" name="pass" id="pass" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </section>
+    </section>
 
     <p id="data"></p>
 
