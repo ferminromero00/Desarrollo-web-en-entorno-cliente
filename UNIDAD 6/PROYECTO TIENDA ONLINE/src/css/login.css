@@ -1,82 +1,69 @@
+/* General */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-family-primary);
 }
 
+:root {
+    --font-family-primary: 'EB Garamond', serif;
+    --font-weight-regular: 400;
+    --font-weight-bold: 800;
+}
+
+/* Caja principal */
 .caja_login {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f0f0;
+    background-color: #7f5d5d;
 }
 
+/* Formulario */
 .login__formulario {
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #808080;
+    align-items: center;
+    background-color: rgba(151, 151, 151, 0.3);
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 2rem;
 }
 
+/* Tabla del formulario */
 .formulario__table {
-    border-collapse: collapse;
     width: 100%;
-    height: 100%;
     text-align: center;
-}
-
-.formulario__table td {
-    border: 1px solid black;
-    padding: 0.5rem;
-    vertical-align: middle;
+    border-spacing: 1.5rem 1rem;
 }
 
 label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
+    font-size: 1.5rem;    
 }
 
 input {
     width: 90%;
-    padding: 0.5rem;
+    height: 2.5rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;
+    padding: 1rem 1.6rem;
 }
 
-button {
-    width: 90%;
-    padding: 0.5rem;
+.botones button {
+    width: 80%;
+    padding: 0.8rem;
     background-color: #333;
     color: white;
     border: none;
     border-radius: 0.3rem;
+    font-weight: var(--font-weight-regular);
+    font-size: 1.2rem;
     cursor: pointer;
+    margin: 0.5rem 0;
 }
 
-button:hover {
+.botones button:hover {
     background-color: #555;
 }
-
-.table__tr:nth-of-type(1) td:nth-of-type(2) button {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*

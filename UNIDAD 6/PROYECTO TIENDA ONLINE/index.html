@@ -9,29 +9,39 @@
     <link rel="stylesheet" href="src/css/login.css">
 </head>
 
-<body>
+<body style="background-color: rgb(6, 45, 79);">
     <section class="caja_login">
         <section class="login__formulario">
             <form onclick="return false">
                 <table class="formulario__table">
                     <tbody>
-                        <tr class="table__tr">
-                            <td rowspan="3" colspan="3">
+                        <!-- Campo Usuario -->
+                        <tr>
+                            <td colspan="3">
                                 <label for="user">Usuario</label>
                                 <input type="text" name="user" id="user">
                             </td>
-                            <td colspan="3" rowspan="6">
+                        </tr>
+                        <!-- Campo Contraseña -->
+                        <tr>
+                            <td colspan="3">
+                                <label for="pass">Contraseña</label>
+                                <input type="password" name="pass" id="pass" required>
+                            </td>
+                        </tr>
+                        <!-- Espacio para mensajes -->
+                        <tr>
+                            <td colspan="3" class="mensaje">
+                                <!-- Aquí aparecerán los mensajes -->
+                                <p id="mensaje"></p>
+                            </td>
+                        </tr>
+                        <!-- Botones -->
+                        <tr>
+                            <td colspan="3" class="botones">
                                 <button type="submit" id="validacionUser">Entrar</button>
                                 <button type="submit" id="registrarUsuario">Registrarse</button>
                                 <button type="submit" id="borrarUser">Borrar</button>
-                            </td>
-                        </tr>
-                        <tr class="table__tr"></tr>
-                        <tr class="table__tr"></tr>
-                        <tr class="table__tr">
-                            <td rowspan="3" colspan="3">
-                                <label for="pass">Contraseña</label>
-                                <input type="password" name="pass" id="pass" required>
                             </td>
                         </tr>
                     </tbody>
@@ -39,6 +49,7 @@
             </form>
         </section>
     </section>
+    
 
     <p id="data"></p>
 
