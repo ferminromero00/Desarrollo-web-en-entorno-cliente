@@ -5,31 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido!</title>
+    <link rel="stylesheet" href="../css/paginaPrincipal.css">
+    <link rel="icon" href="../img/gamepad-solid.svg" type="image/x-icon">
 </head>
 
 <body style="background-color: grey;">
 
-    <header>
-        <select name="lista_categorias" id="lista_categorias">
-            <option value=""></option>
-        </select>
-
-        <button id="ordenar_btn">Ordenar: Descendente</button>
-        <button id="cerrarSesion">Cerrar Sesion</button>
-
-        <h1 id="ContadorCarrito"></h1>
-        <button id="verCarrito">Ver Carrito</button>
-
+    <header class="encabezado">
+        <div class="encabezado__contenedor">
+            <h1 class="encabezado__titulo">TIENDA DE VIDEOJUEGOS</h1>
+        </div>
     </header>
 
-    <main>
-        <section id="lista_juegos"></section>
+    <nav class="navegacion">
+        <select class="navegacion__desplegable" name="lista_categorias" id="lista_categorias">
+            <option value=""></option>
+        </select>
+        <button class="navegacion__boton navegacion__boton--orden" id="ordenar_btn">Ordenar: Descendente</button>
+        <button class="navegacion__boton navegacion__boton--carrito" id="verCarrito">Ver Carrito</button>
+        <h1 class="navegacion__contador" id="ContadorCarrito"></h1>
+        <button class="navegacion__boton navegacion__boton--cerrar-sesion" id="cerrarSesion">Cerrar Sesión</button>
+    </nav>
+
+    <main class="contenido-principal">
+        <section class="contenido-principal__juegos" id="lista_juegos"></section>
         <div id="cargando" style="display: none;"></div>
     </main>
 
-    <footer>
-
+    <footer class="pie-de-pagina">
+        <!-- Contenido del footer -->
     </footer>
+
 
 
     <script type="module" src="../js/index_Pagina_Principal.js"></script>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;800&display=swap');
+
 /* General */
 * {
     margin: 0;
@@ -18,9 +20,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('../gif/video_login.gif') no-repeat center center fixed;
-    background-size: cover;
-
+    background: url('https://i.pinimg.com/originals/e7/fb/ab/e7fbab03e1a8bec98855576aa767cb94.jpg') no-repeat center center fixed;
+    background-size:cover;
 }
 
 /* Formulario */
@@ -28,9 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 /* Tabla del formulario */
@@ -47,12 +48,15 @@ label {
 }
 
 input {
-    width: 90%;
+    width: 80%;
     height: 2.5rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;
     padding: 1rem 1.6rem;
     margin-top: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border-bottom: 5px solid white;
 }
 
 .botones button {
@@ -75,4 +79,5 @@ input {
 .mensaje {
     font-size: 1.3rem;
     font-weight: var(--font-weight-bold);
+    color: white;
 }

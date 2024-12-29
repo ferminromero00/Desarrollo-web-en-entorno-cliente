@@ -57,28 +57,6 @@
     },
     {
       "info": {
-        "title": "Total War: Shogun 2 - Fall of the Samurai",
-        "thumb": "https://www.wingamestore.com/images_boxshots/master/total-wartm-shogun-2-fall-of-the-samurai-1556312946.jpg",
-        "category": "Deportes"
-      },
-      "cheapestPriceEver": {
-        "price": "6.89"
-      },
-      "id": "8"
-    },
-    {
-      "info": {
-        "title": "Anno 2070",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48240/capsule_616x353.jpg?t=1692033142",
-        "category": "Estrategia"
-      },
-      "cheapestPriceEver": {
-        "price": "4.75"
-      },
-      "id": "9"
-    },
-    {
-      "info": {
         "title": "The Blackwell Legacy",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/80330/capsule_616x353.jpg?t=1728040271",
         "category": "Estrategia"
@@ -519,17 +497,6 @@
     },
     {
       "info": {
-        "title": "Waves",
-        "thumb": "https://sttc.gamersgate.com/images/product/waves/cover-180-cf6454.jpg",
-        "category": "Estrategia"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "50"
-    },
-    {
-      "info": {
         "title": "Half-Life",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/70/25bee0c9572a4f0dc4de6c773c54d067a4204760/capsule_616x353.jpg?t=1732327059",
         "category": "Plataformas"
@@ -670,17 +637,6 @@
         "price": "1.62"
       },
       "id": "63"
-    },
-    {
-      "info": {
-        "title": "Super Street Fighter IV Arcade Edition",
-        "thumb": "https://us.gamesplanet.com/acache/13/51/1/us/packshot-7db42a527f250e10a40ed5432dc28885.jpg",
-        "category": "Simulación"
-      },
-      "cheapestPriceEver": {
-        "price": "5.99"
-      },
-      "id": "64"
     },
     {
       "info": {
@@ -1297,17 +1253,6 @@
         "price": "1.62"
       },
       "id": "120"
-    },
-    {
-      "info": {
-        "title": "Quake IV",
-        "thumb": "https://images.greenmangaming.com/930cbe43c17e4caa8c266f98cfaf3b6a/95bd2d48d95f42c68fe50cda3bb86efd.jpg",
-        "category": "Puzle"
-      },
-      "cheapestPriceEver": {
-        "price": "3.20"
-      },
-      "id": "121"
     },
     {
       "info": {
@@ -2829,17 +2774,6 @@
     },
     {
       "info": {
-        "title": "Majesty 2 Collection",
-        "thumb": "https://sttc.gamersgate.com/images/product/majesty-2-collection/cover-180-ce9cea.jpg",
-        "category": "RPG"
-      },
-      "cheapestPriceEver": {
-        "price": "3.19"
-      },
-      "id": "261"
-    },
-    {
-      "info": {
         "title": "Supreme Commander 2",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/40100/capsule_616x353.jpg?t=1636731871",
         "category": "Terror"
@@ -2870,17 +2804,6 @@
         "price": "1.39"
       },
       "id": "264"
-    },
-    {
-      "info": {
-        "title": "The Stronghold Collection",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/901735/capsule_616x353.jpg?t=1499271900",
-        "category": "Acción"
-      },
-      "cheapestPriceEver": {
-        "price": "3.00"
-      },
-      "id": "265"
     },
     {
       "info": {
@@ -3170,17 +3093,6 @@
     },
     {
       "info": {
-        "title": "Assassin's Creed: Director's Cut Edition",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/15100/capsule_616x353.jpg?t=1602600542",
-        "category": "RPG"
-      },
-      "cheapestPriceEver": {
-        "price": "4.80"
-      },
-      "id": "292"
-    },
-    {
-      "info": {
         "title": "Puzzle Agent 2",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/94590/capsule_616x353.jpg?t=1686675497",
         "category": "Simulación"
@@ -3453,28 +3365,6 @@
         "price": "1.62"
       },
       "id": "317"
-    },
-    {
-      "info": {
-        "title": "Guild Wars Nightfall",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/29580/capsule_616x353.jpg?t=1598613775",
-        "category": "Aventura"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "318"
-    },
-    {
-      "info": {
-        "title": "Guild Wars Factions",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/29560/capsule_616x353.jpg?t=1598613886",
-        "category": "Aventura"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "319"
     },
     {
       "info": {
@@ -3937,17 +3827,6 @@
         "price": "1.49"
       },
       "id": "361"
-    },
-    {
-      "info": {
-        "title": "Crazy Machines 1.5",
-        "thumb": "https://sttc.gamersgate.com/images/product/crazy-machines-15/cover-180-8080b7.jpg",
-        "category": "Acción"
-      },
-      "cheapestPriceEver": {
-        "price": "7.16"
-      },
-      "id": "362"
     },
     {
       "info": {
@@ -4479,17 +4358,6 @@
     },
     {
       "info": {
-        "title": "Star Wars The Clone Wars: Republic Heroes",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/32420/capsule_616x353.jpg?t=1586467838",
-        "category": "Plataformas"
-      },
-      "cheapestPriceEver": {
-        "price": "3.24"
-      },
-      "id": "411"
-    },
-    {
-      "info": {
         "title": "King's Bounty: Crossworlds",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/63910/capsule_616x353.jpg?t=1721724155",
         "category": "RPG"
@@ -4666,17 +4534,6 @@
     },
     {
       "info": {
-        "title": "Dangerous High School Girls in Trouble!",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/27400/capsule_616x353.jpg?t=1447351701",
-        "category": "Terror"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "428"
-    },
-    {
-      "info": {
         "title": "MX vs ATV Reflex",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/55140/capsule_616x353.jpg?t=1727858911",
         "category": "Puzle"
@@ -4707,17 +4564,6 @@
         "price": "0.74"
       },
       "id": "431"
-    },
-    {
-      "info": {
-        "title": "Devil May Cry 4",
-        "thumb": "https://us.gamesplanet.com/acache/22/69/1/us/packshot-cb166817be41c74e750016bf88a28860.jpg",
-        "category": "Aventura"
-      },
-      "cheapestPriceEver": {
-        "price": "4.75"
-      },
-      "id": "432"
     },
     {
       "info": {
@@ -4908,17 +4754,6 @@
     },
     {
       "info": {
-        "title": "Medal of Honor: Airborne",
-        "thumb": "https://originassets.akamaized.net/origin-com-store-final-assets-prod/54494/PACKART_PRESET_MEDIUM_JPG_142x200/70277_MB_142_en_US_^_2013-03-29-12-37-42_c321389f03dfdf2b797bd160548dce30db4ecca73ddf934d10df4a1a62e8bf6c.jpg",
-        "category": "Deportes"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "451"
-    },
-    {
-      "info": {
         "title": "Serious Sam HD: The Second Encounter",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/41014/capsule_616x353.jpg?t=1728688684",
         "category": "RPG"
@@ -5103,17 +4938,6 @@
         "price": "0.49"
       },
       "id": "468"
-    },
-    {
-      "info": {
-        "title": "Governor of Poker 2 - Premium Edition",
-        "thumb": "https://images.greenmangaming.com/c68f5141144c4c569e421dfc6b2f29d7/a0e579fcc17b4b8184dca18f5c12f85f.jpg",
-        "category": "Puzle"
-      },
-      "cheapestPriceEver": {
-        "price": "3.79"
-      },
-      "id": "469"
     },
     {
       "info": {
@@ -5920,17 +5744,6 @@
     },
     {
       "info": {
-        "title": "Governor of Poker 2",
-        "thumb": "https://cdn.fanatical.com/production/product/400x225/d39a29a8-cab4-4f67-be99-54857041ea88.jpg",
-        "category": "Arcade"
-      },
-      "cheapestPriceEver": {
-        "price": "5.03"
-      },
-      "id": "543"
-    },
-    {
-      "info": {
         "title": "Woody Two-Legs: Attack of the Zombie Pirates",
         "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/49320/capsule_616x353.jpg?t=1472817696",
         "category": "Arcade"
@@ -6203,17 +6016,6 @@
         "price": "0.30"
       },
       "id": "568"
-    },
-    {
-      "info": {
-        "title": "Commander: Conquest of the Americas",
-        "thumb": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/49300/4a4a3c6ca222b5c6666fab0cd0870847b123707c/capsule_616x353.jpg?t=1734532661",
-        "category": "RPG"
-      },
-      "cheapestPriceEver": {
-        "price": "4.99"
-      },
-      "id": "569"
     },
     {
       "info": {

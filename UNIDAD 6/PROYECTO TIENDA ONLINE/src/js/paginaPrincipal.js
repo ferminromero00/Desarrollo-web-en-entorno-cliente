@@ -77,7 +77,6 @@ const dibujar = (data, pagina) => {
             let p = document.createElement("p");
             let img = document.createElement("img");
             let p2 = document.createElement("p");
-            let br = document.createElement("br");
             let button = document.createElement("button")
 
             h1.textContent = e.info.title;
@@ -86,16 +85,15 @@ const dibujar = (data, pagina) => {
             p2.textContent = "Categoria: " + e.info.category;
             button.textContent = "Añadir"
             button.addEventListener("click", () => { eventCarrito(e); });
-            div.style.cursor = "pointer";
-            div.addEventListener("click", () => { eventVerMasInformacion(e) })
+            div.className = "juegos__contenedor-div"
+            // div.addEventListener("click", () => { eventVerMasInformacion(e) })
 
             lista.appendChild(div);
             div.appendChild(h1);
             div.appendChild(p);
             div.appendChild(p2);
             div.appendChild(img);
-            lista.appendChild(button)
-            lista.appendChild(br);
+            div.appendChild(button)
 
         });
 
@@ -127,7 +125,7 @@ const cargarPaginas = async () => {
 */
 window.addEventListener('scroll', () => {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        cargarPaginas("http://localhost:3000/games");
+        cargarPaginas();
     }
 });
 

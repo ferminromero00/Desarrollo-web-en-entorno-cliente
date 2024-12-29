@@ -1,0 +1,137 @@
+:root {
+    --color-primario: #2a2d3e;
+    --color-secundario: #1f6feb;
+    --color-texto: #e6edf3;
+    --color-verde: #7ee787;
+    --color-rojo: #f85149;
+    --fondo-tarjeta: #30363d;
+    --fuente-principal: 'EB Garamond', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente-principal);
+}
+
+/* Bloque: encabezado */
+.encabezado {
+    background: linear-gradient(to right, #1a1b26, #2a2d3e);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.encabezado__titulo {
+    font-size: 2.5rem;
+    color: var(--color-verde);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Bloque: navegacion */
+.navegacion {
+    background-color: var(--fondo-tarjeta);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navegacion__desplegable {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-primario);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.navegacion__boton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navegacion__boton--orden {
+    background-color: var(--color-secundario);
+}
+
+.navegacion__boton--cerrar-sesion {
+    background-color: var(--color-rojo);
+}
+
+.navegacion__boton--carrito {
+    background-color: var(--color-secundario);
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navegacion__boton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navegacion__contador {
+    color: var(--color-verde);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Bloque: contenido-principal */
+.contenido-principal {
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.contenido-principal__juegos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.juegos__contenedor-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    padding: 1rem;
+    width: 50%;
+    height: auto; 
+    margin-top: 2rem;
+    color: var(--color-texto);
+    margin-right: 2rem;
+}
+
+.juegos__contenedor-div img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.juegos__contenedor-div h1 {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
