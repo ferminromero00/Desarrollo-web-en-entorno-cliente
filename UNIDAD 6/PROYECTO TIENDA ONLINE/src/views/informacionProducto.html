@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Más Información</title>
+    <link rel="stylesheet" href="../css/informacionProduct.css">
 </head>
 
-<body style="background-color: grey;">
-    <header>
-        <button id="cerrarSesion">Cerrar Sesion</button>
-        <button onclick='window.location.href="paginaPrincipal.html"'>Volver</button>
-
-        <h1 id="ContadorCarrito"></h1>
-        <button id="verCarrito">Ver Carrito</button>
+<body class="pagina" style="background-color: grey;">
+    <header class="cabecera">
+        <button id="cerrarSesion" class="cabecera__boton cabecera__boton--cerrar-sesion">Cerrar Sesión</button>
+        <button class="cabecera__boton" onclick='window.location.href="paginaPrincipal.html"'>Volver</button>
+        <button id="verCarrito" class="cabecera__boton cabecera__boton--ver-carrito">Ver Carrito</button>
+        <h1 id="ContadorCarrito" class="cabecera__contador-carrito"></h1>
     </header>
 
-    <main>
-        <section id="lista"></section>
+    <main class="contenido">
+        <section id="lista" class="producto-detalle"></section>
     </main>
 
-    <footer>
-
+    <footer class="pie">
     </footer>
-
 
     <script type="module" src="../js/index_Pagina_Principal.js"></script>
 </body>

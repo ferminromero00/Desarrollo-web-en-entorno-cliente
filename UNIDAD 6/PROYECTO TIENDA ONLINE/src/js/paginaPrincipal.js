@@ -86,7 +86,8 @@ const dibujar = (data, pagina) => {
             button.textContent = "Añadir"
             button.addEventListener("click", () => { eventCarrito(e); });
             div.className = "juegos__contenedor-div"
-            // div.addEventListener("click", () => { eventVerMasInformacion(e) })
+            img.height = "10vh"
+            img.addEventListener("click", () => { eventCarrito(infoProduct); });
 
             lista.appendChild(div);
             div.appendChild(h1);
@@ -432,19 +433,27 @@ export const dibujarProductoSeleccionado = () => {
     let img = document.createElement("img");
     let p2 = document.createElement("p");
     let button = document.createElement("button")
+    let info = document.createElement("p");
 
     h1.textContent = infoProduct.info.title;
     p.textContent = "Precio: " + infoProduct.cheapestPriceEver.price + "€";
     img.src = infoProduct.info.thumb;
     p2.textContent = "Categoria: " + infoProduct.info.category;
     button.textContent = "Añadir"
-    button.addEventListener("click", () => { eventCarrito(infoProduct); });
+    info.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eveniet tempora accusantium similique cum, illo adipisci nesciunt! Reiciendis, voluptatibus odio, numquam facere eaque cumque at asperiores id saepe a fuga."
+
+    div.className = "producto-info"
+    p.className = "precio"
+    p2.className = "categoria"
+    button.classList = "boton-añadir"
+
 
     lista.appendChild(div);
+    div.appendChild(p2);
     div.appendChild(h1);
     div.appendChild(p);
-    div.appendChild(p2);
-    div.appendChild(img);
+    div.appendChild(info)
+    lista.appendChild(img);
     lista.appendChild(button)
 }
 
