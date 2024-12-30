@@ -87,7 +87,10 @@ const dibujar = (data, pagina) => {
             button.addEventListener("click", () => { eventCarrito(e); });
             div.className = "juegos__contenedor-div"
             img.height = "10vh"
-            img.addEventListener("click", () => { eventCarrito(infoProduct); });
+            img.addEventListener("click", () => {eventVerMasInformacion(e)})
+            h1.style.fontSize = "1rem"
+
+
 
             lista.appendChild(div);
             div.appendChild(h1);
@@ -369,7 +372,7 @@ export const pintarCarritoCompleto = () => {
             let br = document.createElement("br");
 
             div.id = "contenedorCarrito"
-            p.textContent = "Titulo: " + e.titulo;
+            p.textContent = e.titulo;
             p2.textContent = "Precio: " + (e.precio * e.cantidad).toFixed(2) + " €";
             p3.textContent = "ID-Producto: " + e.id_producto;
             p4.textContent = "Cantidad: " + e.cantidad
@@ -460,8 +463,8 @@ export const dibujarProductoSeleccionado = () => {
 /* EMAILJS */
 
 export const eventEmail = () => {
-    if (document.getElementById("email") !== null) {
-        let btn = document.getElementById("email");
+    if (document.getElementById("terminar-pedido") !== null) {
+        let btn = document.getElementById("terminar-pedido");
 
         // Inicializa EmailJS con tu Public Key
         emailjs.init("rt09wWs6HtBPV7qQO");

@@ -61,15 +61,13 @@ body {
     border: 2px solid var(--color-secondary);
     border-radius: var(--border-radius);
     background-color: transparent;
-    color: var(--color-text);
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
 }
 
-.navegacion__desplegable:hover {
-    background-color: var(--color-secondary);
-}
 
 .navegacion__boton {
     padding: 0.75rem 1.5rem;
@@ -139,7 +137,6 @@ body {
 }
 
 .juegos__contenedor-div:hover {
-    transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     background-color: var(--color-hover);
 }
@@ -187,22 +184,6 @@ body {
     padding: 2rem;
     color: var(--color-text);
     font-size: 1.25rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navegacion__boton,
-    .navegacion__desplegable {
-        width: 100%;
-    }
-
-    .contenido-principal__juegos {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-
-    .encabezado__titulo {
-        font-size: 2rem;
-    }
 }
 
 /* Cart Page Specific Styles */

@@ -21,25 +21,19 @@
     <main>
         <section id="carrito"></section>
 
-        <section id="section_carrito" class="form-terminar_pedido">
-            <form onclick="return false">
-                <label for="nom">Nombre</label>
-                <input type="text" name="nom" id="nom" required><br>
+        <section id="section-carrito" class="form-terminar-pedido">
+            <form class="form-terminar-pedido__form" onclick="return false">
+                <label class="form-terminar-pedido__label" for="nom">Nombre</label>
+                <input class="form-terminar-pedido__input" type="text" name="nom" id="nom" required><br>
 
-                <label for="email">Correo</label>
-                <input type="email" name="email" id="correo" required><br><br>
+                <label class="form-terminar-pedido__label" for="correo">Correo</label>
+                <input class="form-terminar-pedido__input" type="email" name="email" id="correo" required><br><br>
 
-                <button id="email">Terminar pedido</button>
+                <button class="form-terminar-pedido__button" id="terminar-pedido">Terminar pedido</button>
             </form>
-
-
         </section>
 
     </main>
-
-    <footer>
-
-    </footer>
 
     <script type="module" src="../js/index_Pagina_Principal.js"></script>
 </body>
