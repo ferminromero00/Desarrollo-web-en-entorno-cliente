@@ -279,7 +279,7 @@ class Carrito {
 
         if (buscarJuego.cantidad) {
             buscarJuego.cantidad++
-            div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+            div_p.innerHTML = "Cant: " + buscarJuego.cantidad
             div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
         }
         localStorage.setItem("Carrito", JSON.stringify(carrito));
@@ -301,7 +301,7 @@ class Carrito {
 
         if (buscarJuego.cantidad > 1) {
             buscarJuego.cantidad--
-            div_p.innerHTML = "Cantidad: " + buscarJuego.cantidad
+            div_p.innerHTML = "Cant: " + buscarJuego.cantidad
             div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
         } else if (buscarJuego.cantidad == 1) {
             div.remove();
@@ -374,8 +374,8 @@ export const pintarCarritoCompleto = () => {
             div.id = "contenedorCarrito"
             p.textContent = e.titulo;
             p2.textContent = "Precio: " + (e.precio * e.cantidad).toFixed(2) + " €";
-            p3.textContent = "ID-Producto: " + e.id_producto;
-            p4.textContent = "Cantidad: " + e.cantidad
+            p3.textContent = "ID: " + e.id_producto;
+            p4.textContent = "Cant: " + e.cantidad
 
             img.src = e.img;
             img.width = 150;
@@ -392,7 +392,6 @@ export const pintarCarritoCompleto = () => {
             div.appendChild(btn_borrar)
         });
     } else {
-        carrito.innerHTML = "No hay nada en el carrito"
         section.innerHTML = ""
     }
 }
@@ -404,8 +403,6 @@ export const vaciarCarrito = () => {
         añadir_al_carrito.vaciar()
     })
 }
-
-
 
 /* VER MAS INFORMACION DEL PRODUCTO */
 

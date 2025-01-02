@@ -1,15 +1,25 @@
 El proyecto debe cumplir con las siguientes indicaciones:
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 Utiliza metodología BEM para la estructura de la página.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Utiliza al menos 4 variables.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Toda la página web debe ser responsiva, se adapta a cualquier dispositivos, letras, imágenes, componentes, menú, etc. Los tamaños a tener en cuenta son: 
 Móvil: 576px
 Tablet: 1024px
 Desktop: a partir de 1024px 
+-----------------------------------------------------------------------------------------------------------------------------------------
 Debe contener una barra de navegación.  El Menú se contrae y expande correctamente cuando la página cambia de tamaños de pantalla.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Añade formularios y tablas.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Añade una galería de imágenes que estén maquetadas en grid-layout de manera irregular.
+-----------------------------------------------------------------------------------------------------------------------------------------
 Añade al menos 4 animaciones y efectos diferentes.
+-----------------------------------------------------------------------------------------------------------------------------------------
 Añade a tu página web un favicón.
-Contenido Propio.
-Originalidad y creatividad.
+-----------------------------------------------------------------------------------------------------------------------------------------
