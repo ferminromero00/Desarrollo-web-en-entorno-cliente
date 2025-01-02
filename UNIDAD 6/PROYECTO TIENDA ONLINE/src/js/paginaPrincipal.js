@@ -451,9 +451,9 @@ export const dibujarProductoSeleccionado = () => {
     lista.appendChild(div);
     div.appendChild(p2);
     div.appendChild(h1);
-    div.appendChild(p);
     div.appendChild(info)
     lista.appendChild(img);
+    div.appendChild(p);
     lista.appendChild(button)
 }
 
