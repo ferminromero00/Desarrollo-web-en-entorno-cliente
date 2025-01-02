@@ -32,18 +32,11 @@ const main = () => {
         // Configura el evento para cerrar sesión
         cerrarSesion();
 
-    // Verifica si la ruta incluye 'informacionProducto.html'
+        // Verifica si la ruta incluye 'informacionProducto.html'
     } else if (path.includes('informacionProducto.html')) {
-        // Configura los eventos para el carrito de compras
-        eventCarrito();
-        // Muestra el contenido del carrito
-        verCarrito();
         // Dibuja la información del producto seleccionado
         dibujarProductoSeleccionado();
-        // Configura el evento para cerrar sesión
-        cerrarSesion();
-
-    // Verifica si la ruta incluye 'Carrito.html'
+        // Verifica si la ruta incluye 'Carrito.html'
     } else if (path.includes('Carrito.html')) {
         // Dibuja todos los elementos del carrito
         pintarCarritoCompleto();

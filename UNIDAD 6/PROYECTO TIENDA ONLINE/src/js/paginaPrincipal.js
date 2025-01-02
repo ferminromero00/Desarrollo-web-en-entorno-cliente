@@ -87,7 +87,7 @@ const dibujar = (data, pagina) => {
             button.addEventListener("click", () => { eventCarrito(e); });
             div.className = "juegos__contenedor-div"
             img.height = "10vh"
-            img.addEventListener("click", () => {eventVerMasInformacion(e)})
+            img.addEventListener("click", () => { eventVerMasInformacion(e) })
             h1.style.fontSize = "1rem"
 
 
@@ -243,13 +243,15 @@ class Carrito {
     * @param {Object} juego - Datos del juego a añadir al carrito.
     */
     add(juego) {
+        console.log(juego);
+
         let contador = localStorage.getItem("contadorCarrito")
         contador++
         localStorage.setItem("contadorCarrito", contador)
         document.getElementById("ContadorCarrito").innerHTML = "Carrito (" + contador + ")"
 
         let titulo = juego.info.title
-        let precio = juego.cheapestPriceEver.price 
+        let precio = juego.cheapestPriceEver.price
         let img = juego.info.thumb
         let id_producto = juego.id
         let cantidad = 1
@@ -262,26 +264,48 @@ class Carrito {
         if (juegoExistente) { juegoExistente.cantidad += 1; } else {
             carrito.push({ titulo, precio, img, cantidad, id_producto });
         }
-        
-        
+
+
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
     añadir(juego, div) {
+        
         let contador = localStorage.getItem("contadorCarrito")
         contador++
         localStorage.setItem("contadorCarrito", contador)
 
+
+
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
-        let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
+        let buscarJuego
+
+        if (juego.titulo !== undefined) {
+            buscarJuego = carrito.find(e => e.titulo === juego.titulo)
+        } else {
+            buscarJuego = carrito.find(e => e.titulo === juego.info.title)
+        }
+
+        console.log(buscarJuego);
+        
         let div_p = div.querySelectorAll("p")[3];
         let div_precio = div.querySelectorAll("p")[1];
 
+
         if (buscarJuego.cantidad) {
-            buscarJuego.cantidad++
-            div_p.innerHTML = "Cant: " + buscarJuego.cantidad
-            div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
+            buscarJuego.cantidad++;
+            if (div_p && div_precio) {
+                div_p.innerHTML = "Cant: " + buscarJuego.cantidad;
+                div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €";
+            }
+        } else {
+            buscarJuego.cantidad++;
+            if (div_p && div_precio) {
+                div_p.innerHTML = "";
+                div_precio.innerHTML = "";
+            }
         }
+
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
     /**
@@ -441,6 +465,11 @@ export const dibujarProductoSeleccionado = () => {
     p2.textContent = "Categoria: " + infoProduct.info.category;
     button.textContent = "Añadir"
     info.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eveniet tempora accusantium similique cum, illo adipisci nesciunt! Reiciendis, voluptatibus odio, numquam facere eaque cumque at asperiores id saepe a fuga."
+
+    button.addEventListener("click", () => {
+        añadir_al_carrito.añadir(infoProduct, div)
+        window.location.href = "Carrito.html"
+    })
 
     div.className = "producto-info"
     p.className = "precio"

@@ -244,8 +244,14 @@ main {
     background-color: var(--color-card);
     border-radius: var(--border-radius);
     display: block;
-    width: 24rem;
-    margin-left: 29rem;
+    width: 100%;
+}
+
+#carrito:empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
 }
 
 @media (max-width: 1204px) {
