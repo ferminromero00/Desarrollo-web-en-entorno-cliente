@@ -2,10 +2,23 @@
 
 Se presupone que tenemos una planificación, en fin, ya me entendéis vosotros y vuestras personalidades pero bueno puedo hacer la vista 
 gorda en este caso porque es individual.
+-----------------------------------------------------------------------------------------------------------------------------------------
 Sistema de control de versiones.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Flujo de integración continua y despliegue continuo. GithubActions
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 IAC, terraform
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Documentación automática de código.
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Prueba Unitarias
+HECHO
+-----------------------------------------------------------------------------------------------------------------------------------------
 Despliegue en Contenedores, obviamente implica un contenedor con servidor web que se comunique con servidores Json Server y 
 otra apreciación si hay alguien que lo quiere hacer directamente en formato Serverless (ECS, AWS Fargate) pues divino.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
