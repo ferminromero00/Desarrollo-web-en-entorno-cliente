@@ -1,4 +1,4 @@
-import style from "../components/Ejercicio1.module.css"
+import style from "./Ejercicio1.module.css"
 
 export default function Ejercicio1() {
 
