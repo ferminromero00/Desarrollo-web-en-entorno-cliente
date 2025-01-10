@@ -1,5 +1,11 @@
 export default function Parrafo({ children, codigo }) {
+    console.log(codigo);
+
+    const tamaño = {
+        fontSize: '2rem'
+    }
+
     return (
-        <p> {codigo}: {children} </p>
+        <p style={tamaño}> {codigo}: {children} </p>
     );
 }
