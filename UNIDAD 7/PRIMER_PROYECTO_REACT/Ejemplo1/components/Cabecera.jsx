@@ -1,5 +1,7 @@
+import styles from "./Cabecera.module.css";
+
 export default function Cabecera({ children }) {
     return (
-        <h1 style={{color: "red"}}> {children} </h1>
+        <h1 className={styles}> {children} </h1>
     );
 }
