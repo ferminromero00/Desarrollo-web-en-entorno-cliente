@@ -5,8 +5,8 @@ import Ejercicio2 from './components/Ejercicio2/Ejercicio2'
 function App() {
   return (
     <>
-      <Ejercicio1></Ejercicio1>
-      <Ejercicio2></Ejercicio2>
+        <Ejercicio1></Ejercicio1>
+        <Ejercicio2></Ejercicio2>
     </>
   )
 }

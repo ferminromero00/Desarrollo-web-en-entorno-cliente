@@ -19,12 +19,13 @@ li {
     font-weight: 200;
 }
 
-div {
+.ejercicio1Div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    height: 80vh;
+    width: 80rem;
+    height: 90vh;
     background-color: lightcoral;
+    margin-bottom: 10rem;
 }
