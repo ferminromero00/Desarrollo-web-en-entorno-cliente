@@ -510,7 +510,7 @@ export const eventEmail = () => {
                 let cantidad = e.cantidad
 
                 resumenCarrito += `- Titulo: ${titulo}\n  -Precio: ${precio * cantidad}€\n -Cantidad: ${cantidad}\n\n`;
-                precioTotal += precioTotal + precio * cantidad
+                precioTotal += (precio * cantidad)
             })
 
             // Define los parámetros para el correo
