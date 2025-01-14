@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    height: 18vh;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.caja {
+    width: 100%;
+    margin-bottom: 2rem;
+    border: 1px solid;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
