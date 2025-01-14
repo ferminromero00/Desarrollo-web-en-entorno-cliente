@@ -9,32 +9,20 @@
 function fetch1(url) {
     return fetch(url)
         .then(res => res.json())
-        .then(json => {
-            return json;
-        });
+        .then(json => { return json; });
 }
 
+let paginaActual = 0; // Pagina que se muestra en la web
+const juegosPorPagina = 8; // Define cuántos juegos se mostrarán por página.
+let cargando = false; // Indica si se cargan más juegos. Evita realizar múltiples solicitudes simultáneas.
+let categoriaSeleccionada = ""; // Seleccion de la categoria seleccionada por el filtro
+let ordenlistado = "desc"; // Orden de la api para dibujar los juegos (por precio)
+
+// Si no existe el carrito, lo inicializa con un array vacío
+if (!localStorage.getItem("Carrito")) { localStorage.setItem("Carrito", JSON.stringify([])); }
 
 /* DIBUJAR JUEGOS Y SCROLL INFINITO*/
 
-// Lleva un registro de la página actual que se está mostrando en la interfaz.
-let paginaActual = 0;
-
-// Define cuántos juegos se mostrarán por página.
-const juegosPorPagina = 8;
-
-// Indica si se está realizando actualmente una solicitud para cargar más juegos. Evita realizar múltiples solicitudes simultáneas.
-let cargando = false;
-
-// Almacena la categoría actualmente seleccionada para filtrar los juegos, se actualiza cuando el usuario selecciona una categoría diferente
-let categoriaSeleccionada = "";
-
-// Indica el orden de clasificación de los juegos. Se alterna al hacer clic en el botón de ordenar.
-let ordenlistado = "desc";
-
-if (!localStorage.getItem("Carrito")) {
-    localStorage.setItem("Carrito", JSON.stringify([]));
-}
 /**
 * Inicia el proceso de dibujo de juegos en la interfaz.
 * Llama a la función `dibujar` con los datos iniciales y configura el scroll infinito
@@ -45,6 +33,25 @@ export const eventDibujar = async () => {
 }
 
 /**
+* Se encargar de dibujar los juegos de 8 en 8 mientras haces el scroll
+*/
+const cargarPaginas = async () => {
+    //Evita que se hagan muchas peticiones a la vez
+    if (cargando) return;
+
+    //Indica que se puede hacer una nueva peticion, dibujando nuevos articulos
+    cargando = true;
+
+    let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
+    let data = await fetch1(url);
+
+    //Añade una nueva pagina para que la siguiente carga se haga en el orden correcto
+    paginaActual++;
+
+    dibujar(data, paginaActual);
+}
+
+/**
 * Muestra una lista de juegos en la interfaz basándose en los datos proporcionados y la página actual.
 * Ordena los datos según el precio más barato y los organiza por páginas.
 * @param {Array<Object>} data - Lista de juegos obtenidos desde la API.
@@ -52,24 +59,23 @@ export const eventDibujar = async () => {
 */
 const dibujar = (data, pagina) => {
     data.sort((a, b) => {
-        if (ordenlistado === "asc") {
-            return a.cheapestPriceEver.price - b.cheapestPriceEver.price;
-        } else {
-            return b.cheapestPriceEver.price - a.cheapestPriceEver.price;
-        }
+        return ordenlistado === "asc"
+            ? a.cheapestPriceEver.price - b.cheapestPriceEver.price
+            : b.cheapestPriceEver.price - a.cheapestPriceEver.price;
     });
 
+    /* 
+     * Hace que no se duplique la llamada de la API, enseñando de 8 en 8. Resta uno porque si no llamaria cada vez mas paginas
+     * Marca tambien desde que producto debe seguir dibujando, asi le marcamos al forEach primer y ultimo juego al que dibujar
+     */
     let principio = (pagina - 1) * juegosPorPagina;
     let final = pagina * juegosPorPagina;
-    // Obtengo solo los juegos para la página actual.
+
+    // Seleccionas los juegos que se va a dibujar en la siguiente peticion
     let objetos = data.slice(principio, final);
 
     if (document.getElementById("lista_juegos") !== null) {
         let lista = document.getElementById("lista_juegos");
-
-        if (pagina === 1) {
-            lista.innerHTML = "";
-        }
 
         objetos.forEach(e => {
             let div = document.createElement("div");
@@ -84,13 +90,15 @@ const dibujar = (data, pagina) => {
             img.src = e.info.thumb;
             p2.textContent = "Categoria: " + e.info.category;
             button.textContent = "Añadir"
+
+            // Evento para añadir juegos al carrito
             button.addEventListener("click", () => { eventCarrito(e); });
+            // Ver toda la informacion de la API
+            img.addEventListener("click", () => { eventVerMasInformacion(e) })
+
             div.className = "juegos__contenedor-div"
             img.height = "10vh"
-            img.addEventListener("click", () => { eventVerMasInformacion(e) })
             h1.style.fontSize = "1rem"
-
-
 
             lista.appendChild(div);
             div.appendChild(h1);
@@ -98,40 +106,18 @@ const dibujar = (data, pagina) => {
             div.appendChild(p2);
             div.appendChild(img);
             div.appendChild(button)
-
         });
 
         // Indica que la carga ha terminado.
         cargando = false;
-        document.getElementById("cargando").style.display = "none";
     }
-}
-
-/**
-* Se encargar de dibujar los juegos de 8 en 8 mientras haces el scroll
-*/
-const cargarPaginas = async () => {
-    if (cargando) return;
-    cargando = true;
-
-    if (document.getElementById("cargando") !== null) {
-        document.getElementById("cargando").style.display = "block";
-    }
-
-    let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
-    let data = await fetch1(url);
-    paginaActual++;
-    dibujar(data, paginaActual);
+    console.log(principio, final, objetos);
 }
 
 /* 
 * Detecta cuando el usuario hace scroll hasta el final de la página y llama a `cargarPaginas` para cargar más juegos.
 */
-window.addEventListener('scroll', () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        cargarPaginas();
-    }
-});
+window.addEventListener('scroll', () => { if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { cargarPaginas(); } });
 
 /* LISTAR POR CATEGORIAS */
 
@@ -151,16 +137,9 @@ export const eventCategorias = async () => {
 * @param {Array<Object>} url - Lista de juegos obtenidos desde la API.
 * @returns {Array<string>} - Lista de categorías únicas.
 */
-
 const listarCategorias = (url) => {
     let categorias = []
-
-    url.forEach(e => {
-
-        if (!categorias.includes(e.info.category)) {
-            categorias.push(e.info.category)
-        }
-    })
+    url.forEach(e => { if (!categorias.includes(e.info.category)) { categorias.push(e.info.category) } })
     return categorias;
 }
 
@@ -186,13 +165,13 @@ const filtrar = () => {
 
     lista_html.addEventListener("change", async (event) => {
         categoriaSeleccionada = event.target.value;
-        paginaActual = 1;
+        paginaActual = 1; //Volvemos a cargar la pagina desde 0, para que salgan los nuevos juegos filtrados
 
         document.getElementById("lista_juegos").innerHTML = "";
         let url = `http://localhost:3000/games?info.category=${categoriaSeleccionada}`;
-        dibujar(await fetch1(url), paginaActual);
+        let data = await fetch1(url);
+        dibujar(data, paginaActual);
     });
-
 }
 
 /* CAMBIAR ASCENDENTE O DESCENDENTE */
@@ -206,6 +185,8 @@ const ordenar = () => {
     ordenar_btn.addEventListener("click", async () => {
         ordenlistado = ordenlistado === "asc" ? "desc" : "asc";
         ordenar_btn.textContent = `Ordenar: ${ordenlistado === "asc" ? "Ascendente" : "Descendente"}`;
+
+        //Lo mismo para aqui, cuando cambies el orden de los precios, se cargue de nuevo a la pagina
         paginaActual = 1;
 
         document.getElementById("lista_juegos").innerHTML = "";
@@ -226,84 +207,74 @@ export const eventCarrito = (datos) => {
     let tituloCarrito = document.getElementById("ContadorCarrito");
     tituloCarrito.innerHTML = "Carrito (" + contador + ")"
 
-    if (datos !== undefined) {
-        añadir_al_carrito.add(datos)
-    }
+    if (datos !== undefined) { añadir_al_carrito.add(datos) }
+}
+
+/**
+ * Añade un evento de clic al botón con ID "verCarrito" para redirigir al usuario
+ * a la página del carrito (Carrito.html).
+ */
+export const verCarrito = () => {
+    let btn = document.getElementById("verCarrito")
+    btn.addEventListener("click", () => { window.location.href = "Carrito.html"; })
 }
 
 /**
 * Clase Carrito, maneja las operaciones del carrito de compras.
 */
 class Carrito {
-    constructor() {
-        this.carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
-    }
+    // Coge el carrito desde localStorage o como un array vacío.
+    constructor() { this.carrito = JSON.parse(localStorage.getItem("Carrito")) || []; }
+
     /**
     * Añade un juego al carrito y actualiza la visualización del carrito.
     * @param {Object} juego - Datos del juego a añadir al carrito.
     */
     add(juego) {
-        console.log(juego);
-
+        // Incrementamos el contador del carrito y lo actualiza en localStorage.
         let contador = localStorage.getItem("contadorCarrito")
         contador++
         localStorage.setItem("contadorCarrito", contador)
         document.getElementById("ContadorCarrito").innerHTML = "Carrito (" + contador + ")"
 
+        // Extrae los datos del juego.
         let titulo = juego.info.title
         let precio = juego.cheapestPriceEver.price
         let img = juego.info.thumb
         let id_producto = juego.id
         let cantidad = 1
 
+        // Recupera el carrito actual desde localStorage.
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
 
-        // Verificar si el juego ya existe en el carrito
+        // Verificar si el juego ya existe en el carrito. Si ya existe, incrementa la cantidad.
         let juegoExistente = carrito.find(e => e.titulo === titulo);
-
-        if (juegoExistente) { juegoExistente.cantidad += 1; } else {
-            carrito.push({ titulo, precio, img, cantidad, id_producto });
-        }
-
+        if (juegoExistente) { juegoExistente.cantidad += 1; } else { carrito.push({ titulo, precio, img, cantidad, id_producto }); }
 
         // Guardar el carrito actualizado en localStorage
         localStorage.setItem("Carrito", JSON.stringify(carrito));
     }
     añadir(juego, div) {
-        
+        console.log(juego);
+
+        //Aqui volvemos a actualizar el contador del carrito, pero dentro del Carrito
         let contador = localStorage.getItem("contadorCarrito")
         contador++
         localStorage.setItem("contadorCarrito", contador)
 
-
-
+        // Recupera el carrito actual desde localStorage o crea un array vacío si no existe.
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
-        let buscarJuego
 
-        if (juego.titulo !== undefined) {
-            buscarJuego = carrito.find(e => e.titulo === juego.titulo)
-        } else {
-            buscarJuego = carrito.find(e => e.titulo === juego.info.title)
-        }
-
-        console.log(buscarJuego);
-        
         let div_p = div.querySelectorAll("p")[3];
         let div_precio = div.querySelectorAll("p")[1];
 
-
+        // Si el juego ya existe en el carrito incrementa la cantidad del juego en el carrito
         if (buscarJuego.cantidad) {
+            // Busca el juego en el carrito según su título.
+            let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
             buscarJuego.cantidad++;
-            if (div_p && div_precio) {
-                div_p.innerHTML = "Cant: " + buscarJuego.cantidad;
-                div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €";
-            }
-        } else {
-            buscarJuego.cantidad++;
-            if (div_p && div_precio) {
-                div_p.innerHTML = "";
-                div_precio.innerHTML = "";
-            }
+            div_p.innerHTML = "Cant: " + buscarJuego.cantidad;
+            div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €";
         }
 
         localStorage.setItem("Carrito", JSON.stringify(carrito));
@@ -314,21 +285,28 @@ class Carrito {
     * @param {number} id_producto - ID del producto a eliminar.
     */
     borrar(juego, div) {
+        //Actualizamos el carrito, restando el carrito
         let contador = localStorage.getItem("contadorCarrito")
         contador--
         localStorage.setItem("contadorCarrito", contador)
 
+        // Recupera el carrito actual desde localStorage o crea un array vacío si no existe.
         let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
+        // Busca el juego en el carrito usando su título.
         let buscarJuego = carrito.find(e => e.titulo === juego.titulo)
+
         let div_p = div.querySelectorAll("p")[3];
         let div_precio = div.querySelectorAll("p")[1];
 
+        // Si la cantidad del juego es mayor a 1. Reduce la cantidad del juego en el carrito.
         if (buscarJuego.cantidad > 1) {
             buscarJuego.cantidad--
             div_p.innerHTML = "Cant: " + buscarJuego.cantidad
             div_precio.innerHTML = "Precio: " + (buscarJuego.precio * buscarJuego.cantidad).toFixed(2) + " €"
         } else if (buscarJuego.cantidad == 1) {
+            // Elimina el contenedor del juego del DOM.
             div.remove();
+            // Filtra el juego del carrito para eliminarlo completamente.
             carrito = carrito.filter(e => e.titulo !== juego.titulo);
         }
         localStorage.setItem("Carrito", JSON.stringify(carrito));
@@ -342,24 +320,9 @@ class Carrito {
         localStorage.setItem("contadorCarrito", 0);
         carrito.innerHTML = ""
     }
-
 }
 
 const añadir_al_carrito = new Carrito();
-
-
-/**
- * Añade un evento de clic al botón con ID "verCarrito" para redirigir al usuario
- * a la página del carrito (Carrito.html).
- */
-export const verCarrito = () => {
-    let btn = document.getElementById("verCarrito")
-
-    // Escucha el evento "click" en el botón y redirige a la página "Carrito.html".
-    btn.addEventListener("click", () => {
-        window.location.href = "Carrito.html";
-    })
-}
 
 /**
  * Recupera los elementos almacenados en el localStorage bajo la clave "Carrito",
@@ -367,9 +330,12 @@ export const verCarrito = () => {
  * Si no hay elementos en el carrito, muestra un mensaje indicándolo.
  */
 export const pintarCarritoCompleto = () => {
+    // Obtiene el elemento del DOM que contiene la representación del carrito.
     let carrito = document.getElementById("carrito");
     let section = document.getElementById("section_carrito")
     carrito.innerHTML = "";
+
+    // Recupera los elementos del carrito almacenados en localStorage, si no hay lo inicia vacio
     let elementos = JSON.parse(localStorage.getItem("Carrito")) || [];
 
     if (elementos.length > 0) {
@@ -382,24 +348,21 @@ export const pintarCarritoCompleto = () => {
             let img = document.createElement("img");
             let btn_borrar = document.createElement("button")
             let btn_añadir = document.createElement("button")
-
-            btn_borrar.addEventListener("click", () => {
-                añadir_al_carrito.borrar(e, div)
-            })
-            btn_borrar.textContent = "Borrar"
-
-            btn_añadir.addEventListener("click", () => {
-                añadir_al_carrito.añadir(e, div)
-            })
-            btn_añadir.textContent = "Añadir"
-
             let br = document.createElement("br");
 
-            div.id = "contenedorCarrito"
+            //LLamas al carrito para añadir un elemento
+            btn_añadir.addEventListener("click", () => { añadir_al_carrito.añadir(e, div) })
+            //Llamas al carrito para borrar un elemento
+            btn_borrar.addEventListener("click", () => { añadir_al_carrito.borrar(e, div) })
+
+            btn_borrar.textContent = "Borrar"
+            btn_añadir.textContent = "Añadir"
             p.textContent = e.titulo;
             p2.textContent = "Precio: " + (e.precio * e.cantidad).toFixed(2) + " €";
             p3.textContent = "ID: " + e.id_producto;
             p4.textContent = "Cant: " + e.cantidad
+
+            div.id = "contenedorCarrito"
 
             img.src = e.img;
             img.width = 150;
@@ -415,17 +378,15 @@ export const pintarCarritoCompleto = () => {
             div.appendChild(btn_añadir)
             div.appendChild(btn_borrar)
         });
-    } else {
-        section.innerHTML = ""
-    }
+    } else { section.innerHTML = "" }
 }
 
+/**
+ * Añade un evento al botón de vaciar carrito para que, al hacer clic, se vacíe el carrito.
+ */
 export const vaciarCarrito = () => {
     let btn_vaciar = document.getElementById("vaciar")
-
-    btn_vaciar.addEventListener("click", () => {
-        añadir_al_carrito.vaciar()
-    })
+    btn_vaciar.addEventListener("click", () => { añadir_al_carrito.vaciar() })
 }
 
 /* VER MAS INFORMACION DEL PRODUCTO */
@@ -437,15 +398,16 @@ export const vaciarCarrito = () => {
 */
 export const eventVerMasInformacion = (datos) => {
     if (datos != undefined) {
+        // Guardo el juego seleccionado el LocalStorage, para pintarlo en la siguiente pagina
         localStorage.setItem("productoseleccionado", JSON.stringify(datos))
         window.location.href = "informacionProducto.html";
     }
 }
+
 /**
 * Recupera los detalles de un producto seleccionado desde el localStorage y lo
 * dibuja en el contenedor especificado en la página.
 */
-
 export const dibujarProductoSeleccionado = () => {
     let infoProduct = JSON.parse(localStorage.getItem("productoseleccionado"));
 
@@ -461,12 +423,14 @@ export const dibujarProductoSeleccionado = () => {
 
     h1.textContent = infoProduct.info.title;
     p.textContent = "Precio: " + infoProduct.cheapestPriceEver.price + "€";
-    img.src = infoProduct.info.thumb;
     p2.textContent = "Categoria: " + infoProduct.info.category;
     button.textContent = "Añadir"
     info.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eveniet tempora accusantium similique cum, illo adipisci nesciunt! Reiciendis, voluptatibus odio, numquam facere eaque cumque at asperiores id saepe a fuga."
 
+    img.src = infoProduct.info.thumb;
+
     button.addEventListener("click", () => {
+        // Podemos añadir el juego en la pagina y que te lleve al carrito al mismo tiempo
         añadir_al_carrito.añadir(infoProduct, div)
         window.location.href = "Carrito.html"
     })
@@ -475,7 +439,6 @@ export const dibujarProductoSeleccionado = () => {
     p.className = "precio"
     p2.className = "categoria"
     button.classList = "boton-añadir"
-
 
     lista.appendChild(div);
     div.appendChild(p2);
