@@ -19,7 +19,6 @@ const main = () => {
     let path = window.location.pathname;
 
     if (path.includes('paginaPrincipal.html')) {
-        
         eventDibujar();
         eventCategorias();
         eventCarrito();
@@ -29,7 +28,6 @@ const main = () => {
     } else if (path.includes('informacionProducto.html')) {
         dibujarProductoSeleccionado();
     } else if (path.includes('Carrito.html')) {
-
         pintarCarritoCompleto();
         vaciarCarrito();
         eventEmail();
