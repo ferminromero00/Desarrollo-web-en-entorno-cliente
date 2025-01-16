@@ -418,27 +418,18 @@ export const dibujarProductoSeleccionado = () => {
     let p = document.createElement("p");
     let img = document.createElement("img");
     let p2 = document.createElement("p");
-    let button = document.createElement("button")
     let info = document.createElement("p");
 
     h1.textContent = infoProduct.info.title;
     p.textContent = "Precio: " + infoProduct.cheapestPriceEver.price + "€";
     p2.textContent = "Categoria: " + infoProduct.info.category;
-    button.textContent = "Añadir"
     info.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eveniet tempora accusantium similique cum, illo adipisci nesciunt! Reiciendis, voluptatibus odio, numquam facere eaque cumque at asperiores id saepe a fuga."
 
     img.src = infoProduct.info.thumb;
 
-    button.addEventListener("click", () => {
-        // Podemos añadir el juego en la pagina y que te lleve al carrito al mismo tiempo
-        añadir_al_carrito.añadir(infoProduct, div)
-        window.location.href = "Carrito.html"
-    })
-
     div.className = "producto-info"
     p.className = "precio"
     p2.className = "categoria"
-    button.classList = "boton-añadir"
 
     lista.appendChild(div);
     div.appendChild(p2);
