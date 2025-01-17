@@ -174,6 +174,7 @@ const filtrar = () => {
     });
 }
 
+
 /* CAMBIAR ASCENDENTE O DESCENDENTE */
 
 /* 
@@ -196,8 +197,10 @@ const ordenar = () => {
     });
 }
 
-/* CARRITO */
 
+
+
+/* CARRITO */
 /**
 * Añade un juego al carrito.
 * @param {Object} datos - Datos del juego a añadir al carrito.
@@ -389,8 +392,9 @@ export const vaciarCarrito = () => {
     btn_vaciar.addEventListener("click", () => { añadir_al_carrito.vaciar() })
 }
 
-/* VER MAS INFORMACION DEL PRODUCTO */
 
+
+/* VER MAS INFORMACION DEL PRODUCTO */
 /**
 * Guarda la información de un producto seleccionado en el localStorage y redirige
 * al usuario a la página de detalles del producto (informacionProducto.html).
@@ -440,8 +444,9 @@ export const dibujarProductoSeleccionado = () => {
     lista.appendChild(button)
 }
 
-/* EMAILJS */
 
+
+/* EMAILJS */
 export const eventEmail = () => {
     if (document.getElementById("terminar-pedido") !== null) {
         let btn = document.getElementById("terminar-pedido");
@@ -479,7 +484,11 @@ export const eventEmail = () => {
             // Envía el correo con EmailJS
             emailjs.send('service_essgrlt', 'template_b5o6vz6', parametros)
                 .then(function (response) {
-                    console.log('¡Correo enviado exitosamente!', response.status, response.text);
+                    alert("¡Pedido realizado con exito!")
+                    localStorage.removeItem("Carrito");
+                    localStorage.setItem("contadorCarrito", 0);
+                    window.location.href = '../views/paginaPrincipal.html';
+
                 }, function (error) {
                     console.error('Error al enviar el correo:', error);
                 });
@@ -487,8 +496,10 @@ export const eventEmail = () => {
     }
 };
 
-/* CERRAR SESION */
 
+
+
+/* CERRAR SESION */
 /**
 * Limpia todos los datos almacenados en el localStorage y redirige al usuario
 * a la página de inicio (index.html).
