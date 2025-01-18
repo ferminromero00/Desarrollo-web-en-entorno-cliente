@@ -190,6 +190,7 @@ body {
     border-radius: 999px;
     font-size: 0.875rem;
     font-weight: 600;
+    text-align: center;
 }
 
 /* Main Content */
@@ -201,9 +202,21 @@ body {
 
 .contenido-principal__juegos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     padding: 1rem;
+    justify-content: center;
+}
+
+.juegos__contenedor-div:nth-child(8n+5),
+.juegos__contenedor-div:nth-child(8n+6) {
+    grid-column: span 2;
+}
+
+/* Segunda fila: elementos 7-8 ocupan las dos últimas columnas */
+.juegos__contenedor-div:nth-child(8n+7),
+.juegos__contenedor-div:nth-child(8n+8) {
+    grid-column: span 2;
 }
 
 .juegos__contenedor-div {
@@ -269,6 +282,19 @@ body {
 .juegos__contenedor-div button:hover {
     background-color: var(--color-accent);
     transform: translateY(-2px);
+}
+
+@media (max-width: 1312px) {
+    .contenido-principal {
+        max-width: 100%;  
+        margin: 2rem auto;  
+        padding: 0 1.5rem;
+    }
+    
+    .contenido-principal__juegos {
+        grid-template-columns: repeat(2, 5fr);
+        gap: 1rem;
+    }
 }
 
 
@@ -371,27 +397,22 @@ body {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
-    
 }
 
 @media (max-width: 685px) {
     .navegacion__desplegable {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
     }
 
     .navegacion__boton {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
     }
 
-    .navegacion__contador {
-        font-size: 0.6rem;
-        width: 5.9rem;
-    }
 
     .contenido-principal {
-        max-width: 100px;
-        margin-right: 55rem;
-        margin-left: 1.5rem;
+        max-width: 100%;  
+        margin: 2rem auto;  
+        padding: 0 1.5rem;
     }
     
     .contenido-principal__juegos {
@@ -409,14 +430,13 @@ body {
     
 }
 
-@media (max-width: 574px) {
+@media (max-width: 576px) {
     .navegacion__contador {
-        font-size: 0.6rem;
-        width: 6.6rem;
+        font-size: 0.7rem;
+        text-align: center;
     }
 
     .contenido-principal {
-        max-width: 100px;
         margin-right: 0rem;
         margin-left: 0.7rem;
     }
