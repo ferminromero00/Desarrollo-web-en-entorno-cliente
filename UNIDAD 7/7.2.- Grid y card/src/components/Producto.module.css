@@ -5,9 +5,7 @@
 }
 
 img {
-    height: 18vh;
-    margin-bottom: 3rem;
-    margin-top: 2rem;
+    width: 100%;
 }
 
 .caja {
@@ -20,4 +18,8 @@ img {
 h1 {
     font-size: 1.3rem;
     margin-bottom: 2rem;
+}
+
+.cajaImg {
+    width: 100%;
 }
