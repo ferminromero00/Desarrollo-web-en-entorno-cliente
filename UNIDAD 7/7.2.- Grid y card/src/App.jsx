@@ -1,6 +1,8 @@
 import './App.css'
 import Producto from './components/Producto'
 import ProductList from './components/ProductList'
+import Filtro from './components/Filtro';
+
 
 function App() {
   let obj = { title: "Manzana", price: "32€", description: "comida" }
@@ -8,6 +10,8 @@ function App() {
   return (
     <>
       {/* <Producto producto={obj}></Producto> */}
+      <Filtro></Filtro>
+
       <div className='todo'>
         <ProductList></ProductList>
       </div>

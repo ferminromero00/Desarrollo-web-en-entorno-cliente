@@ -7,9 +7,7 @@ export default function Producto({ producto }) {
                 <h1> {producto.title} </h1>
                 <p> {producto.description} </p>
                 <p> {producto.price} </p>
-                <div className={style.cajaImg}>
-                    <img src={producto.image} />
-                </div>
+                <div className={style.cajaImg}><img src={producto.image} /></div>
             </div>
         </>
     );
