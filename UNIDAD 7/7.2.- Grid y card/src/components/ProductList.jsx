@@ -9,6 +9,7 @@ export default function ProductList() {
 
     //Recomendado para React  
     const arrayProductos = productos.map(e => { return <Producto key={e.id} producto={e} /> });
+    
     return (<>{arrayProductos}</>)
 }
 

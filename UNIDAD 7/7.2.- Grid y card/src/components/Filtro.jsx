@@ -11,7 +11,7 @@ export default function Filtro() {
     return (
         <>
             <input id="inputPrecio" type="text" name="Filtrar" placeholder="Filtrado de precio" onChange={(e) => precioe = e.target.value} />
-            <button onClick={() => handleFiltrar(precioe)}>Filtrar2</button>
+            <button onClick={() => handleFiltrar(precioe)}>Filtrar</button>
         </>
     )
 }
