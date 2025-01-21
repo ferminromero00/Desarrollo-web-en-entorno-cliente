@@ -6,6 +6,23 @@
     <title>PaginaPrincipal</title>
 </head>
 <body>
-    
+    <h3>Filtro</h3>
+    <select name="Filtro" id="Filtro">
+        <option value="price">price</option>
+        <option value="rate">rate</option>
+        <option value="count">count</option>
+    </select>
+    <label for="">Valor</label>
+    <input type="text" name="valor" id="valor">
+    <button id="botonFiltrar">Filtrar</button>
+
+    <div id="carrito">
+        <h1>Carrito</h1>
+        <p id="msj"></p>
+    </div>
+
+    <div id="principal"></div>
+
+    <script src="../js/index_principal.js" type="module"></script>
 </body>
 </html>
