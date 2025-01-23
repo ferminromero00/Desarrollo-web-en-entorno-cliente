@@ -7,8 +7,7 @@ export function fetchProductos() {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://fakestoreapi.com/products", true);
         xhr.onload = function () {
-            const productos = JSON.parse(xhr.responseText);
-            resolve(productos);
+            const productos = JSON.parse(xhr.responseText); resolve(productos);
         };
         xhr.send();
     });
