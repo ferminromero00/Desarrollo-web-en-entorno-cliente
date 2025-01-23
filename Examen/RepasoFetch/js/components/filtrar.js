@@ -6,9 +6,7 @@ export const EventFiltrar = () => {
     let valor = document.getElementById("valor")
     let btn = document.getElementById("buscarFiltro")
 
-    btn.addEventListener("click", () => {
-        Filtrar(filtro.value, valor.value)
-    })
+    btn.addEventListener("click", () => { Filtrar(filtro.value, valor.value) })
 }
 
 const Filtrar = async (filtro, valor) => {

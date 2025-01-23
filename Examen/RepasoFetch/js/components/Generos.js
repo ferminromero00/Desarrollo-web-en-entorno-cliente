@@ -7,11 +7,7 @@ export const EventCategorias = async () => {
 
 const categorias = (productos) => {
     let arrCategorias = [];
-    productos.forEach(e => {
-        if (!arrCategorias.includes(e.category)) {
-            arrCategorias.push(e.category)
-        }
-    });
+    productos.forEach(e => { if (!arrCategorias.includes(e.category)) { arrCategorias.push(e.category) } });
     return arrCategorias;
 }
 

@@ -6,7 +6,6 @@ class Carrito {
     add(item){
         this.carrito.push(item)
         this.dibujarCarrito()
-
     }
 
     dibujarCarrito() {
