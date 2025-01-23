@@ -15,11 +15,13 @@ const valida = (users, name, contrasena) => {
     let mensaje = document.getElementById("msj")
 
     for (let e = 0; e < users.length; e++) {
-        if (users[e].username === name || users[e].password === contrasena) {
-            window.location = "html/PaginaPrincipal.html"
-        } else {
-            mensaje.innerHTML = "Usuario incorrecto"
+        if (users[e].username === name && users[e].password === contrasena) {
+            window.location = "html/PaginaPrincipal.html";
+            usuarioEncontrado = true;
+            break;
         }
     }
+
+    if (!usuarioEncontrado) { mensaje.innerHTML = "Usuario incorrecto"; }
 
 }
