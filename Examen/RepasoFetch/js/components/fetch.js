@@ -1,6 +1,4 @@
-export const fetchUsuarios = () => {
-    return fetch('https://fakestoreapi.com/users').then(res => res.json())
-}
+export const fetchUsuarios = () => { return fetch('https://fakestoreapi.com/users').then(res => res.json()) }
 
 export function fetchProductos() {
     return new Promise((resolve) => {
