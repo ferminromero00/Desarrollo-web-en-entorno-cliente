@@ -1,4 +1,5 @@
 import productos from '../../data/productos.json'
+import style from './Producto.module.css';
 
 
 export default function Filtro() {

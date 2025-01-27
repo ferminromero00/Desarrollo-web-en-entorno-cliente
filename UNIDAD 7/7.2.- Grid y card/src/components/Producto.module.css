@@ -23,3 +23,8 @@ h1 {
 .cajaImg {
     width: 100%;
 }
+
+.foto {
+    width: 200px;
+    height: 200px;
+}
