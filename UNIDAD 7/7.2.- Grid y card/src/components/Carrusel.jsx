@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import datos from '../../data/productos.json';
 import Producto from "./Producto"
 
 export default function Carrusel() {
-    const [indice, setIndice] = useState(0)
-    document.title = indice;
-    localStorage.setItem("indice", indice)
+    const [indice, setIndice] = useState(1)
+    const [producto, setProducto] = useState({})
 
     useEffect(() => {
-        document.title = indice;
-        localStorage.setItem("indice", indice)
-        console.log("Ejecutando useEffect");
+        async function fetchData() {
+            document.title = indice;
+            localStorage.setItem("indice", indice)
+            console.log("Ejecutando useEffect");
 
-        fetch(`https://fakestoreapi.com/products/${indice}`)
-            .then(res => res.json())
-            .then(json => console.log(json))
+            let respuesta = await fetch(`https://fakestoreapi.com/products/${indice}`);
+            let data = await respuesta.json();
+            setProducto(data)
+        }
+        fetchData()
     }, [indice])
+
 
     return (
         <>
+            {console.log(producto)}
             {console.log("Ejecutando componente")}
-            <Producto producto={datos[indice]}></Producto>
+            <Producto producto={producto}></Producto>
             <p> {indice} </p><br />
             <button onClick={() => { setIndice(indice + 1); }}>{">"}</button>
-            {indice >= 1 && <button onClick={() => { setIndice(indice - 1); }}>{"<"}</button>}
+            {indice >= 2 && <button onClick={() => { setIndice(indice - 1); }}>{"<"}</button>}
         </>
     )
 }
