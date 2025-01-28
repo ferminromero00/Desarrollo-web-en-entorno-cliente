@@ -9,9 +9,7 @@ function App() {
 
   return (
     <>
-      <section className="container mt-5">
-        <RecogerDatos onAddLibro={añadirLibro} />
-      </section>
+      <section className="container mt-5"><RecogerDatos onAddLibro={añadirLibro} /></section>
 
       <section className="container mt-5">
         <h1>My Reading List</h1>
