@@ -1,4 +1,6 @@
 import React from 'react'
+import Buscador from './Buscador'
+
 
 export default function Navegacion() {
     return (
@@ -16,6 +18,7 @@ export default function Navegacion() {
                         </ul>
                     </div>
                 </div>
+                <Buscador />
             </nav>
         </>
     )
