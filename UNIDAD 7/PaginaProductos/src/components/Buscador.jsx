@@ -2,25 +2,27 @@ import React, { useState, useEffect } from 'react';
 import './Buscador.css';
 
 export default function Buscador() {
-    const [query, setQuery] = useState('');
+    const [buscador, setBuscar] = useState('');
     const [products, setProducts] = useState([]);
     const [results, setResults] = useState([]);
 
     useEffect(() => { fetch('https://fakestoreapi.com/products').then(response => response.json()).then(data => setProducts(data)) }, []);
 
     useEffect(() => {
-        if (query.length > 0) {
-            const filteredResults = products.filter(product => product.title.toLowerCase().includes(query.toLowerCase()));
+        if (buscador.length > 0) {
+            const filteredResults = products.filter(product => product.title.toLowerCase().includes(buscador.toLowerCase()));
             setResults(filteredResults);
-        } else { setResults([]); }
-    }, [query, products]);
-
+        } else {
+            setResults([]);
+        }
+    }, [buscador, products]);
+    
     return (
         <div className="buscador-container">
             <input
                 type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                value={buscador}
+                onChange={(e) => setBuscar(e.target.value)}
                 placeholder="Buscar..."
                 className="buscador-input"
             />
