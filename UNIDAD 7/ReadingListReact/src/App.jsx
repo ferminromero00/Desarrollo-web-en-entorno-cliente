@@ -14,7 +14,12 @@ function App() {
       <section className="container mt-5">
         <h1>My Reading List</h1>
         <div className="container bg-secondary" id="readingList" style={{ color: "white" }}>
-          {libros.map((libro) => (<AñadirLibro title={libro.title} author={libro.author} genre={libro.genre} />))}
+          {libros.map((libro) => (
+            <AñadirLibro
+              title={libro.title}
+              author={libro.author}
+              genre={libro.genre}
+            />))}
         </div>
       </section>
     </>
