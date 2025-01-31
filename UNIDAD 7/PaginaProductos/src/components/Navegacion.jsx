@@ -1,5 +1,6 @@
 import React from 'react'
 import Buscador from './Buscador'
+import { Link } from 'react-router'
 
 
 export default function Navegacion() {
@@ -12,9 +13,8 @@ export default function Navegacion() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item"><a className="nav-link active" aria-current="page" href="#">Inicio</a></li>
-                            <li className="nav-item"><a className="nav-link active" href="#">Ofertas</a></li>
-                            <li className="nav-item"><a className="nav-link active" href="#">Contacto</a></li>
+                            <li className="nav-item"><Link to="/" className="nav-link active">Inicio</Link></li>
+                            <li className="nav-item"><Link to="/carrusel" className="nav-link active">Ofertas</Link></li>
                         </ul>
                     </div>
                 </div>

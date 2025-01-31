@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Principal />} />
-          <Route path="/detalle" element={<Detalle />} />
+          <Route path="/detalle/:idProducto" element={<Detalle />} />
           <Route path="/carrusel" element={<Carrusel />} />
         </Routes>
       </BrowserRouter>
