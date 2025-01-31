@@ -9,6 +9,10 @@ export default function DetalleProducto() {
 
   useEffect(() => { Fetch('https://fakestoreapi.com/products/' + idProducto).then(data => setProducts(data)) }, []);
 
+  if(!producto) {
+    return null
+  }
+
   return (
     <>
     <Navegacion></Navegacion>
