@@ -16,7 +16,7 @@ export default function Buscador() {
             setResults([]);
         }
     }, [buscador, products]);
-    
+
     return (
         <div className="buscador-container">
             <input
@@ -33,4 +33,4 @@ export default function Buscador() {
             )}
         </div>
     );
-}
+} 
