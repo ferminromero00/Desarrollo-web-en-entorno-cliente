@@ -63,13 +63,16 @@ export const filtraMovies = async () => {
     let arrNoFiltrado = peliculas.arrMovies
 
     btn.addEventListener("click", () => {
-        arrNoFiltrado.forEach(e => { if (e.yearestreno > filtro.value && e.idioma === idioma.value) { arrFiltrado.push(e) } })
+        arrNoFiltrado.forEach(e => {
+            if (e.yearestreno > filtro.value && e.idioma === idioma.value) {
+                arrFiltrado.push(e)
+                console.log(arrFiltrado);
+                return arrFiltrado;
+            }
+        })
     })
-
-    console.log(arrFiltrado);
-    return arrFiltrado;
-    
 }
+
 
 
 const localStorageFunc = (pelicula) => {
