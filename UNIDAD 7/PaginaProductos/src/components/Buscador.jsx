@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Buscador.css';
+import { Link } from 'react-router';
+
 
 export default function Buscador() {
     const [buscador, setBuscar] = useState('');
@@ -28,7 +30,11 @@ export default function Buscador() {
             />
             {results.length > 0 && (
                 <ul className="buscador-dropdown">
-                    {results.map(result => (<li key={result.id} className="buscador-item" onClick={() => console.log("hola")}> {result.title} </li>))}
+                    {results.map(result => (
+                        <Link to={`/detalle/${result.id}`} style={{ textDecoration: 'none' }}>
+                            <li key={result.id} className="buscador-item" onClick={() => console.log(result.id)}> {result.title} </li>
+                        </Link>
+                    ))}
                 </ul>
             )}
         </div>
