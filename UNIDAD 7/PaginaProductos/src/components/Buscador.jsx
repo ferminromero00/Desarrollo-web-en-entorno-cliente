@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 
 export default function Buscador() {
-    const [buscador, setBuscar] = useState('');
+    const [buscador, setBuscador] = useState('');
     const [products, setProducts] = useState([]);
     const [results, setResults] = useState([]);
 
@@ -24,18 +24,18 @@ export default function Buscador() {
             <input
                 type="text"
                 value={buscador}
-                onChange={(e) => setBuscar(e.target.value)}
+                onChange={(e) => setBuscador(e.target.value)}
                 placeholder="Buscar..."
                 className="buscador-input"
             />
             {results.length > 0 && (
                 <ul className="buscador-dropdown">
-                    {results.map(result => (
-                        <Link to={`/detalle/${result.id}`} style={{ textDecoration: 'none' }}>
-                            <li key={result.id} className="buscador-item" onClick={() => console.log(result.id)}> {result.title} </li>
-                        </Link>
-                    ))}
-                </ul>
+                {results.map(result => (
+                    <Link key={result.id} to={`/detalle/${result.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                        <li className="buscador-item"> {result.title} </li>
+                    </Link>
+                ))}
+            </ul>
             )}
         </div>
     );

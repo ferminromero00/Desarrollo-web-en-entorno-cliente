@@ -5,12 +5,15 @@ import Navegacion from "./Navegacion";
 
 export default function DetalleProducto() {
   let { idProducto } = useParams();
-  const [producto, setProducts] = useState([]);
+  const [producto, setProducts] = useState(null);
 
-  useEffect(() => { Fetch('https://fakestoreapi.com/products/' + idProducto).then(data => setProducts(data)) }, []);
+  useEffect(() => {
+    Fetch('https://fakestoreapi.com/products/' + idProducto)
+      .then(data => setProducts(data));
+  }, [idProducto]);
 
-  if(!producto) {
-    return null
+  if (!producto) {
+    return null;
   }
 
   return (
