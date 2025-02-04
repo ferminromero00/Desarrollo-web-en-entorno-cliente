@@ -28,7 +28,7 @@ export default function Buscador() {
             />
             {results.length > 0 && (
                 <ul className="buscador-dropdown">
-                    {results.map(result => (<li key={result.id} className="buscador-item"> {result.title} </li>))}
+                    {results.map(result => (<li key={result.id} className="buscador-item" onClick={() => console.log("hola")}> {result.title} </li>))}
                 </ul>
             )}
         </div>
