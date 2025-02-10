@@ -1,6 +1,7 @@
 import React from 'react'
 import Buscador from './Buscador'
 import { Link } from 'react-router'
+import Categorias from './Categorias'
 
 
 export default function Navegacion() {
@@ -20,7 +21,8 @@ export default function Navegacion() {
                         </ul>
                     </div>
                 </div>
-                <Buscador />
+                <Categorias/>
+                <Buscador /> 
             </nav>
         </>
     )
