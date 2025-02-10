@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import { Fetch } from "../utils/Fetch";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router";
 
 export default function Categorias() {
-  const [categories, setCategories] = useState([]);
-  const navigate = useNavigate(); // Hook para navegar
+  const [products, setProducts] = useState([]);
+  const arrCategorias = [];
+  const navigate = useNavigate();
+  const query = useLocation();
 
   useEffect(() => {
-    Fetch("https://fakestoreapi.com/products")
-      .then((data) => {
-        const uniqueCategories = [...new Set(data.map((product) => product.category))];
-        setCategories(uniqueCategories);
-      })
-      .catch((error) => console.error("Error fetching categories:", error));
+    Fetch("http://localhost:3000/productos").then((data) => {
+      setProducts(data);
+    });
   }, []);
 
-  // Manejar el cambio de categoría y redirigir
-  const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value;
-    if (selectedCategory) {
-      navigate(`/categoria/${selectedCategory}`); // Redirigir a la nueva URL
+  for (let e = 0; e < products.length; e++) {
+    if (!arrCategorias.includes(products[e].category)) {
+      arrCategorias.push(products[e].category);
     }
+  }
+
+  const handleCategoryChange = (event) => {
+    const categoriaSeleccionado = event.target.value;
+    navigate("?category=" + categoriaSeleccionado);
   };
+  console.log(query.search);
+  
 
   return (
     <>
       <select name="categorias" id="categorias" onChange={handleCategoryChange}>
         <option value="">Selecciona una categoría</option>
-        {categories.map((category) => (
+        {arrCategorias.map((category) => (
           <option key={category} value={category}>
             {category}
           </option>
