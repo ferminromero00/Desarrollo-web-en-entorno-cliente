@@ -9,12 +9,14 @@ export default function Buscador() {
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
+  // Cargar productos desde la API
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
 
+  // Filtrar productos según el valor del buscador
   useEffect(() => {
     if (buscador.length > 0) {
       const filteredResults = products.filter((product) =>

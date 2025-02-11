@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Fetch } from "../utils/Fetch";
-import { Link, } from "react-router";
+import { Link } from "react-router";
 import { FaSpinner } from "react-icons/fa";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { useDebounce } from "./useDebounce";
 
 export default function GridProductos() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // Estado de carga
   const query = useLocation();
 
+  const delay = useDebounce();
+
   useEffect(() => {
-    Fetch("http://localhost:3000/productos"+ query.search).then((data) => {
-      setProducts(data);
+    const buscador = new URLSearchParams(query.search);
+    const title = buscador.get("title") || "";
+    const category = buscador.get("category") || "";
+
+    Fetch("http://localhost:3000/productos").then((data) => {
+      const ProductosFiltrados = data.filter((product) => {
+        const titulo = product.title.toLowerCase().includes(title.toLowerCase());
+        const categoria = category ? product.category === category : true;
+        return titulo && categoria;
+      });
+      setProducts(ProductosFiltrados);
       setLoading(false);
     });
   }, [query]);
-
-  console.log(query.search);
-  
 
   return (
     <>
