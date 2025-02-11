@@ -25,8 +25,6 @@ export default function Categorias() {
     const categoriaSeleccionado = event.target.value;
     navigate("?category=" + categoriaSeleccionado);
   };
-  console.log(query.search);
-  
 
   return (
     <>

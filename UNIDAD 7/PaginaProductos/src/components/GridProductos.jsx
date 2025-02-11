@@ -2,18 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Fetch } from "../utils/Fetch";
 import { Link, } from "react-router";
 import { FaSpinner } from "react-icons/fa";
+import { useLocation } from "react-router";
 
 export default function GridProductos() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // Estado de carga
-
+  const query = useLocation();
 
   useEffect(() => {
-    Fetch("http://localhost:3000/productos").then((data) => {
+    Fetch("http://localhost:3000/productos"+ query.search).then((data) => {
       setProducts(data);
       setLoading(false);
     });
-  }, []);
+  }, [query]);
+
+  console.log(query.search);
+  
 
   return (
     <>
