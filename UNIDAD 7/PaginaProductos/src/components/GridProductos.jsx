@@ -7,10 +7,10 @@ import { useDebounce } from "./useDebounce";
 
 export default function GridProductos() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true);
   const query = useLocation();
 
-  const delay = useDebounce();
+  const delay = useDebounce(query, 1000);
 
   useEffect(() => {
     const buscador = new URLSearchParams(query.search);
@@ -25,8 +25,10 @@ export default function GridProductos() {
       });
       setProducts(ProductosFiltrados);
       setLoading(false);
+      console.log(ProductosFiltrados);
     });
-  }, [query]);
+  }, [delay]);
+
 
   return (
     <>
