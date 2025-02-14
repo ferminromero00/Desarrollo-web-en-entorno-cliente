@@ -11,16 +11,16 @@ import { useState } from "react";
 
 function App() {
   const [carrito, setCarrito] = useState([]);
-  
+  const cant = carrito.length
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Principal setCarrito={setCarrito} carrito={carrito}/>} />
+          <Route path="/" element={<Principal setCarrito={setCarrito} carrito={carrito} cant={cant}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/detalle/:idProducto" element={<Detalle />} />
           <Route path="/carrusel" element={<Carrusel />} />
-          <Route path="/carrito" element={<Carrito setCarrito={setCarrito} carrito={carrito} />} />
+          <Route path="/carrito" element={<Carrito setCarrito={setCarrito} carrito={carrito} cant={cant} />} />
         </Routes>
       </BrowserRouter>
     </>

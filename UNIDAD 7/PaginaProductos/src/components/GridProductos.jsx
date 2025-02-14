@@ -75,7 +75,6 @@ export default function GridProductos({ setCarrito, carrito }) {
                 </Link>
                 <div className="text-center">
                   <button className="btn border border-2 me-4" onClick={() => añadirCarrito(e)}>Añadir</button>
-                  <button className="btn border border-2">Borrar</button>
                 </div>
               </div>
             ))}

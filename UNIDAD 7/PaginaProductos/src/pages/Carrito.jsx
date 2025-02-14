@@ -1,11 +1,11 @@
 import Navegacion from "../components/Navegacion"
 import CarritoComp from "../components/CarritoComp"
 
-export default function Carrito({ setCarrito, carrito }) {
+export default function Carrito({ setCarrito, carrito, cant }) {
   
   return (
     <>
-      <Navegacion></Navegacion>
+      <Navegacion cant={cant}></Navegacion>
       <CarritoComp setCarrito={setCarrito} carrito={carrito}  />
     </>
   )
