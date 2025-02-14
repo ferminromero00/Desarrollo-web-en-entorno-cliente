@@ -11,16 +11,16 @@ import { useState } from "react";
 
 function App() {
   const [carrito, setCarrito] = useState([]);
-
+  
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Principal />} />
+          <Route path="/" element={<Principal setCarrito={setCarrito} carrito={carrito}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/detalle/:idProducto" element={<Detalle />} />
           <Route path="/carrusel" element={<Carrusel />} />
-          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/carrito" element={<Carrito setCarrito={setCarrito} carrito={carrito} />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -5,7 +5,7 @@ import { FaSpinner } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router";
 import { useDebounce } from "./useDebounce";
 
-export default function GridProductos() {
+export default function GridProductos({ setCarrito, carrito }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const query = useLocation();
@@ -29,6 +29,9 @@ export default function GridProductos() {
     });
   }, [delay]);
 
+  const añadirCarrito = (product) => {
+    setCarrito([...carrito, product]);
+  };
 
   return (
     <>
@@ -67,14 +70,11 @@ export default function GridProductos() {
                       <p className="card-text">
                         <strong>Precio: {e.price}€</strong>
                       </p>
-                      <p className="card-text">
-                        {e.unidades}
-                      </p>
                     </div>
                   </div>
                 </Link>
                 <div className="text-center">
-                  <button className="btn border border-2 me-4">Añadir</button>
+                  <button className="btn border border-2 me-4" onClick={() => añadirCarrito(e)}>Añadir</button>
                   <button className="btn border border-2">Borrar</button>
                 </div>
               </div>
