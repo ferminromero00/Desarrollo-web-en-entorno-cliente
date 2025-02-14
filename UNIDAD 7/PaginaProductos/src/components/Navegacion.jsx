@@ -2,9 +2,10 @@ import React from 'react'
 import Buscador from './Buscador'
 import { Link } from 'react-router'
 import Categorias from './Categorias'
+import { FaShoppingCart } from 'react-icons/fa';
 
 
-export default function Navegacion({cant}) {
+export default function Navegacion({ cant }) {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -16,7 +17,10 @@ export default function Navegacion({cant}) {
                         <ul className="navbar-nav">
                             <li className="nav-item"><Link to="/" className="nav-link active">Inicio</Link></li>
                             <li className="nav-item"><Link to="/carrusel" className="nav-link active">Ofertas</Link></li>
-                            <li className="nav-item"><Link to="/carrito" className="nav-link active">Carrito: {cant} </Link></li>
+                            <li className="nav-item"><Link to="/carrito" className="nav-link active">
+                                <FaShoppingCart color='primary' />
+                                <span className="badge bg-secondary"> {cant}</span>
+                            </Link></li>
                             <li className="nav-item"><Link to="/login" className="nav-link active">Cerrar Sesion</Link></li>
                         </ul>
                     </div>
