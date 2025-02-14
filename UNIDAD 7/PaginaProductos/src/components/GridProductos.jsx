@@ -10,7 +10,7 @@ export default function GridProductos() {
   const [loading, setLoading] = useState(true);
   const query = useLocation();
 
-  const delay = useDebounce(query, 1000);
+  const delay = useDebounce(query, 500);
 
   useEffect(() => {
     const buscador = new URLSearchParams(query.search);
@@ -43,7 +43,7 @@ export default function GridProductos() {
         ) : (
           <div className="row">
             {products.map((e) => (
-              <div className="col-md-6 mb-4 mt-3" key={e.id}>
+              <div className="col-md-4 mb-4 mt-3" key={e.id}>
                 <Link
                   to={`/detalle/${e.id}`}
                   style={{ textDecoration: "none" }}
