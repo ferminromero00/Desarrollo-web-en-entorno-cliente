@@ -43,7 +43,7 @@ export default function GridProductos() {
         ) : (
           <div className="row">
             {products.map((e) => (
-              <div className="col-md-4 mb-4 mt-3" key={e.id}>
+              <div className="col-md-6 mb-4 mt-3" key={e.id}>
                 <Link
                   to={`/detalle/${e.id}`}
                   style={{ textDecoration: "none" }}
@@ -67,15 +67,21 @@ export default function GridProductos() {
                       <p className="card-text">
                         <strong>Precio: {e.price}€</strong>
                       </p>
+                      <p className="card-text">
+                        {e.unidades}
+                      </p>
                     </div>
                   </div>
                 </Link>
+                <div className="text-center">
+                  <button className="btn border border-2 me-4">Añadir</button>
+                  <button className="btn border border-2">Borrar</button>
+                </div>
               </div>
             ))}
           </div>
         )}
       </div>
-
       {/* Estilos para la animación */}
       <style>
         {`

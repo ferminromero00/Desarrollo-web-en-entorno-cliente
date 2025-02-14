@@ -16,13 +16,13 @@ export default function Navegacion() {
                         <ul className="navbar-nav">
                             <li className="nav-item"><Link to="/" className="nav-link active">Inicio</Link></li>
                             <li className="nav-item"><Link to="/carrusel" className="nav-link active">Ofertas</Link></li>
-                            <li className="nav-item"><Link to="/login" className="nav-link active">Cerrar Sesion</Link></li>
                             <li className="nav-item"><Link to="/carrito" className="nav-link active">Carrito</Link></li>
+                            <li className="nav-item"><Link to="/login" className="nav-link active">Cerrar Sesion</Link></li>
                         </ul>
                     </div>
                 </div>
-                <Categorias/>
-                <Buscador /> 
+                <Categorias />
+                <Buscador />
             </nav>
         </>
     )

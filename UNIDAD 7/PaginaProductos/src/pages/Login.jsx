@@ -1,9 +1,12 @@
 import LoginComp from "../components/LoginComp"
+import Navegacion from "../components/Navegacion"
+
 
 export default function Login() {
   return (
     <>
-        <LoginComp></LoginComp>
+      <Navegacion></Navegacion>
+      <LoginComp></LoginComp>
     </>
   )
 }

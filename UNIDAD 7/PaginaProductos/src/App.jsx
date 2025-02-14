@@ -6,8 +6,12 @@ import { BrowserRouter } from "react-router";
 import { Route, Routes } from "react-router";
 import Login from "./pages/Login";
 import Carrito from "./pages/Carrito";
+import { useState } from "react";
+
 
 function App() {
+  const [carrito, setCarrito] = useState([]);
+
   return (
     <>
       <BrowserRouter>
