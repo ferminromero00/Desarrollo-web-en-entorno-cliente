@@ -1,0 +1,2 @@
+npx create-expo-app@latest ejemploReact
+npm run start
