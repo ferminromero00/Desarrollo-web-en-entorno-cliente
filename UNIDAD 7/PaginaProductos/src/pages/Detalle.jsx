@@ -1,10 +1,10 @@
 import React from 'react'
 import DetalleProducto from '../components/DetalleProducto'
 
-export default function Detalle() {
+export default function Detalle({cant}) {
   return (
     <>
-        <DetalleProducto></DetalleProducto>
+        <DetalleProducto cant={cant}></DetalleProducto>
     </>
   )
 }

@@ -3,7 +3,7 @@ import { Fetch } from "../utils/Fetch";
 import { useEffect, useState } from "react";
 import Navegacion from "./Navegacion";
 
-export default function DetalleProducto() {
+export default function DetalleProducto({cant}) {
   let { idProducto } = useParams();
   const [producto, setProducts] = useState(null);
 
@@ -18,7 +18,7 @@ export default function DetalleProducto() {
 
   return (
     <>
-    <Navegacion></Navegacion>
+      <Navegacion cant={cant}></Navegacion>
       <div className="container mt-5">
         <div className="card">
           <div className="row g-0">

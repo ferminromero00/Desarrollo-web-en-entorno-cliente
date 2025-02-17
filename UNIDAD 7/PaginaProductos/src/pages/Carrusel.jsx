@@ -1,10 +1,10 @@
 import Ofertas from "../components/Ofertas"
 import Navegacion from "../components/Navegacion"
-export default function Carrusel() {
+export default function Carrusel({cant}) {
 
   return (
     <>
-      <Navegacion></Navegacion>
+      <Navegacion cant={cant}></Navegacion>
       <Ofertas></Ofertas>
     </>
   )

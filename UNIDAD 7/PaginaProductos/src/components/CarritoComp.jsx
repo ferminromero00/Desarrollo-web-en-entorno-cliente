@@ -3,14 +3,27 @@ import React from 'react';
 export default function CarritoComp({ carrito, setCarrito }) {
     const añadirCarrito = (product) => {
         setCarrito([...carrito, product]);
-      };
+    };
+
+    const carr = [];
+
+    carrito.forEach(e => {
+        const index = carr.findIndex(prod => prod.id === e.id);
+        if (index === -1) {
+            carr.push({ ...e, unidades: 1 }); 
+        } else {
+            carr[index] = { ...carr[index], unidades: carr[index].unidades + 1 };
+        }
+    });
+    
+    
     return (
         <>
             <div className="row">
-                {carrito.map((e) => (
-                    <div className="col-md-3 mb-4 mt-3 p-3" key={e.id}>
+                {carr.map((e) => (
+                    <div className="col-md-6 mb-4 mt-3 p-3" key={e.id}>
 
-                        <div className="card h-100 border border-5 p-3">
+                        <div className="card h-100 border border-5">
                             <div className="d-flex justify-content-center align-items-center">
                                 <img
                                     src={e.image}
@@ -29,6 +42,7 @@ export default function CarritoComp({ carrito, setCarrito }) {
                                 <p className="card-text">
                                     <strong>Precio: {e.price}€</strong>
                                 </p>
+                                <p className='card-text'>Cantidad: {e.unidades}</p>
                             </div>
                         </div>
                         <div className="text-center">
