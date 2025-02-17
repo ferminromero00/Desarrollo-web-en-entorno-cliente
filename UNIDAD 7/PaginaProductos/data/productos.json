@@ -260,5 +260,27 @@
       },
       "unidades": 1
     }
+  ],
+  "usuarios": [
+    {
+      "id": "d6a7",
+      "username": "pepe",
+      "password": "pepe"
+    },
+    {
+      "id": "f7df",
+      "username": "pepe2",
+      "password": "pepe"
+    },
+    {
+      "id": "cc5b",
+      "username": "pepe2",
+      "password": "pepe"
+    },
+    {
+      "id": "c047",
+      "username": "pepe2",
+      "password": "pepe"
+    }
   ]
 }

@@ -19,7 +19,7 @@ export default function DetalleProducto({cant}) {
   return (
     <>
       <Navegacion cant={cant}></Navegacion>
-      <div className="container mt-5">
+      <div className="container mt-5 w-75">
         <div className="card">
           <div className="row g-0">
             <div className="col-md-4">

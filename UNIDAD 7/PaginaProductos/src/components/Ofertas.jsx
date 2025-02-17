@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Fetch } from '../utils/Fetch';
+import { Link } from 'react-router-dom';
 
 export default function Carrusel() {
   const [products, setProducts] = useState({});
@@ -12,12 +13,18 @@ export default function Carrusel() {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6 mb-4 mt-3" key={products.id}>
+        <div className="col-md-6 mb-4 mt-3 h-25" key={products.id}>
           <div className="card h-100 border border-5 shadow-sm">
-            <div className="d-flex justify-content-center align-items-center">
-              <img src={products.image} className="card-img-top" alt={products.title}
-                style={{ height: '300px', width: '300px', marginTop: '1rem', objectFit: 'contain' }} />
-            </div>
+            <Link to={`/detalle/${products.id}`} style={{ textDecoration: 'none' }}>
+              <div className="d-flex justify-content-center align-items-center">
+                <img
+                  src={products.image}
+                  className="card-img-top"
+                  alt={products.title}
+                  style={{ height: '300px', width: '300px', marginTop: '1rem', objectFit: 'contain' }}
+                />
+              </div>
+            </Link>
             <div className="card-body text-center">
               <h5 className="card-title">{products.title}</h5>
               <p className="card-text">{products.description}</p>

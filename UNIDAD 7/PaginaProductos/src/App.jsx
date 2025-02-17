@@ -16,10 +16,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Principal setCarrito={setCarrito} carrito={carrito} cant={cant}/>} />
+          <Route path="/" element={<Principal setCarrito={setCarrito} carrito={carrito} cant={cant} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/detalle/:idProducto" element={<Detalle cant={cant}/>} />
-          <Route path="/carrusel" element={<Carrusel cant={cant}/>} />
+          <Route path="/detalle/:idProducto" element={<Detalle cant={cant} />} />
+          <Route path="/carrusel" element={<Carrusel cant={cant} />} />
           <Route path="/carrito" element={<Carrito setCarrito={setCarrito} carrito={carrito} cant={cant} />} />
         </Routes>
       </BrowserRouter>

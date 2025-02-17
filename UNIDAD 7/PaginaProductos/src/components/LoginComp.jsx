@@ -1,18 +1,41 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function LoginComp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === 'user' && password === 'pass') {
+    try {
+      const response = await axios.post('http://localhost:3000/usuarios/login', { username, password });
       navigate('/');
-    } else {
+    } catch (err) {
       setError('Usuario o contraseña incorrectos');
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      await axios.post('http://localhost:3000/usuarios', { username, password });
+      setMessage('Usuario registrado correctamente');
+      setError('');
+    } catch (err) {
+      setError('Error al registrar usuario');
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
+      setMessage('Usuario eliminado correctamente');
+      setError('');
+    } catch (err) {
+      setError('Error al eliminar usuario');
     }
   };
 
@@ -38,9 +61,12 @@ export default function LoginComp() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" className="btn btn-primary">Iniciar sesión</button>
+          <button type="submit" className="btn btn-primary text-center w-100">Iniciar sesión</button>
         </form>
+        <button className="btn btn-success mt-2" onClick={handleRegister}>Registrarse</button>
+        <button className="btn btn-danger mt-2" onClick={handleDeleteUser}>Eliminar Usuario</button>
         {error && <p className="text-danger mt-3">{error}</p>}
+        {message && <p className="text-success mt-3">{message}</p>}
       </div>
     </div>
   );
