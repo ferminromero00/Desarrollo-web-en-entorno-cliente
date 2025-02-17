@@ -5,14 +5,14 @@ import axios from 'axios';
 export default function LoginComp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [msj, setMsj] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
 
   const Login = async (e) => {
     e.preventDefault();
 
-    if (username !== "" && password !== "") {
+    if (username !== "" || password !== "") {
       const response = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
       if (response.data.length > 0) {
         navigate('/');
@@ -20,21 +20,22 @@ export default function LoginComp() {
         setError('Usuario o contraseña incorrectos');
       }
     } else {
-      setError("No dejes los campos vacios")
+      setError('No dejes los campos vacíos');
     }
   };
 
   const Registro = async () => {
-    try {
+    if (username !== "" || password !== "") {
       const response = await axios.get(`http://localhost:3000/usuarios?username=${username}`);
       if (response.data.length > 0) {
         setError('El usuario ya existe');
       } else {
         await axios.post('http://localhost:3000/usuarios', { username, password });
+        setMsj('Registro completo');
         setError('');
       }
-    } catch (err) {
-      setError('Error al registrar usuario');
+    } else {
+      setError('No dejes los campos vacíos');
     }
   };
 
@@ -43,12 +44,15 @@ export default function LoginComp() {
       const authResponse = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
       if (authResponse.data.length > 0) {
         await axios.delete(`http://localhost:3000/usuarios/${username}`);
+        setMsj('Usuario eliminado correctamente');
         setError('');
       } else {
         setError('Usuario o contraseña incorrectos');
+        setMsj('');
       }
     } catch (err) {
       setError('Error al eliminar usuario. Verifique sus credenciales.');
+      setMsj('');
     }
   };
 
@@ -76,6 +80,7 @@ export default function LoginComp() {
         </form>
         <button className="btn btn-success mt-2" onClick={Registro}>Registrarse</button>
         <button className="btn btn-danger mt-2" onClick={handleDeleteUser}>Eliminar Usuario</button>
+        {msj && <p className="text-success mt-3 text-center">{msj}</p>}
         {error && <p className="text-danger mt-3 text-center">{error}</p>}
       </div>
     </div>
