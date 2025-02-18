@@ -263,11 +263,6 @@
   ],
   "usuarios": [
     {
-      "id": "c1a0",
-      "username": "pepe",
-      "password": "pepe"
-    },
-    {
       "id": "2f32",
       "username": "pepe2",
       "password": "pepe"
@@ -281,6 +276,16 @@
       "id": "740d",
       "username": "pepe34",
       "password": "pepe3"
+    },
+    {
+      "id": "102f",
+      "username": "pepe333",
+      "password": "pepe2"
+    },
+    {
+      "id": "5e56",
+      "username": "pepe",
+      "password": "pepe"
     }
   ]
 }

@@ -39,20 +39,21 @@ export default function LoginComp() {
     }
   };
 
-  const handleDeleteUser = async () => {
-    try {
+  const Borrar = async () => {
+    if (username !== "" || password !== "") {
       const authResponse = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
       if (authResponse.data.length > 0) {
-        await axios.delete(`http://localhost:3000/usuarios/${username}`);
+        //DELETE, no permite datos desde la URL, solo con el ID con esta ruta
+        const idUser = authResponse.data[0].id
+        await axios.delete(`http://localhost:3000/usuarios/${idUser}`);
         setMsj('Usuario eliminado correctamente');
         setError('');
       } else {
         setError('Usuario o contraseña incorrectos');
         setMsj('');
       }
-    } catch (err) {
-      setError('Error al eliminar usuario. Verifique sus credenciales.');
-      setMsj('');
+    } else {
+      setError('No dejes los campos vacíos')
     }
   };
 
@@ -79,7 +80,7 @@ export default function LoginComp() {
           <button type="submit" className="btn btn-primary text-center w-100">Iniciar sesión</button>
         </form>
         <button className="btn btn-success mt-2" onClick={Registro}>Registrarse</button>
-        <button className="btn btn-danger mt-2" onClick={handleDeleteUser}>Eliminar Usuario</button>
+        <button className="btn btn-danger mt-2" onClick={Borrar}>Eliminar Usuario</button>
         {msj && <p className="text-success mt-3 text-center">{msj}</p>}
         {error && <p className="text-danger mt-3 text-center">{error}</p>}
       </div>
