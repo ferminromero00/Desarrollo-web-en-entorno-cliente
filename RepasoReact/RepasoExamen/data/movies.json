@@ -1,4 +1,5 @@
-[
+{
+  "peliculas": [
     {
       "adult": false,
       "backdrop_path": "/hJuDvwzS0SPlsE6MNFOpznQltDZ.jpg",
@@ -320,3 +321,4 @@
       "vote_count": 262
     }
   ]
+}
