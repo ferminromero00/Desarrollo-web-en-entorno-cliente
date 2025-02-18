@@ -3,5 +3,6 @@ npm install
 npm run dev
 npm run build
 npm i react-router
+npm install react-bootstrap bootstrap
 npm install react-hook-form --save
 npx json-server .\productos.json
