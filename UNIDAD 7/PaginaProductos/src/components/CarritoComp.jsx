@@ -4,21 +4,15 @@ import { Link } from "react-router";
 export default function CarritoComp({ carrito, setCarrito }) {
     const añadirCarrito = (product) => { setCarrito([...carrito, product]); };
     const BorrarCarrito = (product) => {
-        console.log("Borrando producto:", product);
         setCarrito((prevCarrito) => {
-            const index = prevCarrito.findIndex(item => item.id === product.id);
+            const index = prevCarrito.findIndex(item => item.id === product.id);            
             if (index !== -1) {
                 const newCarrito = [...prevCarrito];
                 newCarrito.splice(index, 1);
                 return newCarrito;
-            }
-            return prevCarrito;
+            }         
         });
     };
-    
-
-
-
 
     const carr = [];
 
