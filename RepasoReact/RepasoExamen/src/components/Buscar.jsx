@@ -1,14 +1,13 @@
 import { useState } from "react";
 
-export default function Buscar() {
-  const [buscador, setBuscador] = useState([])
-  
-  const Buscador = (e) => {
-    setBuscador(e.target.value)
-  }
+export default function Buscar({ setBuscador }) {
+  const [buscar, setBuscar] = useState([])
+  const [pelis, setPelis] = useState([])
 
-  console.log(buscador);
-  
+  const Buscador = (e) => { setBuscar(e.target.value) }
+
+  setBuscador(buscar);
+
   return (
     <>
       <form action="">
