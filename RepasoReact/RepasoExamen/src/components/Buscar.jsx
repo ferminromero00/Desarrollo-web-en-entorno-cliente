@@ -1,16 +1,21 @@
-import Form from "react-bootstrap/Form";
+import { useState } from "react";
 
 export default function Buscar() {
+  const [buscador, setBuscador] = useState([])
+  
+  const Buscador = (e) => {
+    setBuscador(e.target.value)
+  }
+
+  console.log(buscador);
+  
   return (
     <>
-      <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
+      <form action="">
+        <input type="text" onChange={Buscador}
         />
-      </Form>
+      </form>
+      <button>Buscar</button>
     </>
   );
 }

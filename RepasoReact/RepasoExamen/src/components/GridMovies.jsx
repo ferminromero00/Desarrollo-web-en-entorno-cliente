@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Fetch } from "../utils/Fetch";
 import CardMovie from "./CardMovie";
-import { Card } from "react-bootstrap";
+import NMovies from "./NMovies";
 
 export default function GridMovies() {
   const [pelis, setPelis] = useState([]);
@@ -18,6 +18,7 @@ export default function GridMovies() {
 
   return (
     <>
+      <NMovies numPelis={arrPelis.length}></NMovies>
       <section className="d-flex flex-wrap gap-5 justify-content-center mt-5">
         {arrPelis}
       </section>
