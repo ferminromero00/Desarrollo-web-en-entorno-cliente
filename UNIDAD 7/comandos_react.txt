@@ -4,5 +4,5 @@ npm run dev
 npm run build
 npx json-server .\productos.json
 
-npm i react-router
+npm install react-router-dom
 npm install react-hook-form --save
