@@ -6,12 +6,17 @@ import GridProductos from "../components/GridProductos"
 
 export default function Principal() {
   const [buscar, setBuscar] = useState([])
+  const [carrito, setCarrito] = useState([])
   
+  const añadirCarrito = (producto) =>{
+    setCarrito([...carrito, producto])
+  }
+
   return (
     <>
       <Buscador setBuscar={setBuscar}></Buscador>
-      <Carrito></Carrito>
-      <GridProductos buscar={buscar}></GridProductos>
+      <Carrito carrito={carrito}></Carrito>
+      <GridProductos buscar={buscar} añadirCarrito={añadirCarrito} ></GridProductos>
     </>
   )
 }

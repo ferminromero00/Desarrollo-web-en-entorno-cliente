@@ -1,8 +1,6 @@
 
 export default function Buscador({ setBuscar }) {
-  const escribir = (e) =>{
-    setBuscar(e.target.value)
-  }
+  const escribir = (e) => { setBuscar(e.target.value) }
 
   return (
     <>
