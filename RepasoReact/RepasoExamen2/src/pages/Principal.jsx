@@ -1,7 +1,14 @@
-import React from 'react'
+import Buscador from "../components/Buscador"
+import Carrito from "../components/Carrito"
+import GridProductos from "../components/GridProductos"
+
 
 export default function Principal() {
   return (
-    <div>Principal</div>
+    <>
+      <Buscador></Buscador>
+      <Carrito></Carrito>
+      <GridProductos></GridProductos>
+    </>
   )
 }
