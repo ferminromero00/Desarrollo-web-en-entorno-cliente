@@ -2,6 +2,7 @@ import { useState } from "react"
 import Buscador from "../components/Buscador"
 import Carrito from "../components/Carrito"
 import GridProductos from "../components/GridProductos"
+import Categorias from "../components/Categorias"
 
 
 export default function Principal() {
@@ -15,6 +16,7 @@ export default function Principal() {
   return (
     <>
       <Buscador setBuscar={setBuscar}></Buscador>
+      <Categorias></Categorias>
       <Carrito carrito={carrito}></Carrito>
       <GridProductos buscar={buscar} añadirCarrito={añadirCarrito} ></GridProductos>
     </>

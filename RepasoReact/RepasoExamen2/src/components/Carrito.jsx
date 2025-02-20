@@ -1,6 +1,5 @@
 
 export default function Carrito({carrito}) {
-  console.log(carrito);
   
   return (
     <>

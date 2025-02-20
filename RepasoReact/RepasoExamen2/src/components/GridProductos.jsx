@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Fetch from "../utils/Fetch";
 import GridCard from "./GridCard";
+import { useLocation } from "react-router-dom";
 
 export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   const [productos, setProductos] = useState([]);
+  const query = useLocation()
 
   useEffect(() => {
     Fetch("http://localhost:3000/productos").then((data) => {
@@ -17,6 +19,19 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
       }
     });
   }, [buscar]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(query.search);
+    const category = params.get("category");
+    if (category) {
+      Fetch("http://localhost:3000/productos").then((data) => {
+        const filtrados = data.filter((product) => product.category === category);
+        setProductos(filtrados);
+      });
+    }
+  }, [query]);
+
+  
 
   const arrCards = productos.map((e) => {
     return (
