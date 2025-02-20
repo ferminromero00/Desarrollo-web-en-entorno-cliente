@@ -8,10 +8,14 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   const query = useLocation()
 
   useEffect(() => {
+    const params = new URLSearchParams(query.search);
+    const category = params.get("category");
+
     Fetch("http://localhost:3000/productos").then((data) => {
       if (!buscar.length == 0) {
         const filtrados = data.filter((product) => { return product.title.toLowerCase().includes(buscar.toLowerCase()); });
-        setProductos(filtrados);
+        const filtrados2 = filtrados.filter((product) => product.category === category);
+        setProductos(filtrados2);
       } else {
         setProductos(data);
       }
@@ -21,7 +25,6 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   useEffect(() => {
     const params = new URLSearchParams(query.search);
     const category = params.get("category");
-    console.log(category);
 
     Fetch("http://localhost:3000/productos").then((data) => {
       if (category) {

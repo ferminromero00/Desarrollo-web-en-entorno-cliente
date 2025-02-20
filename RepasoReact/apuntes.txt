@@ -58,7 +58,56 @@ useEffect(() => {
     });
   }, [buscar]);
 ------------------------------------------------------------------------------------------------------------------------------------------------------
+CRUD
+const Login = async (e) => {
+    e.preventDefault();
 
+    if (username !== "" || password !== "") {
+      const response = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
+      if (response.data.length > 0) {
+        navigate('/');
+      } else {
+        setError('Usuario o contraseña incorrectos');
+      }
+    } else {
+      setError('No dejes los campos vacíos');
+    }
+  };
+
+  const Registro = async () => {
+    if (username !== "" || password !== "") {
+      const response = await axios.get(`http://localhost:3000/usuarios?username=${username}`);
+      if (response.data.length > 0) {
+        setError('El usuario ya existe');
+      } else {
+        await axios.post('http://localhost:3000/usuarios', { username, password });
+        setMsj('Registro completo');
+        setError('');
+      }
+    } else {
+      setError('No dejes los campos vacíos');
+    }
+  };
+
+  const Borrar = async () => {
+    if (username !== "" || password !== "") {
+      const authResponse = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
+      if (authResponse.data.length > 0) {
+        //DELETE, no permite datos desde la URL, solo con el ID con esta ruta
+        const idUser = authResponse.data[0].id
+        await axios.delete(`http://localhost:3000/usuarios/${idUser}`);
+        setMsj('Usuario eliminado correctamente');
+        setError('');
+      } else {
+        setError('Usuario o contraseña incorrectos');
+        setMsj('');
+      }
+    } else {
+      setError('No dejes los campos vacíos')
+    }
+  };
+
+  <form onSubmit={Login}></form>
 
 
 
