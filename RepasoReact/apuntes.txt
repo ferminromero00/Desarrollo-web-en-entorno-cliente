@@ -1,0 +1,65 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------
+FETCH: 
+const Fetch = (URL) => { return fetch(URL).then((res) => res.json()); };
+export default Fetch
+------------------------------------------------------------------------------------------------------------------------------------------------------
+RUTAS:
+<BrowserRouter>
+    <Routes>
+        <Route path="/" element={<Principal />} />
+        <Route path="/detalles/:id" element={<Detalles />} />
+    </Routes>
+</BrowserRouter>
+------------------------------------------------------------------------------------------------------------------------------------------------------
+CARRITO
+{carrito.map((producto, index) => {return <p style={{ fontSize: 15 }} key={index}>{producto.title}</p>})}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ITERAR EN ARRAY
+const añadirCategorias = (categoria) => { setCategorias([...categorias, categoria]) }
+------------------------------------------------------------------------------------------------------------------------------------------------------
+RUTA URL
+const navigate = useNavigate()
+const handleCategoria = (e) => {navigate("?category=" + e.target.value)}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+RECOGER DATOS URL
+const idProd = useParams(); idProd.id
+------------------------------------------------------------------------------------------------------------------------------------------------------
+RECOGER DATOS URL LOCATION
+const query = useLocation()
+
+useEffect(() => {
+    const params = new URLSearchParams(query.search);
+    const category = params.get("category");
+    console.log(category);
+
+    Fetch("http://localhost:3000/productos").then((data) => {
+      if (category) {
+        const filtrados = data.filter((product) => product.category === category);
+        setProductos(filtrados);
+      } else {
+        setProductos(data)
+      }
+    });
+
+  }, [query]);
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ARRAY PRODUCTOS
+const arrCards = productos.map((e) => {return (<GridCard key={e.id} pelicula={e}/>);});
+------------------------------------------------------------------------------------------------------------------------------------------------------
+USEEFFECT BUSCADOR
+useEffect(() => {
+    Fetch("http://localhost:3000/productos").then((data) => {
+      if (!buscar.length == 0) {
+        const filtrados = data.filter((product) => { return product.title.toLowerCase().includes(buscar.toLowerCase()); });
+        setProductos(filtrados);
+      } else {
+        setProductos(data);
+      }
+    });
+  }, [buscar]);
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

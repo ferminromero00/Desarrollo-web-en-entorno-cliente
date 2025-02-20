@@ -6,9 +6,7 @@ export default function Detalles() {
     const idProd = useParams()
     const [detalle, setDetalle] = useState([])
 
-    useEffect(() => {
-        Fetch("http://localhost:3000/productos/" + idProd.id).then((data) => { setDetalle(data) })
-    }, [])
+    useEffect(() => { Fetch("http://localhost:3000/productos/" + idProd.id).then((data) => { setDetalle(data) }) }, [])
 
     return (
         <>

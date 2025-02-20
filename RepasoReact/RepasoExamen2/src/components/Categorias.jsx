@@ -6,7 +6,7 @@ export default function Categorias() {
     const [categorias, setCategorias] = useState([])
     const añadirCategorias = (categoria) => { setCategorias([...categorias, categoria]) }
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         Fetch("http://localhost:3000/productos").then((data) => {
             data.forEach(e => {
@@ -15,9 +15,7 @@ export default function Categorias() {
         })
     })
 
-    const handleCategoria = (e) => {
-        navigate("?category=" + e.target.value)
-    }
+    const handleCategoria = (e) => { navigate("?category=" + e.target.value) }
 
     return (
         <>

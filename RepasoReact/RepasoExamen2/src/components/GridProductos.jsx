@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Fetch from "../utils/Fetch";
 import GridCard from "./GridCard";
-import { data, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   const [productos, setProductos] = useState([]);

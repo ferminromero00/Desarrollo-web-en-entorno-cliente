@@ -8,10 +8,8 @@ import Categorias from "../components/Categorias"
 export default function Principal() {
   const [buscar, setBuscar] = useState([])
   const [carrito, setCarrito] = useState([])
-  
-  const añadirCarrito = (producto) =>{
-    setCarrito([...carrito, producto])
-  }
+
+  const añadirCarrito = (producto) => { setCarrito([...carrito, producto]) }
 
   return (
     <>

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function GridCard({ pelicula, añadirCarrito }) {
-  const handleCarrito = () => {
-    añadirCarrito(pelicula)
-  };
+  const handleCarrito = () => { añadirCarrito(pelicula) };
 
   return (
     <div className="justify-content-center align-items-center mb-5">
