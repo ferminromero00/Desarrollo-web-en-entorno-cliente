@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import Fetch from "../utils/Fetch"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Categorias() {
     const [categorias, setCategorias] = useState([])
     const añadirCategorias = (categoria) => { setCategorias([...categorias, categoria]) }
     const navigate = useNavigate()
-
+    
     useEffect(() => {
         Fetch("http://localhost:3000/productos").then((data) => {
             data.forEach(e => {
@@ -22,6 +22,7 @@ export default function Categorias() {
     return (
         <>
             <select name="" id="" onChange={handleCategoria}>
+                <option value={""}>Todos</option>
                 {categorias.map(e => {
                     return <option key={e} value={e}>{e}</option>
                 })}

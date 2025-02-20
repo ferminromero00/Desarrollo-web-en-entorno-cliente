@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Fetch from "../utils/Fetch";
 import GridCard from "./GridCard";
-import { useLocation } from "react-router-dom";
+import { data, useLocation } from "react-router-dom";
 
 export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   const [productos, setProductos] = useState([]);
@@ -10,9 +10,7 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   useEffect(() => {
     Fetch("http://localhost:3000/productos").then((data) => {
       if (!buscar.length == 0) {
-        const filtrados = data.filter((product) => {
-          return product.title.toLowerCase().includes(buscar.toLowerCase());
-        });
+        const filtrados = data.filter((product) => { return product.title.toLowerCase().includes(buscar.toLowerCase()); });
         setProductos(filtrados);
       } else {
         setProductos(data);
@@ -23,15 +21,18 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   useEffect(() => {
     const params = new URLSearchParams(query.search);
     const category = params.get("category");
-    if (category) {
-      Fetch("http://localhost:3000/productos").then((data) => {
+    console.log(category);
+
+    Fetch("http://localhost:3000/productos").then((data) => {
+      if (category) {
         const filtrados = data.filter((product) => product.category === category);
         setProductos(filtrados);
-      });
-    }
-  }, [query]);
+      } else {
+        setProductos(data)
+      }
+    });
 
-  
+  }, [query]);
 
   const arrCards = productos.map((e) => {
     return (
