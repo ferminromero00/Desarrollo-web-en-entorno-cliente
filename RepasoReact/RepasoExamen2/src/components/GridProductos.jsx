@@ -4,7 +4,7 @@ import GridCard from "./GridCard";
 
 export default function GridProductos({ buscar, carrito, añadirCarrito }) {
   const [productos, setProductos] = useState([]);
-  
+
   useEffect(() => {
     Fetch("http://localhost:3000/productos").then((data) => {
       if (!buscar.length == 0) {
@@ -31,7 +31,7 @@ export default function GridProductos({ buscar, carrito, añadirCarrito }) {
 
   return (
     <>
-      <section className="d-flex flex-wrap flex-column text-center" style={{position: "absolute"}}>
+      <section className="d-flex flex-wrap flex-column text-center" style={{ position: "absolute" }}>
         {arrCards}
       </section>
     </>
