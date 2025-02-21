@@ -22,7 +22,7 @@ export default function Detalles() {
             <p> Descripcion: {productos.description}</p>
             <p>Categoria: {productos.category}</p>
 
-            <Link to={"/"}><button>Volver</button></Link>
+            <Link to={"/productos"}><button>Volver</button></Link>
         </>
     )
 }
