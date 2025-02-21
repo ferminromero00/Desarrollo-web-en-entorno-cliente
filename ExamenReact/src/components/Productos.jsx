@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Fetch } from "../utils/Fetch"
 import Producto from './Producto'
 import Carrito from './Carrito'
+import Buscar from './Buscar'
 
 export default function Productos({ AñadirCarrito, carrito }) {
 
@@ -20,6 +21,7 @@ export default function Productos({ AñadirCarrito, carrito }) {
 
     return (
         <>
+            <Buscar></Buscar>
             <Carrito carrito={carrito}></Carrito>
             <section className='d-flex flex-column text-center gap-5'>
                 {arrProductos}
