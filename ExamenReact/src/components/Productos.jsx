@@ -26,7 +26,7 @@ export default function Productos({ AñadirCarrito, carrito, setBuscar, buscar }
     }, [buscar])
 
     const arrProductos = productos.map((product) => {
-        return <Producto key={product.id} product={product} AñadirCarrito={AñadirCarrito}></Producto>
+        return <Producto key={product.id} product={product} AñadirCarrito={AñadirCarrito} carrito={carrito}></Producto>
     })
 
 
