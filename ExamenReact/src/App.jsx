@@ -5,14 +5,15 @@ import Detalles from "./components/Detalles";
 
 function App() {
   const [carrito, setCarrito] = useState([])
-
+  const [buscar, setBuscar] = useState([])
+  
   const AñadirCarrito = (producto) => { setCarrito([...carrito, producto]) }
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Productos AñadirCarrito={AñadirCarrito} carrito={carrito} />}></Route>
+          <Route path="/" element={<Productos AñadirCarrito={AñadirCarrito} carrito={carrito} setBuscar={setBuscar} buscar={buscar}/>}></Route>
           <Route path="/productos/:idProducto" element={<Detalles />} />
           </Routes>
       </BrowserRouter>
