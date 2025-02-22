@@ -12,10 +12,10 @@ export default function LoginComp() {
   const Login = async (e) => {
     e.preventDefault();
 
-    if (username !== "" || password !== "") {
+    if (username !== "" && password !== "") {
       const response = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
       if (response.data.length > 0) {
-        navigate('/');
+        navigate("/")
       } else {
         setError('Usuario o contraseña incorrectos');
       }
@@ -25,7 +25,7 @@ export default function LoginComp() {
   };
 
   const Registro = async () => {
-    if (username !== "" || password !== "") {
+    if (username !== "" && password !== "") {
       const response = await axios.get(`http://localhost:3000/usuarios?username=${username}`);
       if (response.data.length > 0) {
         setError('El usuario ya existe');
@@ -40,7 +40,7 @@ export default function LoginComp() {
   };
 
   const Borrar = async () => {
-    if (username !== "" || password !== "") {
+    if (username !== "" && password !== "") {
       const authResponse = await axios.get(`http://localhost:3000/usuarios?username=${username}&&password=${password}`);
       if (authResponse.data.length > 0) {
         //DELETE, no permite datos desde la URL, solo con el ID con esta ruta
