@@ -1,3 +1,4 @@
+// filepath: /c:/Users/fermin/Desktop/2DAW/Desarrollo web en entorno cliente/PRIMER TRIMESTRE/TAREAS/Desarrollo-web-en-entorno-cliente/UNIDAD 8/native1/app/index.tsx
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -74,44 +75,52 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+    backgroundColor: '#f0f0f0',
   },
   producto: {
     alignItems: 'center',
     marginBottom: 20,
-    padding: 10,
+    padding: 15,
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 10,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     width: '90%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   titulo: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 5,
+    marginBottom: 10,
   },
   imagen: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
     marginBottom: 10,
   },
   precio: {
     fontSize: 16,
     color: '#333',
+    marginBottom: 10,
   },
   detalleContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#fff',
   },
   imagenDetalle: {
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 250,
     resizeMode: 'contain',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   descripcion: {
     fontSize: 16,
