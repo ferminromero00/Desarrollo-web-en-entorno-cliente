@@ -1,6 +1,6 @@
-// filepath: /c:/Users/fermin/Desktop/2DAW/Desarrollo web en entorno cliente/PRIMER TRIMESTRE/TAREAS/Desarrollo-web-en-entorno-cliente/UNIDAD 8/Rutas/app/flatlist.tsx
+// filepath: /c:/Users/fermin/Desktop/2DAW/Desarrollo web en entorno cliente/PRIMER TRIMESTRE/TAREAS/Desarrollo-web-en-entorno-cliente/UNIDAD 8/Rutas/app/FlatListBasics.jsx
 import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { useNavigation } from 'expo-router';
 
 const styles = StyleSheet.create({
@@ -60,15 +60,17 @@ const FlatListBasics = () => {
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('details', { item })}>
-            <View style={styles.item}>
-              <Image source={{ uri: item.image }} style={styles.image} />
-              <View style={styles.details}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.price}>${item.price}</Text>
-              </View>
+          <View style={styles.item}>
+            <Image source={{ uri: item.image }} style={styles.image} />
+            <View style={styles.details}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.price}>${item.price}</Text>
+              <Button
+                title="Ver más detalles"
+                onPress={() => navigation.navigate('details', { item })}
+              />
             </View>
-          </TouchableOpacity>
+          </View>
         )}
       />
     </View>
