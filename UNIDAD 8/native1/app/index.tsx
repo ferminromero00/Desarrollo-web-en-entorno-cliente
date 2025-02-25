@@ -1,10 +1,11 @@
-// filepath: /c:/Users/fermin/Desktop/2DAW/Desarrollo web en entorno cliente/PRIMER TRIMESTRE/TAREAS/Desarrollo-web-en-entorno-cliente/UNIDAD 8/native1/app/index.tsx
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, Button } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fetchApi } from "./script";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-// interfaz del producto
+// Interfaz del producto
 interface Producto {
   id: number;
   title: string;
@@ -13,9 +14,41 @@ interface Producto {
   description: string;
 }
 
-// pantalla de inicio
+// Contexto del carrito
+const CarritoContext = React.createContext<{
+  items: Producto[];
+  addItem: (item: Producto) => void;
+}>({ items: [], addItem: () => { } });
+
+// Pantalla del carrito
+function CarritoScreen() {
+  const { items } = React.useContext(CarritoContext);
+  const total = items.reduce((sum, item) => sum + item.price, 0);
+
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      {items.length === 0 ? (
+        <Text style={styles.emptyCart}>El carrito está vacío</Text>
+      ) : (
+        <>
+          {items.map((producto, index) => (
+            <View key={index} style={styles.producto}>
+              <Text style={styles.titulo}>{producto.title}</Text>
+              <Image source={{ uri: producto.image }} style={styles.imagen} />
+              <Text style={styles.precio}>Precio: ${producto.price}</Text>
+            </View>
+          ))}
+          <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
+        </>
+      )}
+    </ScrollView>
+  );
+}
+
+// Pantalla de inicio
 function HomeScreen({ navigation }: { navigation: any }) {
   const [productos, setProductos] = useState<Producto[]>([]);
+  const { addItem } = React.useContext(CarritoContext);
 
   useEffect(() => {
     fetchApi('https://fakestoreapi.com/products')
@@ -31,44 +64,96 @@ function HomeScreen({ navigation }: { navigation: any }) {
         <View key={producto.id} style={styles.producto}>
           <Text style={styles.titulo}>{producto.title}</Text>
           <Image source={{ uri: producto.image }} style={styles.imagen} />
-          <Text style={styles.precio}>Price: ${producto.price}</Text>
-          <Button
-            title="Ver detalles"
-            onPress={() => navigation.navigate('Detalles', { producto })}
-          />
+          <Text style={styles.precio}>Precio: ${producto.price}</Text>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Ver detalles"
+              onPress={() => navigation.navigate('Detalles', { producto })}
+            />
+            <Button
+              title="Añadir al carrito"
+              onPress={() => {
+                addItem(producto);
+                alert('Producto añadido al carrito');
+              }}
+              color="#4CAF50"
+            />
+          </View>
         </View>
       ))}
     </ScrollView>
   );
 }
 
-// pantalla de detalles
+// Pantalla de detalles
 function DetallesScreen({ route }: { route: any }) {
   const { producto } = route.params;
+  const { addItem } = React.useContext(CarritoContext);
 
   return (
     <View style={styles.detalleContainer}>
       <Text style={styles.titulo}>{producto.title}</Text>
       <Image source={{ uri: producto.image }} style={styles.imagenDetalle} />
-      <Text style={styles.precio}>Price: ${producto.price}</Text>
+      <Text style={styles.precio}>Precio: ${producto.price}</Text>
       <Text style={styles.descripcion}>{producto.description}</Text>
+      <Button
+        title="Añadir al carrito"
+        onPress={() => {
+          addItem(producto);
+          alert('Producto añadido al carrito');
+        }}
+        color="#4CAF50"
+      />
     </View>
   );
 }
 
-// navegación
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function MainNavigator() {
+function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Inicio" component={HomeScreen} />
+      <Stack.Screen name="Productos" component={HomeScreen} />
       <Stack.Screen name="Detalles" component={DetallesScreen} />
     </Stack.Navigator>
   );
 }
 
-// estilos CSS
+export default function MainNavigator() {
+  const [carritoItems, setCarritoItems] = useState<Producto[]>([]);
+
+  return (
+    <CarritoContext.Provider
+      value={{
+        items: carritoItems,
+        addItem: (item) => setCarritoItems([...carritoItems, item])
+      }}
+    >
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false, // Esto ocultará el header
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName: keyof typeof Ionicons.glyphMap = focused
+              ? route.name === 'Home' ? 'home' : 'cart'
+              : route.name === 'Home' ? 'home-outline' : 'cart-outline';
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeStack}
+          options={{
+            headerShown: false // Esto asegura que no se muestre el header en esta pantalla
+          }}
+        />
+        <Tab.Screen name="Carrito" component={CarritoScreen} />
+      </Tab.Navigator>
+    </CarritoContext.Provider>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -126,6 +211,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginTop: 10,
+    marginBottom: 20,
     paddingHorizontal: 20,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    gap: 10,
+  },
+  total: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 20,
+    textAlign: 'right',
+    width: '100%',
+  },
+  emptyCart: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 50,
+  }
 });

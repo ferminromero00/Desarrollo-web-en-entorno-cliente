@@ -17,6 +17,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="index"
+        options={{
+          href: null, // Esto oculta la ruta index
+        }}
+      />
+      <Tabs.Screen
         name="FlatListBasics"
         options={{
           title: 'Lista',
@@ -32,6 +38,12 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={24} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="details"
+        options={{
+          href: null, // Esto oculta la ruta details de la barra de navegación
         }}
       />
     </Tabs>
