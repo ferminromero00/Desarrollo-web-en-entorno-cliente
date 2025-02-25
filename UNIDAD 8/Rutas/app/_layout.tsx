@@ -1,16 +1,38 @@
-// filepath: /c:/Users/fermin/Desktop/2DAW/Desarrollo web en entorno cliente/PRIMER TRIMESTRE/TAREAS/Desarrollo-web-en-entorno-cliente/UNIDAD 8/Rutas/app/_layout.tsx
 import { Tabs } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function TabLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen 
-        name="flatlist" 
-        options={{ title: 'FlatList' }}
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: '#ffd33d',
+        headerStyle: {
+          backgroundColor: '#25292e',
+        },
+        headerShadowVisible: false,
+        headerTintColor: '#fff',
+        tabBarStyle: {
+          backgroundColor: '#25292e',
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="FlatListBasics"
+        options={{
+          title: 'Lista',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'list' : 'list-outline'} color={color} size={24} />
+          ),
+        }}
       />
-      <Tabs.Screen 
-        name="details" 
-        options={{ title: 'Details', headerShown: false }}
+      <Tabs.Screen
+        name="Contact"
+        options={{
+          title: 'Contacto',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={24} />
+          ),
+        }}
       />
     </Tabs>
   );
