@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View, Image, Button } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fetchApi } from "./script";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons'; 
 
 // Interfaz del producto
 interface Producto {
