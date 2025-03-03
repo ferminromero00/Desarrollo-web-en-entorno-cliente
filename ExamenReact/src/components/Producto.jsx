@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 
 export default function Producto({ product, AñadirCarrito, carrito }) {
 
+    const onHangeCarrito = () => {
+        AñadirCarrito(product)
+    }
+
     return (
         <>
             <div>
@@ -13,7 +17,7 @@ export default function Producto({ product, AñadirCarrito, carrito }) {
                     </div>
                 </Link>
                 <p>Price: {product.price}</p>
-                <button>Añadir al carro</button>
+                <button onClick={() => onHangeCarrito()}>Añadir al carro</button>
             </div>
         </>
     )
